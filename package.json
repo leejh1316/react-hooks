@@ -6,7 +6,7 @@
     "dev": "pnpm --filter demo dev",
     "build": "pnpm run build:packages && pnpm --filter demo build",
     "preview": "pnpm run build:packages && pnpm --filter demo preview",
-    "build:packages": "pnpm --filter '@leejaehyeok/*' build"
+    "build:packages": "pnpm --filter \"./packages/*\" build"
   },
   "devDependencies": {
     "typescript": "~6.0.2"

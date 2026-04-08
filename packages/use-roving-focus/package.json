@@ -1,6 +1,26 @@
 {
   "name": "@leejaehyeok/use-roving-focus",
   "version": "0.1.0",
+  "description": "Accessible keyboard navigation with roving tabindex",
+  "author": "leejh1316",
+  "license": "MIT",
+  "homepage": "https://github.com/leejh1316/react-hooks/tree/master/packages/use-roving-focus#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leejh1316/react-hooks.git",
+    "directory": "packages/use-roving-focus"
+  },
+  "bugs": {
+    "url": "https://github.com/leejh1316/react-hooks/issues"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "roving-focus",
+    "accessibility",
+    "a11y",
+    "keyboard-navigation"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -17,10 +37,13 @@
       }
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build",
-    "dev": "vite build --watch"
+    "dev": "vite build --watch",
+    "release": "pnpm publish --access public"
   },
   "peerDependencies": {
     "react": ">=18"

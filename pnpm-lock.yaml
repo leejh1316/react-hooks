@@ -14,6 +14,9 @@ importers:
 
   apps/demo:
     dependencies:
+      '@leejaehyeok/use-focus-trap':
+        specifier: workspace:*
+        version: link:../../packages/use-focus-trap
       '@leejaehyeok/use-roving-focus':
         specifier: workspace:*
         version: link:../../packages/use-roving-focus

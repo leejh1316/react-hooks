@@ -6,7 +6,9 @@
     "dev": "pnpm --filter demo dev",
     "build": "pnpm run build:packages && pnpm --filter demo build",
     "preview": "pnpm run build:packages && pnpm --filter demo preview",
-    "build:packages": "pnpm --filter \"./packages/*\" build"
+    "build:packages": "pnpm --filter \"./packages/*\" build",
+    "build:use-focus-trap": "pnpm --filter use-focus-trap build",
+    "build:use-roving-focus": "pnpm --filter use-roving-focus build"
   },
   "devDependencies": {
     "typescript": "~6.0.2"

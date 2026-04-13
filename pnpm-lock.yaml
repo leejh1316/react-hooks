@@ -14,12 +14,18 @@ importers:
 
   apps/demo:
     dependencies:
+      '@leejaehyeok/use-debounce':
+        specifier: workspace:*
+        version: link:../../packages/use-debounce
       '@leejaehyeok/use-focus-trap':
         specifier: workspace:*
         version: link:../../packages/use-focus-trap
       '@leejaehyeok/use-roving-focus':
         specifier: workspace:*
         version: link:../../packages/use-roving-focus
+      '@leejaehyeok/use-throttle':
+        specifier: workspace:*
+        version: link:../../packages/use-throttle
       react:
         specifier: ^19.2.4
         version: 19.2.4

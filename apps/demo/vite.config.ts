@@ -1,24 +1,25 @@
-import { defineConfig, type AliasOptions } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import { resolve } from 'path'
+import { defineConfig, type AliasOptions } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import { resolve } from "path";
 
 // dev: alias to package src for instant HMR without building packages first
 // build/preview: use workspace package dist (run `pnpm build:packages` first)
 const devAliases: AliasOptions = {
-  '@leejaehyeok/use-roving-focus': resolve(
-    __dirname,
-    '../../packages/use-roving-focus/src/index.ts',
-  ),
-}
+  "@leejaehyeok/use-debounce": resolve(__dirname, "../../packages/use-debounce/src/index.ts"),
+  "@leejaehyeok/use-focus-trap": resolve(__dirname, "../../packages/use-focus-trap/src/index.ts"),
+  "@leejaehyeok/use-roving-focus": resolve(__dirname, "../../packages/use-roving-focus/src/index.ts"),
+  "@leejaehyeok/use-snooze": resolve(__dirname, "../../packages/use-snooze/src/index.ts"),
+  "@leejaehyeok/use-throttle": resolve(__dirname, "../../packages/use-throttle/src/index.ts"),
+};
 
 export default defineConfig(({ command }) => ({
   plugins: [tailwindcss(), react()],
-  base: '/react-hooks/',
+  base: "/react-hooks/",
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      ...(command === 'serve' ? devAliases : {}),
+      "@": resolve(__dirname, "src"),
+      ...(command === "serve" ? devAliases : {}),
     },
   },
-}))
+}));

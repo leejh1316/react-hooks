@@ -20,19 +20,14 @@ import { useFocusTrap } from "@leejaehyeok/use-focus-trap";
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const { containerRef } = useFocusTrap();
+  const containerRef = useFocusTrap();
 
   return (
     <div>
       <button onClick={() => setIsOpen(true)}>Open Modal</button>
 
       {isOpen && (
-        <div
-          ref={containerRef as React.RefObject<HTMLDivElement>}
-          role="dialog"
-          aria-modal="true"
-          style={{ padding: "24px", border: "1px solid black", marginTop: "16px" }}
-        >
+        <div ref={containerRef} role="dialog" aria-modal="true" style={{ padding: "24px", border: "1px solid black", marginTop: "16px" }}>
           <h2>Focus Trap Modal</h2>
           <p>Focus is trapped within this container.</p>
 

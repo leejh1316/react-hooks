@@ -16,10 +16,7 @@
   "keywords": [
     "react",
     "hooks",
-    "accessibility",
-    "a11y",
-    "debounce",
-    "keyboard-navigation"
+    "debounce"
   ],
   "type": "module",
   "main": "./dist/index.cjs",

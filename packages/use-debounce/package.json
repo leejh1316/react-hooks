@@ -1,0 +1,58 @@
+{
+  "name": "@leejaehyeok/use-debounce",
+  "version": "0.1.0",
+  "description": "A React hook for debouncing values, useful for optimizing performance in scenarios like search input or API calls.",
+  "author": "leejh1316",
+  "license": "MIT",
+  "homepage": "https://github.com/leejh1316/react-hooks/tree/master/packages/use-debounce#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leejh1316/react-hooks.git",
+    "directory": "packages/use-debounce"
+  },
+  "bugs": {
+    "url": "https://github.com/leejh1316/react-hooks/issues"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "accessibility",
+    "a11y",
+    "debounce",
+    "keyboard-navigation"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "release": "pnpm publish --access public"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.4",
+    "vite-plugin-dts": "^4.0.0"
+  }
+}

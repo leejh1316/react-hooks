@@ -10,6 +10,8 @@
 | -------------------------------------------------------------- | ----- | ----------------- |
 | [`@leejaehyeok/use-roving-focus`](./packages/use-roving-focus) | 0.1.0 | 키보드 네비게이션 |
 | [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)     | 0.1.0 | 포커스 트랩       |
+| [`@leejaehyeok/use-debounce`](./packages/use-debounce)         | 0.1.0 | 디바운싱          |
+| [`@leejaehyeok/use-throttle`](./packages/use-throttle)         | 0.1.0 | 쓰로틀링          |
 
 ---
 

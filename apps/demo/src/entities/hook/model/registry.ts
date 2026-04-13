@@ -30,4 +30,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["a11y", "focus"],
     Page: lazy(() => import("@/pages/use-focus-trap")),
   },
+  {
+    id: "use-snooze",
+    name: "use-snooze",
+    description: "배너·알림·팝업을 일정 시간 동안 숨기는 스누즈 기능을 제공합니다",
+    tags: ["ui", "storage"],
+    Page: lazy(() => import("@/pages/use-snooze")),
+  },
 ];

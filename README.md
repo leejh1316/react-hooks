@@ -9,6 +9,7 @@
 | 패키지                                                         | 버전  | 설명              |
 | -------------------------------------------------------------- | ----- | ----------------- |
 | [`@leejaehyeok/use-roving-focus`](./packages/use-roving-focus) | 0.1.0 | 키보드 네비게이션 |
+| [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)     | 0.1.0 | 포커스 트랩       |
 
 ---
 

@@ -55,7 +55,6 @@ const useDebounce = <T extends (...args: any[]) => void>(
 
   const flush = useCallback(() => {
     if (timer.current && lastArgsRef.current) {
-      clearTimeout(timer.current);
       callbackRef.current(...lastArgsRef.current);
       cancel();
     }

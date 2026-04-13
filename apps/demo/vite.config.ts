@@ -1,5 +1,6 @@
 import { defineConfig, type AliasOptions } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'path'
 
 // dev: alias to package src for instant HMR without building packages first
@@ -12,9 +13,12 @@ const devAliases: AliasOptions = {
 }
 
 export default defineConfig(({ command }) => ({
-  plugins: [react()],
+  plugins: [tailwindcss(), react()],
   base: '/react-hooks/',
   resolve: {
-    alias: command === 'serve' ? devAliases : {},
+    alias: {
+      '@': resolve(__dirname, 'src'),
+      ...(command === 'serve' ? devAliases : {}),
+    },
   },
 }))

@@ -51,4 +51,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["state", "ui"],
     Page: lazy(() => import("@/pages/use-pagination")),
   },
+  {
+    id: "use-prev-ref",
+    name: "use-prev-ref",
+    description: "이전 렌더링 사이클의 값을 ref로 저장합니다",
+    tags: ["state", "ref"],
+    Page: lazy(() => import("@/pages/use-prev-ref")),
+  },
 ];

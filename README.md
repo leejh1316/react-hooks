@@ -1,18 +1,21 @@
 # @leejaehyeok/react-hooks
 
-`@leejaehyeok` 범위의 React hook 패키지들을 위한 pnpm 모노레포입니다.
+유용한 React Hook을 만들고 배포하고 있습니다.
 
 ---
 
 ## 패키지
 
-| 패키지                                                         | 버전  | 설명              |
-| -------------------------------------------------------------- | ----- | ----------------- |
-| [`@leejaehyeok/use-debounce`](./packages/use-debounce)         | 0.1.0 | 디바운싱          |
-| [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)     | 0.1.0 | 포커스 트랩       |
-| [`@leejaehyeok/use-roving-focus`](./packages/use-roving-focus) | 0.1.0 | 키보드 네비게이션 |
-| [`@leejaehyeok/use-snooze`](./packages/use-snooze)             | 0.1.0 | 스누즈            |
-| [`@leejaehyeok/use-throttle`](./packages/use-throttle)         | 0.1.0 | 쓰로틀링          |
+| 패키지                                                                     | 버전  | 설명              |
+| -------------------------------------------------------------------------- | ----- | ----------------- |
+| [`@leejaehyeok/use-controllable-state`](./packages/use-controllable-state) | 0.1.0 | 제어/비제어       |
+| [`@leejaehyeok/use-debounce`](./packages/use-debounce)                     | 0.1.0 | 디바운싱          |
+| [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)                 | 0.1.0 | 포커스 트랩       |
+| [`@leejaehyeok/use-pagination`](./packages/use-pagination)                 | 0.1.0 | 페이지네이션      |
+| [`@leejaehyeok/use-prev-ref`](./packages/use-prev-ref)                     | 0.1.0 | 이전값 참조       |
+| [`@leejaehyeok/use-roving-focus`](./packages/use-roving-focus)             | 0.1.0 | 키보드 네비게이션 |
+| [`@leejaehyeok/use-snooze`](./packages/use-snooze)                         | 0.1.0 | 스누즈            |
+| [`@leejaehyeok/use-throttle`](./packages/use-throttle)                     | 0.1.0 | 쓰로틀링          |
 
 ---
 

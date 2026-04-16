@@ -13,6 +13,7 @@ const devAliases: AliasOptions = {
   "@leejaehyeok/use-throttle": resolve(__dirname, "../../packages/use-throttle/src/index.ts"),
   "@leejaehyeok/use-prev-ref": resolve(__dirname, "../../packages/use-prev-ref/src/index.ts"),
   "@leejaehyeok/use-controllable-state": resolve(__dirname, "../../packages/use-controllable-state/src/index.ts"),
+  "@leejaehyeok/use-pagination": resolve(__dirname, "../../packages/use-pagination/src/index.ts"),
 };
 
 export default defineConfig(({ command }) => ({

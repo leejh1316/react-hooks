@@ -23,6 +23,9 @@ importers:
       '@leejaehyeok/use-focus-trap':
         specifier: workspace:*
         version: link:../../packages/use-focus-trap
+      '@leejaehyeok/use-pagination':
+        specifier: workspace:*
+        version: link:../../packages/use-pagination
       '@leejaehyeok/use-prev-ref':
         specifier: workspace:*
         version: link:../../packages/use-prev-ref

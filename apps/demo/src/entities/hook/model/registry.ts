@@ -44,4 +44,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["state", "ui"],
     Page: lazy(() => import("@/pages/use-controllable-state")),
   },
+  {
+    id: "use-pagination",
+    name: "use-pagination",
+    description: "페이지 번호·생략 기호·이전/다음/점프 이동을 포함한 페이지네이션 상태를 관리합니다",
+    tags: ["state", "ui"],
+    Page: lazy(() => import("@/pages/use-pagination")),
+  },
 ];

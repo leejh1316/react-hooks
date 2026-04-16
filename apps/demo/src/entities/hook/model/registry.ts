@@ -37,4 +37,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["ui", "storage"],
     Page: lazy(() => import("@/pages/use-snooze")),
   },
+  {
+    id: "use-controllable-state",
+    name: "use-controllable-state",
+    description: "제어/비제어 컴포넌트 패턴을 단일 훅으로 구현합니다",
+    tags: ["state", "ui"],
+    Page: lazy(() => import("@/pages/use-controllable-state")),
+  },
 ];

@@ -11,6 +11,8 @@ const devAliases: AliasOptions = {
   "@leejaehyeok/use-roving-focus": resolve(__dirname, "../../packages/use-roving-focus/src/index.ts"),
   "@leejaehyeok/use-snooze": resolve(__dirname, "../../packages/use-snooze/src/index.ts"),
   "@leejaehyeok/use-throttle": resolve(__dirname, "../../packages/use-throttle/src/index.ts"),
+  "@leejaehyeok/use-prev-ref": resolve(__dirname, "../../packages/use-prev-ref/src/index.ts"),
+  "@leejaehyeok/use-controllable-state": resolve(__dirname, "../../packages/use-controllable-state/src/index.ts"),
 };
 
 export default defineConfig(({ command }) => ({

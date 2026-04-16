@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import { hookRegistry } from "@/entities/hook";
 import { Badge } from "@/shared/ui";
-
+import { Link } from "react-router-dom";
 export function HomePage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-8">

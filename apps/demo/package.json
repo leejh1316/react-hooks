@@ -14,6 +14,8 @@
     "@leejaehyeok/use-roving-focus": "workspace:*",
     "@leejaehyeok/use-snooze": "workspace:*",
     "@leejaehyeok/use-throttle": "workspace:*",
+    "@leejaehyeok/use-prev-ref": "workspace:*",
+    "@leejaehyeok/use-controllable-state": "workspace:*",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.14.0"

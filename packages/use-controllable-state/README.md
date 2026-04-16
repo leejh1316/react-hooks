@@ -1,54 +1,50 @@
-# @leejaehyeok/use-throttle
+# @leejaehyeok/use-controllable-state
 
 [English](./README.md) | [한국어](./README-ko.md)
 
-A React hook for throttling function calls, ensuring they are executed at most once in a specified time period. Useful for optimizing performance on frequent events like scrolling, window resizing, or rapid button clicking.
+A React hook for managing both controlled and uncontrolled component patterns seamlessly. Supports external value control, internal state management, and event callbacks with automatic optimization to prevent unnecessary updates.
 
 ## 📦 Installation
 
 ```bash
-npm install @leejaehyeok/use-throttle
+npm install @leejaehyeok/use-controllable-state
 ```
 
 ## 🚀 Quick Start
 
-The hook returns a `throttle` function along with `cancel` and `flush` methods to control the timer.
+The hook returns a tuple with the current value and a setter function, supporting both controlled and uncontrolled modes.
 
 ```tsx
-import React, { useState } from "react";
-import { useThrottle } from "@leejaehyeok/use-throttle";
+import React from "react";
+import { useControllableState } from "@leejaehyeok/use-controllable-state";
 
-export default function App() {
-  const [value, setValue] = useState(0);
-  const [throttledValue, setThrottledValue] = useState(0);
+// Uncontrolled mode
+export function UncontrolledInput() {
+  const [value, setValue] = useControllableState({
+    defaultValue: "",
+    onChange: (value) => console.log("Changed:", value),
+  });
 
-  const { throttle, cancel, flush } = useThrottle((val: number) => setThrottledValue(val), 500);
+  return <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Uncontrolled" />;
+}
 
-  const handleScroll = (e: any) => {
-    // Increase value continuously
-    setValue(prev => prev + 1);
-    throttle(value + 1);
-  };
+// Controlled mode
+export function ControlledInput({ value, onChange }) {
+  const [state, setState] = useControllableState({
+    value,
+    onChange,
+  });
 
-  return (
-    <div onScroll={handleScroll} style={{ height: '200px', overflowY: 'scroll' }}>
-      <div style={{ height: '1000px' }}>
-        <p>Current Value: {value}</p>
-        <p>Throttled Value: {throttledValue}</p>
-
-        <button onClick={cancel}>Cancel</button>
-        <button onClick={flush}>Flush</button>
-      </div>
-    </div>
-  );
+  return <input value={state} onChange={(e) => setState(e.target.value)} placeholder="Controlled" />;
 }
 ```
 
-## 🧠 Behavior
+## 🧠 Key Features
 
-- **Throttle:** The function is executed at most once every `wait` milliseconds.
-- **Options (`leading` / `trailing`):** Fine-grained control to specify whether the function should be invoked on the leading edge (`leading: true`) or the trailing edge (`trailing: true`).
-- **`cancel` & `flush`:** Provides utility methods to cancel pending invocations (`cancel`) or execute them immediately (`flush`).
+- **Dual Mode Support:** Seamlessly switch between controlled (external state) and uncontrolled (internal state) patterns.
+- **Automatic Optimization:** Prevents unnecessary updates by comparing values using `Object.is`.
+- **onChange Callback:** Notify parent components of state changes.
+- **Flexible Initialization:** Support for default values and function-based initialization.
 
 ## 🔗 Links
 

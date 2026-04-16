@@ -1,53 +1,50 @@
-# @leejaehyeok/use-throttle
+# @leejaehyeok/use-controllable-state
 
 [English](./README.md) | [한국어](./README-ko.md)
 
-함수 호출을 스로틀링(Throttle)하여 지정된 시간 내에 최대 한 번만 실행되도록 하는 React 훅입니다. 스크롤, 윈도우 리사이징, 빈번한 버튼 클릭 등 자주 발생하는 이벤트의 성능 최적화에 유용합니다.
+React의 제어 컴포넌트와 비제어 컴포넌트 패턴을 모두 지원하는 훅입니다. 외부에서 값을 제어할 수도 있고, 내부 상태로 관리할 수도 있으며, 불필요한 업데이트를 자동으로 방지합니다.
 
 ## 📦 설치
 
 ```bash
-npm install @leejaehyeok/use-throttle
+npm install @leejaehyeok/use-controllable-state
 ```
 
 ## 🚀 빠른 시작
 
-훅은 `throttle` 함수와 타이머를 제어할 수 있는 `cancel`, `flush` 메서드를 반환합니다.
+훅은 현재 값과 setter 함수를 반환하며, 제어 모드와 비제어 모드를 모두 지원합니다.
 
 ```tsx
-import React, { useState } from "react";
-import { useThrottle } from "@leejaehyeok/use-throttle";
+import React from "react";
+import { useControllableState } from "@leejaehyeok/use-controllable-state";
 
-export default function App() {
-  const [value, setValue] = useState(0);
-  const [throttledValue, setThrottledValue] = useState(0);
+// 비제어 모드
+export function UncontrolledInput() {
+  const [value, setValue] = useControllableState({
+    defaultValue: "",
+    onChange: (value) => console.log("변경됨:", value),
+  });
 
-  const { throttle, cancel, flush } = useThrottle((val: number) => setThrottledValue(val), 500);
+  return <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="비제어" />;
+}
 
-  const handleScroll = (e: any) => {
-    setValue((prev) => prev + 1);
-    throttle(value + 1);
-  };
+// 제어 모드
+export function ControlledInput({ value, onChange }) {
+  const [state, setState] = useControllableState({
+    value,
+    onChange,
+  });
 
-  return (
-    <div onScroll={handleScroll} style={{ height: "200px", overflowY: "scroll" }}>
-      <div style={{ height: "1000px" }}>
-        <p>현재 값: {value}</p>
-        <p>스로틀링된 값: {throttledValue}</p>
-
-        <button onClick={cancel}>취소 (Cancel)</button>
-        <button onClick={flush}>즉시 실행 (Flush)</button>
-      </div>
-    </div>
-  );
+  return <input value={state} onChange={(e) => setState(e.target.value)} placeholder="제어" />;
 }
 ```
 
-## 🧠 주요 기능(동작 방식)
+## 🧠 주요 기능
 
-- **스로틀링 (Throttle):** 아무리 빈번하게 호출되더라도, 함수가 `wait` 시간당 최대 한 번씩만 실행됩니다.
-- **옵션 제어 (`leading` / `trailing`):** 첫 호출 시 즉시 실행할지(`leading: true`), 지연 시간 후 마지막에 남은 호출을 실행할지(`trailing: true`) 세밀하게 제어할 수 있습니다.
-- **`cancel` & `flush`:** 대기 중인 함수 호출을 취소(`cancel`)하거나 즉시 실행(`flush`)할 수 있는 유틸리티 함수를 제공합니다.
+- **이중 모드 지원:** 제어 모드(외부 상태)와 비제어 모드(내부 상태) 간 전환이 매끄럽습니다.
+- **자동 최적화:** `Object.is`를 이용한 값 비교로 불필요한 업데이트를 방지합니다.
+- **onChange 콜백:** 상태 변경 시 부모 컴포넌트에 알립니다.
+- **유연한 초기화:** 기본값 및 함수 기반 초기화를 지원합니다.
 
 ## 🔗 링크
 

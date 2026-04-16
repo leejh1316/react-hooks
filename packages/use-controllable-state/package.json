@@ -1,7 +1,7 @@
 {
   "name": "@leejaehyeok/use-controllable-state",
   "version": "0.1.0",
-  "description": "A React hook for throttling function calls, useful for optimizing performance in scenarios like scroll events or window resizing.",
+  "description": "A React hook for managing both controlled and uncontrolled component patterns with flexible state management.",
   "author": "leejh1316",
   "license": "MIT",
   "homepage": "https://github.com/leejh1316/react-hooks/tree/master/packages/use-controllable-state#readme",
@@ -16,7 +16,9 @@
   "keywords": [
     "react",
     "hooks",
-    "throttle"
+    "controlled",
+    "uncontrolled",
+    "state management"
   ],
   "type": "module",
   "main": "./dist/index.cjs",

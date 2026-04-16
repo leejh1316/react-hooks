@@ -135,6 +135,9 @@ importers:
 
   packages/use-pagination:
     dependencies:
+      '@leejaehyeok/use-controllable-state':
+        specifier: workspace:*
+        version: link:../use-controllable-state
       react:
         specifier: '>=18'
         version: 19.2.4

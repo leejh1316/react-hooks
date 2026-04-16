@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
-import { usePrevRef } from "@leejaehyeok/use-prev-ref";
 
 // setState((prev)=> newValue) 형태로 업데이트 함수를 사용할때의 타입정의
 type StateUpdater<S> = (prevState: S) => S;
@@ -15,7 +14,10 @@ export function useControllableState<T>(options: ControllableStateOptions<T>) {
   const [state, setState] = useState(() => (typeof defaultValue === "function" ? (defaultValue as () => T)() : (defaultValue as T)));
 
   const value = isControlled.current ? controlledValue! : state;
-  const prevValueRef = usePrevRef(value);
+  const valueRef = useRef(value);
+  useEffect(() => {
+    valueRef.current = value;
+  }, [value]);
 
   const onChangeRef = useRef(onChange);
   useEffect(() => {
@@ -23,7 +25,7 @@ export function useControllableState<T>(options: ControllableStateOptions<T>) {
   }, [onChange]);
 
   const setValue: Dispatch<SetStateAction<T>> = useCallback((next: SetStateAction<T>) => {
-    const prevValue = prevValueRef.current;
+    const prevValue = valueRef.current; // 다음 업데이트전 현재 최신값
     const resolvedValue = typeof next === "function" ? (next as StateUpdater<T>)(prevValue) : next;
     if (Object.is(prevValue, resolvedValue)) return; // 값이 변경되지 않은 경우 onChange 호출 방지
     if (!isControlled.current) {

@@ -20,6 +20,9 @@ importers:
       '@leejaehyeok/use-debounce':
         specifier: workspace:*
         version: link:../../packages/use-debounce
+      '@leejaehyeok/use-deferred-loading':
+        specifier: workspace:*
+        version: link:../../packages/use-deferred-loading
       '@leejaehyeok/use-focus-trap':
         specifier: workspace:*
         version: link:../../packages/use-focus-trap
@@ -93,6 +96,28 @@ importers:
         version: 4.5.4(@types/node@24.12.2)(typescript@6.0.2)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@24.12.2)(jiti@2.6.1))
 
   packages/use-debounce:
+    dependencies:
+      react:
+        specifier: '>=18'
+        version: 19.2.4
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@vitejs/plugin-react':
+        specifier: ^6.0.1
+        version: 6.0.1(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@24.12.2)(jiti@2.6.1))
+      typescript:
+        specifier: ~6.0.2
+        version: 6.0.2
+      vite:
+        specifier: ^8.0.4
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@24.12.2)(jiti@2.6.1)
+      vite-plugin-dts:
+        specifier: ^4.0.0
+        version: 4.5.4(@types/node@24.12.2)(typescript@6.0.2)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@24.12.2)(jiti@2.6.1))
+
+  packages/use-deferred-loading:
     dependencies:
       react:
         specifier: '>=18'

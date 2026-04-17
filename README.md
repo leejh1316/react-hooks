@@ -10,6 +10,7 @@
 | -------------------------------------------------------------------------- | ----- | ----------------- |
 | [`@leejaehyeok/use-controllable-state`](./packages/use-controllable-state) | 0.1.0 | 제어/비제어       |
 | [`@leejaehyeok/use-debounce`](./packages/use-debounce)                     | 0.1.0 | 디바운싱          |
+| [`@leejaehyeok/use-use-deferred-loading`](./packages/use-deferred-loading) | 0.1.0 | 지연된 로딩       |
 | [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)                 | 0.1.0 | 포커스 트랩       |
 | [`@leejaehyeok/use-pagination`](./packages/use-pagination)                 | 0.1.0 | 페이지네이션      |
 | [`@leejaehyeok/use-prev-ref`](./packages/use-prev-ref)                     | 0.1.0 | 이전값 참조       |

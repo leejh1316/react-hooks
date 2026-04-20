@@ -15,6 +15,7 @@ const devAliases: AliasOptions = {
   "@leejaehyeok/use-controllable-state": resolve(__dirname, "../../packages/use-controllable-state/src/index.ts"),
   "@leejaehyeok/use-pagination": resolve(__dirname, "../../packages/use-pagination/src/index.ts"),
   "@leejaehyeok/use-deferred-loading": resolve(__dirname, "../../packages/use-deferred-loading/src/index.ts"),
+  "@leejaehyeok/use-compose-ref": resolve(__dirname, "../../packages/use-compose-ref/src/index.ts"),
 };
 
 export default defineConfig(({ command }) => ({

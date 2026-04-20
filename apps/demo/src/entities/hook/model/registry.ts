@@ -65,4 +65,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["ui", "performance"],
     Page: lazy(() => import("@/pages/use-deferred-loading")),
   },
+  {
+    id: "use-compose-ref",
+    name: "use-compose-ref",
+    description: "여러 ref를 하나의 콜백 ref로 합성합니다. React 19 cleanup도 지원합니다",
+    tags: ["ref", "ui"],
+    Page: lazy(() => import("@/pages/use-compose-ref")),
+  },
 ];

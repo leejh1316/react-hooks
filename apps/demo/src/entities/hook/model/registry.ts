@@ -72,4 +72,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["ref", "ui"],
     Page: lazy(() => import("@/pages/use-compose-ref")),
   },
+  {
+    id: "use-overflow",
+    name: "use-overflow",
+    description: "컨테이너의 자식 요소들이 경계를 초과하는지 감지합니다",
+    tags: ["ui", "dom"],
+    Page: lazy(() => import("@/pages/use-overflow")),
+  },
 ];

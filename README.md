@@ -6,18 +6,19 @@
 
 ## 패키지
 
-| 패키지                                                                     | 버전  | 설명              |
-| -------------------------------------------------------------------------- | ----- | ----------------- |
-| [`@leejaehyeok/use-controllable-state`](./packages/use-controllable-state) | 0.1.0 | 제어/비제어       |
-| [`@leejaehyeok/use-debounce`](./packages/use-debounce)                     | 0.1.0 | 디바운싱          |
-| [`@leejaehyeok/use-use-deferred-loading`](./packages/use-deferred-loading) | 0.1.0 | 지연된 로딩       |
-| [`@leejaehyeok/use-compose-ref`](./packages/use-compose-ref)               | 0.1.0 | ref 합성          |
-| [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)                 | 0.1.0 | 포커스 트랩       |
-| [`@leejaehyeok/use-pagination`](./packages/use-pagination)                 | 0.1.0 | 페이지네이션      |
-| [`@leejaehyeok/use-prev-ref`](./packages/use-prev-ref)                     | 0.1.0 | 이전값 참조       |
-| [`@leejaehyeok/use-roving-focus`](./packages/use-roving-focus)             | 0.1.0 | 키보드 네비게이션 |
-| [`@leejaehyeok/use-snooze`](./packages/use-snooze)                         | 0.1.0 | 스누즈            |
-| [`@leejaehyeok/use-throttle`](./packages/use-throttle)                     | 0.1.0 | 쓰로틀링          |
+| 패키지                                                                     | 버전  | 설명                     |
+| -------------------------------------------------------------------------- | ----- | ------------------------ |
+| [`@leejaehyeok/use-compose-ref`](./packages/use-compose-ref)               | 0.1.0 | ref 합성                 |
+| [`@leejaehyeok/use-controllable-state`](./packages/use-controllable-state) | 0.1.0 | 제어/비제어              |
+| [`@leejaehyeok/use-debounce`](./packages/use-debounce)                     | 0.1.0 | 디바운싱                 |
+| [`@leejaehyeok/use-use-deferred-loading`](./packages/use-deferred-loading) | 0.1.0 | 지연된 로딩              |
+| [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)                 | 0.1.0 | 포커스 트랩              |
+| [`@leejaehyeok/use-overflow`](./packages/use-overflow)                     | 0.1.0 | 컨테이너 오버플로우 감지 |
+| [`@leejaehyeok/use-pagination`](./packages/use-pagination)                 | 0.1.0 | 페이지네이션             |
+| [`@leejaehyeok/use-prev-ref`](./packages/use-prev-ref)                     | 0.1.0 | 이전값 참조              |
+| [`@leejaehyeok/use-roving-focus`](./packages/use-roving-focus)             | 0.1.0 | 키보드 네비게이션        |
+| [`@leejaehyeok/use-snooze`](./packages/use-snooze)                         | 0.1.0 | 스누즈                   |
+| [`@leejaehyeok/use-throttle`](./packages/use-throttle)                     | 0.1.0 | 쓰로틀링                 |
 
 ---
 

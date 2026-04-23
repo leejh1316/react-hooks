@@ -2,7 +2,7 @@
 
 [English](./README.md) | [한국어](./README-ko.md)
 
-A React hook that shows loading state only when loading persists longer than a specified delay. Prevents unnecessary UI flicker from short-lived loading states.
+A React hook that shows loading state only when loading persists longer than a specified delay, and keeps it visible for a minimum duration. Prevents unnecessary UI flicker from short-lived loading states.
 
 ## 📦 Installation
 
@@ -12,7 +12,7 @@ npm install @leejaehyeok/use-deferred-loading
 
 ## 🚀 Quick Start
 
-The hook takes a loading state and delay time, and returns true only when loading persists longer than the delay.
+The hook takes a loading state and an options object, and returns true only when loading persists longer than the delay.
 
 ```tsx
 import React, { useState } from "react";
@@ -20,7 +20,7 @@ import { useDeferredLoading } from "@leejaehyeok/use-deferred-loading";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false);
-  const isDeferredLoading = useDeferredLoading(isLoading, 300);
+  const isDeferredLoading = useDeferredLoading(isLoading, { delay: 300, minDisplayDuration: 500 });
 
   const handleFetch = async () => {
     setIsLoading(true);
@@ -46,12 +46,15 @@ export default function App() {
 
 - **Deferred Loading State:** When `isLoading` becomes true, `isDeferredLoading` only becomes true after the specified `delay` (default: 100ms).
 - **Flicker Prevention:** Short-lived loading states don't trigger UI updates, preventing unnecessary spinner flicker.
-- **Automatic Cleanup:** When `isLoading` becomes false, `isDeferredLoading` immediately becomes false and the timer is automatically cleared.
+- **Minimum Display Duration:** Once the spinner appears, it stays visible for at least `minDisplayDuration` (default: 300ms), preventing an abrupt flash-and-disappear effect.
+- **Automatic Cleanup:** When `isLoading` becomes false, `isDeferredLoading` turns false after the minimum display duration elapses, and all timers are automatically cleared.
 
 ## ⚙️ Parameters
 
 - `isLoading` (boolean): Whether the component is currently loading.
-- `delay` (number, optional): Delay time in milliseconds before showing the loading state. Default is 100ms.
+- `options` (object, optional):
+  - `delay` (number): Delay in milliseconds before showing the loading state. Default is `100ms`.
+  - `minDisplayDuration` (number): Minimum time in milliseconds the loading state stays visible once shown. Default is `300ms`.
 
 ## 💡 Use Cases
 

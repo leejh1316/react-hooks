@@ -2,7 +2,7 @@
 
 [English](./README.md) | [한국어](./README-ko.md)
 
-지정된 지연 시간 이상 로딩이 지속될 때만 로딩 상태를 나타내는 React 훅입니다. 짧은 로딩은 표시하지 않아 불필요한 로딩 UI 깜빡임을 방지합니다.
+지정된 지연 시간 이상 로딩이 지속될 때만 로딩 상태를 나타내며, 최소 표시 시간을 보장하는 React 훅입니다. 짧은 로딩은 표시하지 않아 불필요한 로딩 UI 깜빡임을 방지합니다.
 
 ## 📦 설치
 
@@ -12,7 +12,7 @@ npm install @leejaehyeok/use-deferred-loading
 
 ## 🚀 빠른 시작
 
-훅은 로딩 상태와 지연 시간을 받아서, 지연 시간 이상 로딩이 지속될 때만 true를 반환합니다.
+훅은 로딩 상태와 옵션 객체를 받아서, 지연 시간 이상 로딩이 지속될 때만 true를 반환합니다.
 
 ```tsx
 import React, { useState } from "react";
@@ -20,7 +20,7 @@ import { useDeferredLoading } from "@leejaehyeok/use-deferred-loading";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false);
-  const isDeferredLoading = useDeferredLoading(isLoading, 300);
+  const isDeferredLoading = useDeferredLoading(isLoading, { delay: 300, minDisplayDuration: 500 });
 
   const handleFetch = async () => {
     setIsLoading(true);
@@ -46,12 +46,15 @@ export default function App() {
 
 - **지연된 로딩 상태:** `isLoading`이 true가 되면 지정된 `delay`(기본값: 100ms) 시간 후에만 `isDeferredLoading`을 true로 설정합니다.
 - **깜빡임 방지:** 짧은 로딩은 표시하지 않아 UI의 불필요한 깜빡임을 방지합니다.
-- **자동 정리:** `isLoading`이 false가 되면 즉시 `isDeferredLoading`도 false로 설정되고, 타이머는 자동으로 정리됩니다.
+- **최소 표시 시간 보장:** 스피너가 한 번 나타나면 `minDisplayDuration`(기본값: 300ms) 이상 유지되어, 스피너가 순간 나타났다 사라지는 현상을 방지합니다.
+- **자동 정리:** `isLoading`이 false가 되면 최소 표시 시간이 지난 후 `isDeferredLoading`도 false로 설정되고, 타이머는 자동으로 정리됩니다.
 
 ## ⚙️ 매개변수
 
 - `isLoading` (boolean): 로딩 상태 여부
-- `delay` (number, 선택사항): 로딩 표시 지연 시간(밀리초). 기본값은 100ms입니다.
+- `options` (객체, 선택사항):
+  - `delay` (number): 로딩 상태를 표시하기까지의 지연 시간(밀리초). 기본값은 `100ms`입니다.
+  - `minDisplayDuration` (number): 로딩 상태가 한 번 표시된 후 최소 유지 시간(밀리초). 기본값은 `300ms`입니다.
 
 ## 💡 사용 사례
 

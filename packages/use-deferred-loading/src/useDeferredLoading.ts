@@ -1,24 +1,45 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useDeferredLoading(isLoading: boolean, delay: number = 100) {
+type DeferredLoadingOptions = {
+  delay?: number;
+  minDisplayDuration?: number;
+};
+export function useDeferredLoading(isLoading: boolean, options?: DeferredLoadingOptions) {
+  const { delay = 100, minDisplayDuration = 300 } = options || {};
   const [isDeferredLoading, setIsDeferredLoading] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>(null);
-
+  const delayTimer = useRef<ReturnType<typeof setTimeout>>(null);
+  const minDurationTimer = useRef<ReturnType<typeof setTimeout>>(null);
+  const showTime = useRef<number | null>(null);
   useEffect(() => {
     if (!isLoading) {
-      setIsDeferredLoading(false);
+      if (showTime.current !== null) {
+        const elapsed = Date.now() - showTime.current;
+        const remaining = minDisplayDuration - elapsed;
+
+        if (remaining > 0) {
+          minDurationTimer.current = setTimeout(() => {
+            setIsDeferredLoading(false);
+            showTime.current = null;
+          }, remaining);
+        } else {
+          setIsDeferredLoading(false);
+          showTime.current = null;
+        }
+      }
       return;
     }
 
-    timer.current = setTimeout(() => {
+    delayTimer.current = setTimeout(() => {
       setIsDeferredLoading(true);
+      showTime.current = Date.now();
     }, delay);
 
     return () => {
-      clearTimeout(timer.current!);
-      timer.current = null;
+      clearTimeout(delayTimer.current!);
+      clearTimeout(minDurationTimer.current!);
+      delayTimer.current = null;
+      minDurationTimer.current = null;
     };
-  }, [isLoading, delay]);
-
+  }, [isLoading, delay, minDisplayDuration]);
   return isDeferredLoading;
 }

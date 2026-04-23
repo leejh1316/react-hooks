@@ -16,6 +16,7 @@
     "@leejaehyeok/use-snooze": "workspace:*",
     "@leejaehyeok/use-throttle": "workspace:*",
     "@leejaehyeok/use-prev-ref": "workspace:*",
+    "@leejaehyeok/use-latest-ref": "workspace:*",
     "@leejaehyeok/use-controllable-state": "workspace:*",
     "@leejaehyeok/use-pagination": "workspace:*",
     "@leejaehyeok/use-deferred-loading": "workspace:*",

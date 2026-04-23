@@ -59,6 +59,13 @@ export const hookRegistry: HookMeta[] = [
     Page: lazy(() => import("@/pages/use-prev-ref")),
   },
   {
+    id: "use-latest-ref",
+    name: "use-latest-ref",
+    description: "항상 최신 값을 ref로 유지합니다",
+    tags: ["state", "ref"],
+    Page: lazy(() => import("@/pages/use-latest-ref")),
+  },
+  {
     id: "use-deferred-loading",
     name: "use-deferred-loading",
     description: "지정된 지연 시간 이상 로딩이 지속될 때만 로딩 상태를 노출합니다",

@@ -12,6 +12,7 @@ const devAliases: AliasOptions = {
   "@leejaehyeok/use-snooze": resolve(__dirname, "../../packages/use-snooze/src/index.ts"),
   "@leejaehyeok/use-throttle": resolve(__dirname, "../../packages/use-throttle/src/index.ts"),
   "@leejaehyeok/use-prev-ref": resolve(__dirname, "../../packages/use-prev-ref/src/index.ts"),
+  "@leejaehyeok/use-latest-ref": resolve(__dirname, "../../packages/use-latest-ref/src/index.ts"),
   "@leejaehyeok/use-controllable-state": resolve(__dirname, "../../packages/use-controllable-state/src/index.ts"),
   "@leejaehyeok/use-pagination": resolve(__dirname, "../../packages/use-pagination/src/index.ts"),
   "@leejaehyeok/use-deferred-loading": resolve(__dirname, "../../packages/use-deferred-loading/src/index.ts"),

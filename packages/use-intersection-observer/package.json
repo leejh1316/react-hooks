@@ -1,7 +1,7 @@
 {
   "name": "@leejaehyeok/use-intersection-observer",
   "version": "0.1.0",
-  "description": "A React hook for composing multiple refs into a single callback ref with React 19 cleanup support.",
+  "description": "React hooks for observing element visibility using the Intersection Observer API. Supports single element and multiple elements tracking with lifecycle callbacks.",
   "author": "leejh1316",
   "license": "MIT",
   "homepage": "https://github.com/leejh1316/react-hooks/tree/master/packages/use-intersection-observer#readme",
@@ -16,9 +16,10 @@
   "keywords": [
     "react",
     "hooks",
-    "refs",
-    "ref-composition",
-    "callback-ref"
+    "intersection-observer",
+    "visibility",
+    "lazy-loading",
+    "scroll-detection"
   ],
   "type": "module",
   "main": "./dist/index.cjs",

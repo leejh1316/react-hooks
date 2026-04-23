@@ -200,6 +200,108 @@ function IndividualResetDemo() {
   );
 }
 
+let nextItemId = 1;
+
+function DynamicListDemo() {
+  const [items, setItems] = useState(() =>
+    Array.from({ length: 4 }, (_, i) => ({ id: `dynamic-${nextItemId++}`, label: `항목 ${i + 1}` })),
+  );
+
+  const { setContainerRef, states } = useIntersectionObserverGroup({ root: "container" });
+
+  const addItem = () => {
+    const id = `dynamic-${nextItemId++}`;
+    setItems((prev) => [...prev, { id, label: `항목 ${prev.length + 1}` }]);
+  };
+
+  const addItemAtTop = () => {
+    const id = `dynamic-${nextItemId++}`;
+    setItems((prev) => [{ id, label: `항목 (상단 추가)` }, ...prev]);
+  };
+
+  const removeItem = (id: string) => {
+    setItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const visibleCount = Object.values(states).filter((s) => s.isVisible).length;
+
+  return (
+    <DemoSection
+      title="동적 리스트 — MutationObserver 연동"
+      description={
+        <>
+          항목을 추가·제거해도 <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">MutationObserver</code>
+          가 DOM 변경을 감지해 자동으로 관찰 대상에 등록·해제합니다.
+        </>
+      }
+    >
+      <div className="mb-3 flex flex-wrap gap-2">
+        <Button onClick={addItemAtTop} size="sm">
+          상단에 추가
+        </Button>
+        <Button onClick={addItem} size="sm">
+          하단에 추가
+        </Button>
+      </div>
+      <div
+        ref={setContainerRef}
+        className="h-64 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto px-4 py-3 space-y-2"
+      >
+        {items.length === 0 && (
+          <div className="h-full flex items-center justify-center text-sm text-gray-400">항목이 없습니다</div>
+        )}
+        {items.map((item) => {
+          const state = states[item.id];
+          const isVisible = state?.isVisible ?? false;
+
+          return (
+            <div
+              key={item.id}
+              data-intersection-key={item.id}
+              className={`p-3 rounded-lg flex items-center justify-between transition-all duration-300 ${
+                isVisible
+                  ? "bg-indigo-500 text-white shadow-md"
+                  : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+              }`}
+            >
+              <div className="flex items-center gap-2 text-sm">
+                <span className="font-medium">{item.label}</span>
+                <span className={`text-xs font-mono px-1.5 py-0.5 rounded ${isVisible ? "bg-white/20" : "bg-gray-100 dark:bg-gray-700 text-gray-500"}`}>
+                  {isVisible ? "보임" : "안 보임"}
+                </span>
+              </div>
+              <button
+                onClick={() => removeItem(item.id)}
+                className={`w-6 h-6 flex items-center justify-center text-xs rounded transition-colors ${
+                  isVisible
+                    ? "hover:bg-white/20 text-white/70 hover:text-white"
+                    : "text-gray-400 hover:bg-red-100 dark:hover:bg-red-950 hover:text-red-500"
+                }`}
+              >
+                ✕
+              </button>
+            </div>
+          );
+        })}
+      </div>
+      <div className="mt-4 grid grid-cols-3 gap-3 text-sm">
+        <div className="text-center p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+          <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{visibleCount}</div>
+          <div className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">현재 보임</div>
+        </div>
+        <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="text-2xl font-bold text-gray-600 dark:text-gray-300">{items.length}</div>
+          <div className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">전체 개수</div>
+        </div>
+        <div className="text-center p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+          <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{Object.keys(states).length}</div>
+          <div className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">관찰 중</div>
+        </div>
+      </div>
+    </DemoSection>
+  );
+}
+
 export function UseIntersectionObserverGroupPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-8">
@@ -210,6 +312,7 @@ export function UseIntersectionObserverGroupPage() {
       <BasicGroupDetectionDemo />
       <ScrollAnimationDemo />
       <IndividualResetDemo />
+      <DynamicListDemo />
     </div>
   );
 }

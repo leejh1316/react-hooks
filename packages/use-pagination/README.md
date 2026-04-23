@@ -66,7 +66,7 @@ export default function Pagination() {
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/leejh1316/react-hooks)
-- [Package Source Code](https://github.com/leejh1316/react-hooks/tree/master/packages/use-throttle)
+- [Package Source Code](https://github.com/leejh1316/react-hooks/tree/master/packages/use-pagination)
 - [Issue Tracker](https://github.com/leejh1316/react-hooks/issues)
 
 ## 📄 License

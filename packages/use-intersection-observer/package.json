@@ -1,0 +1,60 @@
+{
+  "name": "@leejaehyeok/use-intersection-observer",
+  "version": "0.1.0",
+  "description": "A React hook for composing multiple refs into a single callback ref with React 19 cleanup support.",
+  "author": "leejh1316",
+  "license": "MIT",
+  "homepage": "https://github.com/leejh1316/react-hooks/tree/master/packages/use-intersection-observer#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leejh1316/react-hooks.git",
+    "directory": "packages/use-intersection-observer"
+  },
+  "bugs": {
+    "url": "https://github.com/leejh1316/react-hooks/issues"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "refs",
+    "ref-composition",
+    "callback-ref"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "release": "pnpm publish --access public"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "dependencies": {
+    "@leejaehyeok/use-latest-ref": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.4",
+    "vite-plugin-dts": "^4.0.0"
+  }
+}

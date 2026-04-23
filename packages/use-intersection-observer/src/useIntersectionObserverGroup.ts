@@ -42,74 +42,68 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
     intersectionRef.current?.disconnect();
   }, []);
 
-  const reset = useCallback(
-    (key?: string) => {
-      if (!containerRef.current) {
-        console.warn(`[use-intersection-observer-group] 컨테이너가 없습니다. reset이 실패했습니다.`);
-        return;
+  const reset = useCallback((key?: string) => {
+    if (!containerRef.current) {
+      console.warn(`[use-intersection-observer-group] 컨테이너가 없습니다. reset이 실패했습니다.`);
+      return;
+    }
+
+    if (key) {
+      const target = containerRef.current.querySelector(`[${keyAttribute}="${key}"]`);
+      if (target instanceof Element) {
+        intersectionRef.current?.unobserve(target);
+        isTriggeredOnceRef.current[key] = false;
+        setStates((prev) => ({
+          ...prev,
+          [key]: { isVisible: false, hasEntered: false },
+        }));
+        intersectionRef.current?.observe(target);
       }
+    } else {
+      intersectionRef.current?.disconnect();
+      isTriggeredOnceRef.current = {};
+      setStates(() => ({}));
 
-      if (key) {
-        const target = containerRef.current.querySelector(`[${keyAttribute}="${key}"]`);
-        if (target instanceof Element) {
-          intersectionRef.current?.unobserve(target);
-          isTriggeredOnceRef.current[key] = false;
-          setStates((prev) => ({
-            ...prev,
-            [key]: { isVisible: false, hasEntered: false },
-          }));
-          intersectionRef.current?.observe(target);
-        }
-      } else {
-        intersectionRef.current?.disconnect();
-        isTriggeredOnceRef.current = {};
-        setStates(() => ({}));
-
-        const targets = containerRef.current.querySelectorAll(`[${keyAttribute}]`);
-        const observerRoot = rootRef.current === "container" ? containerRef.current : null;
-        const observer = new IntersectionObserver(observeCallback, { ...observerOptions, root: observerRoot });
-        intersectionRef.current = observer;
-        targets.forEach((target) => {
-          observer.observe(target);
-        });
-      }
-    },
-    [observerOptions, keyAttribute],
-  );
-
-  const observeCallback = useCallback<IntersectionObserverCallback>(
-    (entries, observer) => {
-      setStates((prev) => {
-        const newStates = { ...prev };
-        entries.forEach((entry) => {
-          const key = entry.target.getAttribute(keyAttribute);
-          if (!key) {
-            console.warn(`[use-intersection-observer-group] ${keyAttribute} 속성이 없습니다.`);
-            return;
-          }
-
-          const isVisible = entry.isIntersecting;
-          const oldState = prev[key];
-
-          onChangeRef.current?.(key, isVisible ? "enter" : "exit", entry, observer);
-
-          if (isVisible) {
-            isTriggeredOnceRef.current[key] ||= onceRef.current;
-            onEnteredRef.current?.(key, entry, observer);
-            newStates[key] = { isVisible, hasEntered: true };
-          } else {
-            onExitedRef.current?.(key, entry, observer);
-            newStates[key] = { isVisible, hasEntered: oldState?.hasEntered ?? false };
-            if (isTriggeredOnceRef.current[key]) {
-              observer.unobserve(entry.target);
-            }
-          }
-        });
-        return newStates;
+      const targets = containerRef.current.querySelectorAll(`[${keyAttribute}]`);
+      const observerRoot = rootRef.current === "container" ? containerRef.current : null;
+      const observer = new IntersectionObserver(observeCallback, { ...observerOptions, root: observerRoot });
+      intersectionRef.current = observer;
+      targets.forEach((target) => {
+        observer.observe(target);
       });
-    },
-    [keyAttribute],
-  );
+    }
+  }, []);
+
+  const observeCallback = useCallback<IntersectionObserverCallback>((entries, observer) => {
+    setStates((prev) => {
+      const newStates = { ...prev };
+      entries.forEach((entry) => {
+        const key = entry.target.getAttribute(keyAttribute);
+        if (!key) {
+          console.warn(`[use-intersection-observer-group] ${keyAttribute} 속성이 없습니다.`);
+          return;
+        }
+
+        const isVisible = entry.isIntersecting;
+        const oldState = prev[key];
+
+        onChangeRef.current?.(key, isVisible ? "enter" : "exit", entry, observer);
+
+        if (isVisible) {
+          isTriggeredOnceRef.current[key] ||= onceRef.current;
+          onEnteredRef.current?.(key, entry, observer);
+          newStates[key] = { isVisible, hasEntered: true };
+        } else {
+          onExitedRef.current?.(key, entry, observer);
+          newStates[key] = { isVisible, hasEntered: oldState?.hasEntered ?? false };
+          if (isTriggeredOnceRef.current[key]) {
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+      return newStates;
+    });
+  }, []);
 
   const setContainerRef = useCallback<RefCallback<HTMLElement>>(
     (node) => {
@@ -134,7 +128,7 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
         observer.observe(target);
       });
     },
-    [observeCallback, keyAttribute, observerOptions],
+    [observeCallback],
   );
 
   return {

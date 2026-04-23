@@ -3,200 +3,213 @@ import { useIntersectionObserverGroup } from "@leejaehyeok/use-intersection-obse
 import { DemoPageHeader, DemoSection, Button } from "@/shared/ui";
 
 function BasicGroupDetectionDemo() {
-  const { setContainerRef, states } = useIntersectionObserverGroup();
-  const cards = Array.from({ length: 8 }, (_, i) => ({ id: `card-${i + 1}`, title: `Card ${i + 1}` }));
-
-  const description = "컨테이너 내 여러 요소의 교차점을 동시에 감지합니다. 각 요소는 data-intersection-key 속성으로 구별됩니다.";
-
-  return (
-    <DemoSection title="다중 카드 감지" description={description}>
-      <div className="mb-4">
-        <div
-          ref={setContainerRef}
-          className="h-96 px-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto space-y-4 py-4"
-        >
-          <div className="text-sm text-gray-400 h-20 flex items-center justify-center">스크롤을 내려보세요 ↓</div>
-          {cards.map((card) => {
-            const state = states[card.id];
-            const isVisible = state?.isVisible ?? false;
-            const hasEntered = state?.hasEntered ?? false;
-
-            return (
-              <div
-                key={card.id}
-                data-intersection-key={card.id}
-                className={`p-4 rounded-lg transition-all duration-300 ${
-                  hasEntered
-                    ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white"
-                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <h4 className="font-medium">{card.title}</h4>
-                  <div className="flex gap-2">
-                    {isVisible && (
-                      <span className={`text-sm px-2 py-1 rounded ${hasEntered ? "bg-white/20" : "bg-gray-200 dark:bg-gray-700"}`}>
-                        {isVisible ? "👁️ 보임" : ""}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                {hasEntered && <p className="text-sm mt-2 opacity-90">✓ 처음 나타남!</p>}
-              </div>
-            );
-          })}
-          <div className="text-sm text-gray-400 h-20 flex items-center justify-center">↓ 계속 스크롤 ↓</div>
-        </div>
-      </div>
-      <div className="text-sm text-gray-600 dark:text-gray-400">
-        <span className="font-medium">감지된 카드:</span>
-        <span className="ml-2">
-          {Object.entries(states).filter(([, state]) => state.isVisible).length} / {cards.length}
-        </span>
-      </div>
-    </DemoSection>
-  );
-}
-
-function OnceWithResetDemo() {
-  const { setContainerRef, states, reset } = useIntersectionObserverGroup({ once: true });
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const cards = Array.from({ length: 6 }, (_, i) => ({ id: `once-card-${i + 1}`, title: `Item ${i + 1}` }));
-
-  const description = "once: true로 설정하면 한 번만 감지합니다. 각 항목을 개별 reset하거나 전체 reset할 수 있습니다.";
-
-  return (
-    <DemoSection title="once 옵션 & 개별 Reset" description={description}>
-      <div className="mb-4">
-        <div
-          ref={setContainerRef}
-          className="h-96 px-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto space-y-3 py-4"
-        >
-          <div className="text-sm text-gray-400 h-16 flex items-center justify-center">스크롤 ↓</div>
-          {cards.map((card) => {
-            const state = states[card.id];
-            const hasEntered = state?.hasEntered ?? false;
-
-            return (
-              <div
-                key={card.id}
-                data-intersection-key={card.id}
-                className={`p-4 rounded-lg transition-all duration-300 flex items-center justify-between ${
-                  hasEntered
-                    ? "bg-emerald-100 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-100 border border-emerald-300 dark:border-emerald-700"
-                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
-                }`}
-              >
-                <div>
-                  <h4 className="font-medium">{card.title}</h4>
-                  {hasEntered && <p className="text-sm opacity-75">✓ 감지됨</p>}
-                </div>
-                {hasEntered && (
-                  <button
-                    onClick={() => {
-                      reset(card.id);
-                      setSelectedKey(card.id);
-                      setTimeout(() => setSelectedKey(null), 500);
-                    }}
-                    className="px-2 py-1 text-xs font-medium bg-emerald-600 dark:bg-emerald-700 text-white hover:bg-emerald-700 dark:hover:bg-emerald-600 rounded transition-colors"
-                  >
-                    Reset
-                  </button>
-                )}
-              </div>
-            );
-          })}
-          <div className="text-sm text-gray-400 h-16 flex items-center justify-center">↓ 계속 스크롤</div>
-        </div>
-      </div>
-      <div className="flex flex-wrap gap-3">
-        <Button
-          onClick={() => reset()}
-          variant="primary"
-          title="모든 항목의 감지 상태를 초기화합니다"
-        >
-          전체 Reset
-        </Button>
-        <span className="px-3 py-1.5 rounded-md text-sm font-medium bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300">
-          감지됨: {Object.values(states).filter((s) => s.hasEntered).length} / {cards.length}
-        </span>
-      </div>
-    </DemoSection>
-  );
-}
-
-function CounterGroupDemo() {
-  const { setContainerRef, states } = useIntersectionObserverGroup();
-  const items = Array.from({ length: 12 }, (_, i) => ({ id: `counter-${i}`, number: i + 1 }));
-
-  const description = "각 요소의 상태를 실시간으로 추적하고 통계를 표시합니다.";
+  const items = Array.from({ length: 6 }, (_, i) => ({ id: `item-${i + 1}`, label: `항목 ${i + 1}` }));
+  const { setContainerRef, states } = useIntersectionObserverGroup({ root: "container" });
   const visibleCount = Object.values(states).filter((s) => s.isVisible).length;
   const enteredCount = Object.values(states).filter((s) => s.hasEntered).length;
 
   return (
-    <DemoSection title="상태 통계" description={description}>
-      <div className="mb-4">
-        <div
-          ref={setContainerRef}
-          className="h-96 px-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto"
-        >
-          <div className="grid grid-cols-3 gap-3 py-4">
-            <div className="text-sm text-gray-400 h-12 flex items-center justify-center">스크롤 ↓</div>
-            {items.map((item) => {
-              const state = states[`counter-${item.id}`];
-              const isVisible = state?.isVisible ?? false;
-              const hasEntered = state?.hasEntered ?? false;
+    <DemoSection
+      title="다중 요소 동시 감지"
+      description={
+        <>
+          각 요소에 <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">data-intersection-key</code> 를
+          부여하면 그룹으로 관찰합니다. 스크롤하면 개별 상태가 실시간으로 업데이트됩니다.
+        </>
+      }
+    >
+      <div
+        ref={setContainerRef}
+        className="h-64 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto px-4 py-3 space-y-3"
+      >
+        <div className="h-32 flex items-center justify-center text-sm text-gray-400">스크롤하세요 ↓</div>
+        {items.map((item) => {
+          const state = states[item.id];
+          const isVisible = state?.isVisible ?? false;
+          const hasEntered = state?.hasEntered ?? false;
 
-              return (
-                <div
-                  key={item.id}
-                  data-intersection-key={`counter-${item.id}`}
-                  className={`p-3 rounded-lg text-center font-bold transition-all duration-300 ${
-                    hasEntered
-                      ? "bg-indigo-500 text-white scale-105"
-                      : isVisible
-                        ? "bg-indigo-200 dark:bg-indigo-800 text-indigo-900 dark:text-indigo-200"
-                        : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
-                  }`}
-                >
-                  {item.number}
-                </div>
-              );
-            })}
-            <div className="text-sm text-gray-400 h-12 flex items-center justify-center col-span-3">
-              ↓ 계속 스크롤 ↓
+          return (
+            <div
+              key={item.id}
+              data-intersection-key={item.id}
+              className={`p-4 rounded-lg flex items-center justify-between transition-all duration-300 ${
+                isVisible
+                  ? "bg-indigo-500 text-white shadow-md"
+                  : hasEntered
+                    ? "bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700"
+                    : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+              }`}
+            >
+              <span className="font-medium">{item.label}</span>
+              <div className="flex gap-2 text-xs font-mono">
+                <span className={`px-2 py-0.5 rounded ${isVisible ? "bg-white/20" : "bg-gray-100 dark:bg-gray-700 text-gray-500"}`}>
+                  {isVisible ? "보임" : "안 보임"}
+                </span>
+                {hasEntered && (
+                  <span
+                    className={`px-2 py-0.5 rounded ${isVisible ? "bg-white/20" : "bg-indigo-100 dark:bg-indigo-800 text-indigo-600 dark:text-indigo-300"}`}
+                  >
+                    진입함
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
+        <div className="h-32 flex items-center justify-center text-sm text-gray-400">↓ 계속 스크롤</div>
       </div>
-      <div className="grid grid-cols-3 gap-4 text-sm">
-        <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{visibleCount}</div>
-          <div className="text-gray-600 dark:text-gray-400">현재 보임</div>
+      <div className="mt-4 grid grid-cols-3 gap-3 text-sm">
+        <div className="text-center p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+          <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{visibleCount}</div>
+          <div className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">현재 보임</div>
         </div>
         <div className="text-center p-3 bg-green-50 dark:bg-green-900/30 rounded-lg">
           <div className="text-2xl font-bold text-green-600 dark:text-green-400">{enteredCount}</div>
-          <div className="text-gray-600 dark:text-gray-400">한 번은 본</div>
+          <div className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">진입한 적 있음</div>
         </div>
-        <div className="text-center p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
-          <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{items.length}</div>
-          <div className="text-gray-600 dark:text-gray-400">전체 개수</div>
+        <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="text-2xl font-bold text-gray-600 dark:text-gray-300">{items.length}</div>
+          <div className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">전체 개수</div>
         </div>
+      </div>
+    </DemoSection>
+  );
+}
+
+function ScrollAnimationDemo() {
+  const cards = Array.from({ length: 8 }, (_, i) => ({
+    id: `card-${i}`,
+    title: `카드 ${i + 1}`,
+    description: "스크롤하면 애니메이션과 함께 등장합니다.",
+  }));
+
+  const { setContainerRef, states } = useIntersectionObserverGroup({
+    root: "container",
+    once: true,
+  });
+
+  return (
+    <DemoSection
+      title="스크롤 진입 애니메이션"
+      description={
+        <>
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">once: true</code> 를 활용한 스크롤 트리거
+          애니메이션 패턴입니다. 각 항목은 처음 진입할 때 한 번만 애니메이션됩니다.
+        </>
+      }
+    >
+      <div
+        ref={setContainerRef}
+        className="h-72 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto px-4 py-3 space-y-3"
+      >
+        <div className="h-32 flex items-center justify-center text-sm text-gray-400">스크롤하세요 ↓</div>
+        {cards.map((card) => {
+          const hasEntered = states[card.id]?.hasEntered ?? false;
+
+          return (
+            <div
+              key={card.id}
+              data-intersection-key={card.id}
+              className={`p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-500 ${
+                hasEntered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <h4 className="font-medium text-gray-900 dark:text-gray-100">{card.title}</h4>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{card.description}</p>
+            </div>
+          );
+        })}
+        <div className="h-32 flex items-center justify-center text-sm text-gray-400">끝</div>
+      </div>
+    </DemoSection>
+  );
+}
+
+function IndividualResetDemo() {
+  const items = Array.from({ length: 5 }, (_, i) => ({ id: `reset-item-${i + 1}`, label: `항목 ${i + 1}` }));
+  const { setContainerRef, states, reset } = useIntersectionObserverGroup({
+    root: "container",
+    once: true,
+  });
+  const [lastReset, setLastReset] = useState<string | null>(null);
+
+  const handleReset = (key?: string) => {
+    reset(key);
+    setLastReset(key ?? "all");
+    setTimeout(() => setLastReset(null), 800);
+  };
+
+  return (
+    <DemoSection
+      title="개별 / 전체 reset"
+      description={
+        <>
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">reset(key)</code> 로 특정 항목만,{" "}
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">reset()</code> 로 전체 상태를 초기화합니다.
+        </>
+      }
+    >
+      <div
+        ref={setContainerRef}
+        className="h-64 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto px-4 py-3 space-y-3"
+      >
+        <div className="h-32 flex items-center justify-center text-sm text-gray-400">스크롤하세요 ↓</div>
+        {items.map((item) => {
+          const hasEntered = states[item.id]?.hasEntered ?? false;
+          const isResetting = lastReset === item.id || lastReset === "all";
+
+          return (
+            <div
+              key={item.id}
+              data-intersection-key={item.id}
+              className={`p-4 rounded-lg flex items-center justify-between transition-all duration-300 ${
+                isResetting
+                  ? "bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-700"
+                  : hasEntered
+                    ? "bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 text-emerald-800 dark:text-emerald-200"
+                    : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300"
+              }`}
+            >
+              <div>
+                <span className="font-medium">{item.label}</span>
+                {hasEntered && !isResetting && <span className="ml-2 text-xs text-emerald-600 dark:text-emerald-400">✓ 감지됨</span>}
+                {isResetting && <span className="ml-2 text-xs text-yellow-600 dark:text-yellow-400">초기화됨</span>}
+              </div>
+              {hasEntered && (
+                <button
+                  onClick={() => handleReset(item.id)}
+                  className="px-2 py-1 text-xs font-medium rounded bg-emerald-600 text-white hover:bg-emerald-700 transition-colors"
+                >
+                  reset
+                </button>
+              )}
+            </div>
+          );
+        })}
+        <div className="h-32 flex items-center justify-center text-sm text-gray-400">↓ 계속</div>
+      </div>
+      <div className="mt-4 flex items-center gap-3">
+        <Button onClick={() => handleReset()} variant="primary" size="sm">
+          전체 reset()
+        </Button>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          감지됨: {Object.values(states).filter((s) => s.hasEntered).length} / {items.length}
+        </span>
       </div>
     </DemoSection>
   );
 }
 
 export function UseIntersectionObserverGroupPage() {
-  const headerDescription =
-    "여러 요소의 교차점을 그룹으로 감지하고 각 요소의 상태를 독립적으로 관리하는 훅입니다.";
-
   return (
     <div className="max-w-3xl mx-auto px-6 py-8">
-      <DemoPageHeader title="use-intersection-observer-group" description={headerDescription} />
+      <DemoPageHeader
+        title="use-intersection-observer-group"
+        description="여러 요소의 교차점을 그룹으로 감지하고 각 요소의 상태를 독립적으로 관리하는 훅입니다."
+      />
       <BasicGroupDetectionDemo />
-      <OnceWithResetDemo />
-      <CounterGroupDemo />
+      <ScrollAnimationDemo />
+      <IndividualResetDemo />
     </div>
   );
 }

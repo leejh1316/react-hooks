@@ -44,12 +44,13 @@ function useIntersectionObserver(options?: IntersectionObserverOption) {
       console.warn(`[use-intersection-observer] 관찰할 요소가 없습니다. reset이 실패했습니다.`);
       return;
     }
-    intersectionRef.current?.observe(targetRef.current);
+    intersectionRef.current?.unobserve(targetRef.current);
     isTriggeredOnceRef.current = false;
     setTargetState(() => ({
       isVisible: false,
       hasEntered: false,
     }));
+    intersectionRef.current?.observe(targetRef.current);
   }, []);
 
   const observeCallback = useCallback<IntersectionObserverCallback>((entries, observer) => {
@@ -66,7 +67,9 @@ function useIntersectionObserver(options?: IntersectionObserverOption) {
     } else {
       onExitedRef.current?.(entry, observer);
       setTargetState((prev) => ({ ...prev, isVisible }));
-      if (isTriggeredOnceRef.current) observer.unobserve(entry.target);
+      if (isTriggeredOnceRef.current) {
+        observer.unobserve(entry.target);
+      }
     }
   }, []);
 

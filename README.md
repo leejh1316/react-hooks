@@ -11,7 +11,7 @@
 | [`@leejaehyeok/use-compose-ref`](./packages/use-compose-ref)                     | 0.1.0 | 여러 ref 합성 관리 |
 | [`@leejaehyeok/use-controllable-state`](./packages/use-controllable-state)       | 0.1.0 | 제어/비제어 상태   |
 | [`@leejaehyeok/use-debounce`](./packages/use-debounce)                           | 0.1.0 | 함수 호출 지연     |
-| [`@leejaehyeok/use-deferred-loading`](./packages/use-deferred-loading)           | 0.1.0 | 지연 로딩          |
+| [`@leejaehyeok/use-deferred-loading`](./packages/use-deferred-loading)           | 0.2.0 | 지연 로딩          |
 | [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)                       | 0.1.0 | 포커스 범위 제한   |
 | [`@leejaehyeok/use-intersection-observer`](./packages/use-intersection-observer) | 0.1.0 | 요소 가시성 추적   |
 | [`@leejaehyeok/use-latest-ref`](./packages/use-latest-ref)                       | 0.1.0 | 최신값 ref         |

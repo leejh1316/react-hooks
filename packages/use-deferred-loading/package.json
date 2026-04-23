@@ -1,6 +1,6 @@
 {
   "name": "@leejaehyeok/use-deferred-loading",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A React hook that shows loading state only when loading persists longer than a specified delay, preventing unnecessary UI flicker.",
   "author": "leejh1316",
   "license": "MIT",

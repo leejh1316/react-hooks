@@ -32,7 +32,10 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
   const onceRef = useRef(once);
   const rootRef = useRef(root);
   const containerRef = useRef<HTMLElement | null>(null);
+
   const intersectionRef = useRef<IntersectionObserver | null>(null);
+  const mutationRef = useRef<MutationObserver | null>(null);
+
   const isTriggeredOnceRef = useRef<Record<string, boolean>>({});
   const onEnteredRef = useLatestRef(onEntered);
   const onExitedRef = useLatestRef(onExited);
@@ -40,6 +43,7 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
 
   const cleanup = useCallback(() => {
     intersectionRef.current?.disconnect();
+    mutationRef.current?.disconnect();
   }, []);
 
   const reset = useCallback((key?: string) => {
@@ -66,7 +70,7 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
 
       const targets = containerRef.current.querySelectorAll(`[${keyAttribute}]`);
       const observerRoot = rootRef.current === "container" ? containerRef.current : null;
-      const observer = new IntersectionObserver(observeCallback, { ...observerOptions, root: observerRoot });
+      const observer = new IntersectionObserver(intersectionObserveCallback, { ...observerOptions, root: observerRoot });
       intersectionRef.current = observer;
       targets.forEach((target) => {
         observer.observe(target);
@@ -74,7 +78,34 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
     }
   }, []);
 
-  const observeCallback = useCallback<IntersectionObserverCallback>((entries, observer) => {
+  const mutationObserverCallback = useCallback<MutationCallback>((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (!(node instanceof Element)) return;
+        const targets = [...(node.hasAttribute(keyAttribute) ? [node] : []), ...Array.from(node.querySelectorAll(`[${keyAttribute}]`))];
+        targets.forEach((target) => {
+          intersectionRef.current?.observe(target);
+        });
+      });
+      mutation.removedNodes.forEach((node) => {
+        if (!(node instanceof Element)) return;
+        const targets = [...(node.hasAttribute(keyAttribute) ? [node] : []), ...Array.from(node.querySelectorAll(`[${keyAttribute}]`))];
+        targets.forEach((target) => {
+          const key = target.getAttribute(keyAttribute);
+          if (!key) return;
+          intersectionRef.current?.unobserve(target);
+          delete isTriggeredOnceRef.current[key];
+          setStates((prev) => {
+            const newStates = { ...prev };
+            delete newStates[key];
+            return newStates;
+          });
+        });
+      });
+    });
+  }, []);
+
+  const intersectionObserveCallback = useCallback<IntersectionObserverCallback>((entries, observer) => {
     setStates((prev) => {
       const newStates = { ...prev };
       entries.forEach((entry) => {
@@ -117,18 +148,25 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
       const observerRoot = rootRef.current === "container" ? node : null;
       const targets = node.querySelectorAll(`[${keyAttribute}]`);
 
+      const observer = new IntersectionObserver(intersectionObserveCallback, { ...observerOptions, root: observerRoot });
+      intersectionRef.current = observer;
+
+      const mutation = new MutationObserver(mutationObserverCallback);
+      mutation.observe(node, {
+        childList: true,
+        subtree: true,
+      });
+      mutationRef.current = mutation;
+
       if (targets.length === 0) {
-        console.warn(`[use-intersection-observer-group] [${keyAttribute}] 속성을 가진 요소가 없습니다.`);
         return;
       }
 
-      const observer = new IntersectionObserver(observeCallback, { ...observerOptions, root: observerRoot });
-      intersectionRef.current = observer;
       targets.forEach((target) => {
         observer.observe(target);
       });
     },
-    [observeCallback],
+    [intersectionObserveCallback],
   );
 
   return {

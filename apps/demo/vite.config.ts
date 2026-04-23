@@ -18,6 +18,7 @@ const devAliases: AliasOptions = {
   "@leejaehyeok/use-deferred-loading": resolve(__dirname, "../../packages/use-deferred-loading/src/index.ts"),
   "@leejaehyeok/use-compose-ref": resolve(__dirname, "../../packages/use-compose-ref/src/index.ts"),
   "@leejaehyeok/use-overflow": resolve(__dirname, "../../packages/use-overflow/src/index.ts"),
+  "@leejaehyeok/use-intersection-observer": resolve(__dirname, "../../packages/use-intersection-observer/src/index.ts"),
 };
 
 export default defineConfig(({ command }) => ({

@@ -32,6 +32,9 @@ importers:
       '@leejaehyeok/use-focus-trap':
         specifier: workspace:*
         version: link:../../packages/use-focus-trap
+      '@leejaehyeok/use-intersection-observer':
+        specifier: workspace:*
+        version: link:../../packages/use-intersection-observer
       '@leejaehyeok/use-latest-ref':
         specifier: workspace:*
         version: link:../../packages/use-latest-ref

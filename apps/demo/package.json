@@ -11,6 +11,7 @@
   "dependencies": {
     "@leejaehyeok/use-debounce": "workspace:*",
     "@leejaehyeok/use-focus-trap": "workspace:*",
+    "@leejaehyeok/use-intersection-observer": "workspace:*",
     "@leejaehyeok/use-overflow": "workspace:*",
     "@leejaehyeok/use-roving-focus": "workspace:*",
     "@leejaehyeok/use-snooze": "workspace:*",

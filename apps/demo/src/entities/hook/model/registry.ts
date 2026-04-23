@@ -86,4 +86,18 @@ export const hookRegistry: HookMeta[] = [
     tags: ["ui", "dom"],
     Page: lazy(() => import("@/pages/use-overflow")),
   },
+  {
+    id: "use-intersection-observer",
+    name: "use-intersection-observer",
+    description: "IntersectionObserver API를 래핑한 훅으로 요소의 교차점을 감지합니다",
+    tags: ["dom", "intersection"],
+    Page: lazy(() => import("@/pages/use-intersection-observer")),
+  },
+  {
+    id: "use-intersection-observer-group",
+    name: "use-intersection-observer-group",
+    description: "여러 요소의 교차점을 그룹으로 감지하고 상태를 관리합니다",
+    tags: ["dom", "intersection"],
+    Page: lazy(() => import("@/pages/use-intersection-observer-group")),
+  },
 ];

@@ -73,7 +73,7 @@ export function MyComponent() {
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/leejh1316/react-hooks)
-- [Package Source Code](https://github.com/leejh1316/react-hooks/tree/master/packages/use-compose-ref)
+- [Package Source Code](https://github.com/leejh1316/react-hooks/tree/master/packages/use-intersection-observer)
 - [Issue Tracker](https://github.com/leejh1316/react-hooks/issues)
 
 ## 📄 License

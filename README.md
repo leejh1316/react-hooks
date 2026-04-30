@@ -10,6 +10,7 @@
 | -------------------------------------------------------------------------------- | ----- | ----------------------- |
 | [`@leejaehyeok/use-compose-ref`](./packages/use-compose-ref)                     | 0.1.0 | 여러 ref 합성 관리      |
 | [`@leejaehyeok/use-compose-state`](./packages/use-compose-state)                 | 0.1.0 | 여러 setState 합성 관리 |
+| [`@leejaehyeok/use-custom-event-state`](./packages/use-custom-event-state)       | 0.1.0 | CustomEvent 기반 컴포넌트 간 상태 공유 |
 | [`@leejaehyeok/use-controllable-state`](./packages/use-controllable-state)       | 0.1.0 | 제어/비제어 상태        |
 | [`@leejaehyeok/use-debounce`](./packages/use-debounce)                           | 0.1.0 | 함수 호출 지연          |
 | [`@leejaehyeok/use-deferred-loading`](./packages/use-deferred-loading)           | 0.2.0 | 지연 로딩               |

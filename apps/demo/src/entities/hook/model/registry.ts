@@ -107,4 +107,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["state"],
     Page: lazy(() => import("@/pages/use-compose-state")),
   },
+  {
+    id: "use-custom-event-state",
+    name: "use-custom-event-state",
+    description: "CustomEvent를 이용해 props·Context 없이 컴포넌트 간 상태를 공유합니다",
+    tags: ["state", "event"],
+    Page: lazy(() => import("@/pages/use-custom-event-state")),
+  },
 ];

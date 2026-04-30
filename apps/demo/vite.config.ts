@@ -20,6 +20,7 @@ const devAliases: AliasOptions = {
   "@leejaehyeok/use-overflow": resolve(__dirname, "../../packages/use-overflow/src/index.ts"),
   "@leejaehyeok/use-intersection-observer": resolve(__dirname, "../../packages/use-intersection-observer/src/index.ts"),
   "@leejaehyeok/use-compose-state": resolve(__dirname, "../../packages/use-compose-state/src/index.ts"),
+  "@leejaehyeok/use-custom-event-state": resolve(__dirname, "../../packages/use-custom-event-state/src/index.ts"),
 };
 
 export default defineConfig(({ command }) => ({

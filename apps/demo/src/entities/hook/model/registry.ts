@@ -100,4 +100,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["dom", "intersection"],
     Page: lazy(() => import("@/pages/use-intersection-observer-group")),
   },
+  {
+    id: "use-compose-state",
+    name: "use-compose-state",
+    description: "여러 setState 디스패처를 하나로 합성하여 동시에 업데이트합니다",
+    tags: ["state"],
+    Page: lazy(() => import("@/pages/use-compose-state")),
+  },
 ];

@@ -114,4 +114,11 @@ export const hookRegistry: HookMeta[] = [
     tags: ["state", "event"],
     Page: lazy(() => import("@/pages/use-custom-event-state")),
   },
+  {
+    id: "use-browser-storage",
+    name: "use-browser-storage",
+    description: "localStorage·sessionStorage를 TTL·커스텀 직렬화·크로스 탭 동기화와 함께 관리합니다",
+    tags: ["state", "storage"],
+    Page: lazy(() => import("@/pages/use-browser-storage")),
+  },
 ];

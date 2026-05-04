@@ -23,6 +23,7 @@
 | [`@leejaehyeok/use-roving-focus`](./packages/use-roving-focus)                   | 0.1.0 | 키보드 포커스 관리      |
 | [`@leejaehyeok/use-snooze`](./packages/use-snooze)                               | 0.1.0 | 지연 처리               |
 | [`@leejaehyeok/use-throttle`](./packages/use-throttle)                           | 0.1.0 | 함수 호출 제한          |
+| [`@leejaehyeok/use-browser-storage`](./packages/use-browser-storage)             | 0.1.0 | localStorage·sessionStorage 상태 관리 (TTL·크로스 탭 동기화·커스텀 직렬화) |
 
 ---
 

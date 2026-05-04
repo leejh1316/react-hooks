@@ -17,6 +17,9 @@ importers:
 
   apps/demo:
     dependencies:
+      '@leejaehyeok/use-browser-storage':
+        specifier: workspace:*
+        version: link:../../packages/use-browser-storage
       '@leejaehyeok/use-compose-ref':
         specifier: workspace:*
         version: link:../../packages/use-compose-ref

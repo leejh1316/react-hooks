@@ -29,9 +29,9 @@
 
 ## SKILLS
 
-| 패키지                                                               |
-| -------------------------------------------------------------------- |
-| [`@leejaehyeok/use-browser-storage`](./packages/use-browser-storage) |
+| 패키지                                                                      |
+| --------------------------------------------------------------------------- |
+| [`@leejaehyeok/use-browser-storage`](./packages/use-browser-storage/skills) |
 
 ---
 

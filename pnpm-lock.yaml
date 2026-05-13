@@ -400,6 +400,9 @@ importers:
 
   packages/use-roving-focus:
     dependencies:
+      '@leejaehyeok/use-latest-ref':
+        specifier: workspace:*
+        version: link:../use-latest-ref
       react:
         specifier: '>=18'
         version: 19.2.4

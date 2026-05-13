@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import { useLatestRef } from "@leejaehyeok/use-latest-ref";
 import { getDelta, getDirection, isDisabledElement } from "./utils";
 import { Direction } from "./types";
 
@@ -47,6 +48,8 @@ const KEYBOARD_NAVIGATION: Record<Orientation, string[]> = {
   both: ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"],
 };
 
+const SKIP_TAG = ["INPUT", "TEXTAREA"];
+
 const HOME_KEY = "Home";
 const END_KEY = "End";
 
@@ -72,19 +75,9 @@ export function useRovingFocus(options: RovingFocusOptions) {
   const itemRefs = useRef<Array<HTMLElement | null>>([]);
 
   // 콜백 최신 참조 유지 (stale closure 방지)
-  const onNavigateRef = useRef(onNavigate);
-  const onUnderflowRef = useRef(onUnderflow);
-  const onOverflowRef = useRef(onOverflow);
-
-  useEffect(() => {
-    onNavigateRef.current = onNavigate;
-  }, [onNavigate]);
-  useEffect(() => {
-    onUnderflowRef.current = onUnderflow;
-  }, [onUnderflow]);
-  useEffect(() => {
-    onOverflowRef.current = onOverflow;
-  }, [onOverflow]);
+  const onNavigateRef = useLatestRef(onNavigate);
+  const onUnderflowRef = useLatestRef(onUnderflow);
+  const onOverflowRef = useLatestRef(onOverflow);
 
   const allowedKeys = useMemo(() => {
     const keys = [...KEYBOARD_NAVIGATION[orientation]];
@@ -138,6 +131,9 @@ export function useRovingFocus(options: RovingFocusOptions) {
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       if (!allowedKeys.includes(event.key)) return;
+      if (SKIP_TAG.includes((event.target as HTMLElement).tagName)) return;
+      if ((event.target as HTMLElement).contentEditable === "true") return;
+
       event.preventDefault();
 
       const items = itemRefs.current;

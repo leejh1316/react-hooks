@@ -1,6 +1,6 @@
 {
   "name": "@leejaehyeok/use-roving-focus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Accessible keyboard navigation with roving tabindex",
   "author": "leejh1316",
   "license": "MIT",
@@ -47,6 +47,9 @@
   },
   "peerDependencies": {
     "react": ">=18"
+  },
+  "dependencies": {
+    "@leejaehyeok/use-latest-ref": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",

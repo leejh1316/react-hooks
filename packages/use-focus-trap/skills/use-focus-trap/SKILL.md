@@ -43,7 +43,7 @@ type FocusTrapOptions = {
 ## 기본 사용 예시
 
 ```tsx
-import { useFocusTrap } from "./useFocusTrap";
+import { useFocusTrap } from "@leejaehyeok/useFocusTrap";
 
 function Modal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const containerRef = useFocusTrap();

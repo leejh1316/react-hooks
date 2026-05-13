@@ -29,9 +29,7 @@ export function useFocusTrap(options: FocusTrapOptions = {}) {
     const initialFocusElement = node.querySelector<HTMLElement>(initialFocusSelector);
     const initFocusTarget = initialFocusElement || focusableElements[0] || node;
 
-    requestAnimationFrame(() => {
-      initFocusTarget.focus();
-    });
+    initFocusTarget.focus();
 
     const observer = new MutationObserver(() => {
       focusableElements = getFocusableElements(node);

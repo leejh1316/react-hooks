@@ -31,7 +31,7 @@ export default function App() {
           <h2>Focus Trap Modal</h2>
           <p>Focus is trapped within this container.</p>
 
-          <button>Action 1</button>
+          <button data-initial-focus>Action 1</button>
           <button>Action 2</button>
           {/* Elements that are disabled are automatically skipped */}
           <button disabled>Action 3 (Disabled)</button>
@@ -44,8 +44,38 @@ export default function App() {
 }
 ```
 
+### Custom Initial Focus
+
+You can set the initial focus target with a CSS selector. If no match is found, the hook falls back to the first focusable element, then the container itself.
+
+```tsx
+const containerRef = useFocusTrap({ initialFocusSelector: "#primary-action" });
+```
+
+## 🧩 API
+
+### `useFocusTrap(options?)`
+
+```ts
+type FocusTrapOptions = {
+  initialFocusSelector?: string; // default: "[data-initial-focus]"
+};
+
+const containerRef = useFocusTrap(options);
+```
+
+**Options**
+
+- `initialFocusSelector`: CSS selector for the element that should receive initial focus.
+
+**Returns**
+
+- `containerRef`: Callback ref to attach to the focus-trapped container element.
+
 ## 🧠 Behavior
 
+- **Initial Focus:** When mounted, focuses the element matched by `initialFocusSelector`, then falls back to the first focusable element, then the container.
+- **Restore Focus:** When unmounted or ref changes, focus returns to the previously active element.
 - **Focus Loop:** Pressing `Tab` on the last focusable element moves focus to the first one. Pressing `Shift + Tab` on the first element moves focus to the last one.
 - **Dynamic Elements:** Uses `MutationObserver` internally to automatically re-calculate focusable elements whenever children are added/removed or their visibility/disabled status changes.
 

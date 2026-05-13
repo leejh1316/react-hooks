@@ -3,19 +3,35 @@
 import { useCallback, useRef } from "react";
 import { getFocusableElements } from "./utils";
 
-export function useFocusTrap() {
+type FocusTrapOptions = {
+  initialFocusSelector?: string;
+};
+
+export function useFocusTrap(options: FocusTrapOptions = {}) {
+  const { initialFocusSelector = "[data-initial-focus]" } = options;
   const cleanupRef = useRef<(() => void) | null>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
 
   const containerRef = useCallback((node: HTMLElement | null) => {
     // node가 null이면 (언마운트 or ref 변경) 이전 클린업 실행
     if (cleanupRef.current) {
       cleanupRef.current();
       cleanupRef.current = null;
+      restoreFocusRef.current?.focus();
+      restoreFocusRef.current = null;
     }
 
     if (!node) return;
 
+    restoreFocusRef.current = document.activeElement as HTMLElement;
+
     let focusableElements = getFocusableElements(node);
+    const initialFocusElement = node.querySelector<HTMLElement>(initialFocusSelector);
+    const initFocusTarget = initialFocusElement || focusableElements[0] || node;
+
+    requestAnimationFrame(() => {
+      initFocusTarget.focus();
+    });
 
     const observer = new MutationObserver(() => {
       focusableElements = getFocusableElements(node);

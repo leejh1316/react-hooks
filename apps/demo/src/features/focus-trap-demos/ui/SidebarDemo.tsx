@@ -11,8 +11,8 @@ export function SidebarDemo() {
       title="Sidebar / Drawer"
       description={
         <>
-          사이드바가 열린 동안 <Kbd>Tab</Kbd>이 패널 내부에서만 순환합니다 · <Kbd>Esc</Kbd>로
-          닫기
+          사이드바가 열린 동안 <Kbd>Tab</Kbd>이 패널 내부에서만 순환합니다 · <Kbd>Esc</Kbd>로 닫기 <br />
+          [data-initial-focus]가 있는 요소에 초기 포커스 (없으면 첫 번째 포커스 가능 요소, 그래도 없으면 컨테이너)가 설정됩니다
         </>
       }
     >
@@ -20,10 +20,7 @@ export function SidebarDemo() {
 
       {isOpen && (
         <>
-          <div
-            className="fixed inset-0 bg-black/40 z-40"
-            onClick={() => setIsOpen(false)}
-          />
+          <div className="fixed inset-0 bg-black/40 z-40" onClick={() => setIsOpen(false)} />
           <aside
             ref={containerRef}
             aria-label="설정 패널"
@@ -47,6 +44,7 @@ export function SidebarDemo() {
               <label className="flex flex-col gap-1.5 text-sm">
                 <span className="font-medium text-gray-700 dark:text-gray-300">이름</span>
                 <input
+                  data-initial-focus
                   type="text"
                   placeholder="이름 입력"
                   className="px-3 py-2 text-sm border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-900 text-inherit transition-colors duration-100

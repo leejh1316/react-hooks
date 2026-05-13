@@ -1,6 +1,6 @@
 {
   "name": "@leejaehyeok/use-focus-trap",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "포커스 트랩을 구현한 React Hook",
   "author": "leejh1316",
   "license": "MIT",

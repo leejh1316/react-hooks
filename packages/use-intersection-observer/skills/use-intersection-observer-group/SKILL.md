@@ -41,18 +41,19 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption): {
 
 ### 반환값
 
-| 반환값            | 타입                                                          | 설명                                            |
-| ----------------- | ------------------------------------------------------------- | ----------------------------------------------- |
-| `setContainerRef` | `RefCallback<HTMLElement>`                                    | 컨테이너 요소에 연결할 ref 콜백                 |
-| `states`          | `Record<string, { isVisible: boolean; hasEntered: boolean }>` | 각 키별 현재 상태                               |
-| `reset`           | `(key?: string) => void`                                      | 특정 키 또는 전체 상태를 초기화하고 재관찰 시작 |
+| 반환값            | 타입                                                                              | 설명                                            |
+| ----------------- | --------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `setContainerRef` | `RefCallback<HTMLElement>`                                                        | 컨테이너 요소에 연결할 ref 콜백                 |
+| `states`          | `Record<string, { isVisible: boolean; hasEntered: boolean; target: Element \| null }>` | 각 키별 현재 상태                               |
+| `reset`           | `(key?: string) => void`                                                          | 특정 키 또는 전체 상태를 초기화하고 재관찰 시작 |
 
 #### `states` 상태 필드
 
-| 필드         | 설명                                |
-| ------------ | ----------------------------------- |
-| `isVisible`  | 현재 뷰포트에 보이고 있는지 여부    |
-| `hasEntered` | 한 번이라도 진입한 적이 있는지 여부 |
+| 필드         | 타입              | 설명                                                              |
+| ------------ | ----------------- | ----------------------------------------------------------------- |
+| `isVisible`  | `boolean`         | 현재 뷰포트에 보이고 있는지 여부                                  |
+| `hasEntered` | `boolean`         | 한 번이라도 진입한 적이 있는지 여부                               |
+| `target`     | `Element \| null` | 실제로 관찰 중인 DOM 엘리먼트. 최초 교차 이벤트 이전에는 `null`   |
 
 ---
 
@@ -172,6 +173,38 @@ reset("hero-section");
 reset();
 ```
 
+### 7. target — DOM 엘리먼트 직접 접근
+
+```tsx
+function ScrollableMenu() {
+  const { setContainerRef, states } = useIntersectionObserverGroup();
+
+  const scrollToSection = (key: string) => {
+    states[key]?.target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <div>
+      <nav>
+        {["intro", "features", "usage"].map((key) => (
+          <button key={key} onClick={() => scrollToSection(key)} disabled={!states[key]?.target}>
+            {key}
+          </button>
+        ))}
+      </nav>
+      <div ref={setContainerRef}>
+        <section data-intersection-key="intro">...</section>
+        <section data-intersection-key="features">...</section>
+        <section data-intersection-key="usage">...</section>
+      </div>
+    </div>
+  );
+}
+```
+
+> `states[key]?.target`은 해당 키의 최초 교차 이벤트 이후부터 DOM 엘리먼트를 가리킵니다.  
+> 그 전에는 `undefined` 또는 `null`이므로 옵셔널 체이닝(`states[key]?.target?.`)을 사용하세요.
+
 ---
 
 ## 주의사항 및 엣지 케이스
@@ -222,6 +255,7 @@ const combinedRef = useCallback(
 type TargetState = {
   isVisible: boolean;
   hasEntered: boolean;
+  target: Element | null;
 };
 
 type GroupStates = Record<string, TargetState>;

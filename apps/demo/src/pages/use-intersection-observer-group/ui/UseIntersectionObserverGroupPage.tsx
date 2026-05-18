@@ -495,6 +495,73 @@ function GnbNavigationDemo() {
   );
 }
 
+function TargetRefGroupDemo() {
+  const items = Array.from({ length: 5 }, (_, i) => ({ id: `scroll-item-${i + 1}`, label: `항목 ${i + 1}` }));
+  const { setContainerRef, states } = useIntersectionObserverGroup({ root: "container" });
+
+  const scrollToItem = (key: string) => {
+    states[key]?.target?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  return (
+    <DemoSection
+      title="target 참조"
+      description={
+        <>
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">states[key].target</code>은 각 관찰
+          대상의 실제 DOM 엘리먼트입니다. 스크롤 후 버튼을 눌러 특정 항목으로 바로 이동할 수 있습니다. 최초 교차 이전에는{" "}
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">null</code>입니다.
+        </>
+      }
+    >
+      <div className="mb-3 flex flex-wrap gap-2">
+        {items.map((item) => (
+          <Button key={item.id} onClick={() => scrollToItem(item.id)} size="sm" variant="cancel" disabled={!states[item.id]?.target}>
+            {item.label}로 이동
+          </Button>
+        ))}
+      </div>
+      <div
+        ref={setContainerRef}
+        className="h-64 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto px-4 py-3 space-y-3"
+      >
+        <div className="h-32 flex items-center justify-center text-sm text-gray-400">스크롤하세요 ↓</div>
+        {items.map((item) => {
+          const state = states[item.id];
+          const isVisible = state?.isVisible ?? false;
+          const hasTarget = !!state?.target;
+
+          return (
+            <div
+              key={item.id}
+              data-intersection-key={item.id}
+              className={`p-4 rounded-lg flex items-center justify-between transition-all duration-300 ${
+                isVisible
+                  ? "bg-sky-500 text-white shadow-md"
+                  : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+              }`}
+            >
+              <span className="font-medium">{item.label}</span>
+              <span
+                className={`text-xs font-mono px-1.5 py-0.5 rounded ${
+                  isVisible
+                    ? "bg-white/20"
+                    : hasTarget
+                      ? "bg-sky-50 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400"
+                      : "bg-gray-100 dark:bg-gray-700 text-gray-500"
+                }`}
+              >
+                {hasTarget ? "target ✓" : "target null"}
+              </span>
+            </div>
+          );
+        })}
+        <div className="h-32 flex items-center justify-center text-sm text-gray-400">↓ 계속</div>
+      </div>
+    </DemoSection>
+  );
+}
+
 export function UseIntersectionObserverGroupPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-8">
@@ -507,6 +574,7 @@ export function UseIntersectionObserverGroupPage() {
       <IndividualResetDemo />
       <DynamicListDemo />
       <GnbNavigationDemo />
+      <TargetRefGroupDemo />
     </div>
   );
 }

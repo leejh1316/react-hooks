@@ -21,7 +21,7 @@ import React from "react";
 import { useIntersectionObserver } from "@leejaehyeok/use-intersection-observer";
 
 export function MyComponent() {
-  const { setContainerRef, isVisible, hasEntered } = useIntersectionObserver({
+  const { setContainerRef, isVisible, hasEntered, target } = useIntersectionObserver({
     targetSelector: "[data-target]",
     onEntered: (entry) => console.log("화면에 나타남!"),
     onExited: (entry) => console.log("화면에서 벗어남!"),
@@ -30,6 +30,9 @@ export function MyComponent() {
   return (
     <div ref={setContainerRef}>
       <div data-target>{isVisible ? "표시 중" : "숨겨짐"}</div>
+      <button onClick={() => target?.scrollIntoView({ behavior: "smooth" })} disabled={!target}>
+        대상으로 스크롤
+      </button>
     </div>
   );
 }
@@ -66,6 +69,7 @@ export function MyComponent() {
 - **단일/다중 추적:** 하나 또는 여러 개의 요소 추적을 위한 별도의 훅 제공.
 - **생명주기 콜백:** `onEntered`, `onExited`, `onChange` 콜백으로 세밀한 제어 가능.
 - **상태 추적:** 요소가 표시 중인지, 이전에 표시된 적이 있는지 알 수 있습니다.
+- **target 엘리먼트 접근:** `target`으로 관찰 중인 실제 DOM 엘리먼트를 직접 참조할 수 있습니다.
 - **Once 옵션:** `once: true`로 설정하여 첫 교차 후 자동 해제.
 - **유연한 Root:** viewport 또는 스크롤 가능한 컨테이너를 교차 root로 사용 가능.
 - **Reset 제어:** `reset()` 메서드로 관찰 상태를 프로그래밍 방식으로 초기화.

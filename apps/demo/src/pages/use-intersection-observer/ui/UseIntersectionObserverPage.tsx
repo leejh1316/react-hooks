@@ -315,6 +315,67 @@ function EnableToggleDemo() {
   );
 }
 
+function TargetRefDemo() {
+  const { setContainerRef, isVisible, target } = useIntersectionObserver({ root: "container" });
+
+  const scrollToTarget = () => {
+    target?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  return (
+    <DemoSection
+      title="target 참조"
+      description={
+        <>
+          훅이 반환하는{" "}
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">target</code>은 실제로 관찰 중인 DOM
+          엘리먼트 참조입니다. <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">scrollIntoView</code>{" "}
+          호출이나 DOM 정보 조회 등을 직접 수행할 수 있습니다. 최초 교차 이벤트 이전에는{" "}
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">null</code>입니다.
+        </>
+      }
+    >
+      <div
+        ref={setContainerRef}
+        className="h-64 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto"
+      >
+        <div className="flex items-center justify-center h-90 text-sm text-gray-400">스크롤하세요 ↓</div>
+        <div
+          data-intersection-target
+          id="demo-target-el"
+          className="mx-4 h-28 rounded-xl bg-sky-500 flex items-center justify-center text-white font-semibold text-lg shadow-lg"
+        >
+          관찰 대상 요소
+        </div>
+        <div className="flex items-center justify-center h-90 text-sm text-gray-400">↓ 계속 스크롤</div>
+      </div>
+      <div className="mt-4 space-y-3">
+        <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 font-mono text-xs space-y-1.5">
+          <div className="text-gray-400">// target DOM 정보</div>
+          <div>
+            <span className="text-purple-500">tagName</span>
+            <span className="text-gray-400 mx-1.5">:</span>
+            <span className="text-emerald-600 dark:text-emerald-400">{target ? `"${target.tagName.toLowerCase()}"` : "null"}</span>
+          </div>
+          <div>
+            <span className="text-purple-500">id</span>
+            <span className="text-gray-400 mx-1.5">:</span>
+            <span className="text-emerald-600 dark:text-emerald-400">{target ? `"${target.id}"` : "null"}</span>
+          </div>
+          <div>
+            <span className="text-purple-500">isVisible</span>
+            <span className="text-gray-400 mx-1.5">:</span>
+            <span className={isVisible ? "text-green-500" : "text-gray-500"}>{String(isVisible)}</span>
+          </div>
+        </div>
+        <Button onClick={scrollToTarget} size="sm" variant="cancel" disabled={!target}>
+          target.scrollIntoView()
+        </Button>
+      </div>
+    </DemoSection>
+  );
+}
+
 export function UseIntersectionObserverPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-8">
@@ -327,6 +388,7 @@ export function UseIntersectionObserverPage() {
       <OnceResetDemo />
       <CallbackEventDemo />
       <EnableToggleDemo />
+      <TargetRefDemo />
     </div>
   );
 }

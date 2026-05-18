@@ -23,6 +23,7 @@ function useIntersectionObserver(options?: IntersectionObserverOption): {
   reset: () => void;
   isVisible: boolean;
   hasEntered: boolean;
+  target: Element | null;
 };
 ```
 
@@ -50,6 +51,7 @@ function useIntersectionObserver(options?: IntersectionObserverOption): {
 | `setContainerRef` | `RefCallback<HTMLElement>` | 관찰을 시작할 컨테이너 엘리먼트에 연결하는 ref 콜백                                  |
 | `isVisible`       | `boolean`                  | 타깃이 현재 뷰포트 안에 있으면 `true`                                                |
 | `hasEntered`      | `boolean`                  | 타깃이 한 번이라도 뷰포트에 진입한 적이 있으면 `true`                                |
+| `target`          | `Element \| null`          | 실제로 관찰 중인 DOM 엘리먼트. 최초 교차 이벤트 이전에는 `null`                      |
 | `reset`           | `() => void`               | 관찰 상태를 초기화하고 다시 관찰을 시작합니다. `once: true`와 함께 쓸 때 유용합니다. |
 
 ---
@@ -187,6 +189,30 @@ function ReplayAnimation() {
   );
 }
 ```
+
+---
+
+### 7. target — DOM 엘리먼트 직접 접근
+
+```tsx
+function ScrollToTarget() {
+  const { setContainerRef, target } = useIntersectionObserver();
+
+  return (
+    <div>
+      <button onClick={() => target?.scrollIntoView({ behavior: "smooth", block: "center" })} disabled={!target}>
+        대상으로 이동
+      </button>
+      <div ref={setContainerRef}>
+        <div data-intersection-target>관찰 대상</div>
+      </div>
+    </div>
+  );
+}
+```
+
+> `target`은 최초 교차 이벤트가 발생한 이후부터 DOM 엘리먼트를 가리킵니다.  
+> 그 전에는 `null`이므로 옵셔널 체이닝(`target?.`)을 사용하세요.
 
 ---
 

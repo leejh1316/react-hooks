@@ -21,7 +21,7 @@ import React, { useRef } from "react";
 import { useIntersectionObserver } from "@leejaehyeok/use-intersection-observer";
 
 export function MyComponent() {
-  const { setContainerRef, isVisible, hasEntered } = useIntersectionObserver({
+  const { setContainerRef, isVisible, hasEntered, target } = useIntersectionObserver({
     targetSelector: "[data-target]",
     onEntered: (entry) => console.log("Entered!"),
     onExited: (entry) => console.log("Exited!"),
@@ -30,6 +30,9 @@ export function MyComponent() {
   return (
     <div ref={setContainerRef}>
       <div data-target>{isVisible ? "Visible" : "Hidden"}</div>
+      <button onClick={() => target?.scrollIntoView({ behavior: "smooth" })} disabled={!target}>
+        Scroll to target
+      </button>
     </div>
   );
 }
@@ -66,6 +69,7 @@ export function MyComponent() {
 - **Single & Multiple Elements:** Track one or many elements with dedicated hooks.
 - **Lifecycle Callbacks:** `onEntered`, `onExited`, and `onChange` callbacks for full control.
 - **State Tracking:** Know if elements are visible or have been entered.
+- **Target Element Access:** Get a direct reference to the observed DOM element via `target`.
 - **Once Option:** Auto-unobserve after first intersection with `once: true`.
 - **Flexible Root:** Use the viewport or a scrollable container as the intersection root.
 - **Reset Control:** Reset observation state programmatically with `reset()` method.

@@ -1,6 +1,6 @@
 {
   "name": "@leejaehyeok/use-intersection-observer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React hooks for observing element visibility using the Intersection Observer API. Supports single element and multiple elements tracking with lifecycle callbacks.",
   "author": "leejh1316",
   "license": "MIT",

@@ -15,7 +15,7 @@
 | [`@leejaehyeok/use-debounce`](./packages/use-debounce)                           | 0.1.0 | 함수 호출 지연                                                             |
 | [`@leejaehyeok/use-deferred-loading`](./packages/use-deferred-loading)           | 0.2.0 | 지연 로딩                                                                  |
 | [`@leejaehyeok/use-focus-trap`](./packages/use-focus-trap)                       | 0.2.1 | 포커스 범위 제한                                                           |
-| [`@leejaehyeok/use-intersection-observer`](./packages/use-intersection-observer) | 0.2.0 | 요소 가시성 추적                                                           |
+| [`@leejaehyeok/use-intersection-observer`](./packages/use-intersection-observer) | 0.3.0 | 요소 가시성 추적                                                           |
 | [`@leejaehyeok/use-latest-ref`](./packages/use-latest-ref)                       | 0.1.0 | 최신값 ref                                                                 |
 | [`@leejaehyeok/use-overflow`](./packages/use-overflow)                           | 0.1.0 | 오버플로우 감지                                                            |
 | [`@leejaehyeok/use-pagination`](./packages/use-pagination)                       | 0.1.0 | 페이지 관리                                                                |

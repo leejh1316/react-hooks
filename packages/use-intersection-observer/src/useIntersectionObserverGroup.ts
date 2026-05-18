@@ -12,6 +12,7 @@ type IntersectionGroupOption = IntersectionBaseOptions & {
 type TargetState = {
   isVisible: boolean;
   hasEntered: boolean;
+  target: Element | null;
 };
 
 type GroupStates = Record<string, TargetState>;
@@ -61,7 +62,7 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
         isTriggeredOnceRef.current[key] = false;
         setStates((prev) => ({
           ...prev,
-          [key]: { isVisible: false, hasEntered: false },
+          [key]: { isVisible: false, hasEntered: false, target: null },
         }));
         intersectionRef.current?.observe(target);
       }
@@ -128,10 +129,10 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
         if (isVisible) {
           isTriggeredOnceRef.current[key] ||= onceRef.current;
           onEnteredRef.current?.(key, entry, observer);
-          newStates[key] = { isVisible, hasEntered: true };
+          newStates[key] = { isVisible, hasEntered: true, target: entry.target };
         } else {
           onExitedRef.current?.(key, entry, observer);
-          newStates[key] = { isVisible, hasEntered: oldState?.hasEntered ?? false };
+          newStates[key] = { isVisible, hasEntered: oldState?.hasEntered ?? false, target: entry.target };
           if (isTriggeredOnceRef.current[key]) {
             observer.unobserve(entry.target);
           }

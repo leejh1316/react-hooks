@@ -23,6 +23,7 @@ function useIntersectionObserver(options?: IntersectionObserverOption) {
   const [targetState, setTargetState] = useState(() => ({
     isVisible: false,
     hasEntered: false,
+    target: null as Element | null,
   }));
 
   const onceRef = useRef(once);
@@ -51,6 +52,7 @@ function useIntersectionObserver(options?: IntersectionObserverOption) {
     setTargetState(() => ({
       isVisible: false,
       hasEntered: false,
+      target: null as Element | null,
     }));
     intersectionRef.current?.observe(targetRef.current);
   }, []);
@@ -69,7 +71,7 @@ function useIntersectionObserver(options?: IntersectionObserverOption) {
     if (isVisible) {
       isTriggeredOnceRef.current ||= onceRef.current;
       onEnteredRef.current?.(entry, observer);
-      setTargetState(() => ({ isVisible, hasEntered: true }));
+      setTargetState(() => ({ isVisible, hasEntered: true, target: entry.target }));
     } else {
       onExitedRef.current?.(entry, observer);
       setTargetState((prev) => ({ ...prev, isVisible }));

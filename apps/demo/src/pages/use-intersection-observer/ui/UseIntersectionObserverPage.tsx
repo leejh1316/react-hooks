@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useIntersectionObserver } from "@leejaehyeok/use-intersection-observer";
 import { DemoPageHeader, DemoSection, Button } from "@/shared/ui";
 
@@ -241,6 +241,80 @@ function CallbackEventDemo() {
   );
 }
 
+function EnableToggleDemo() {
+  const [enabled, setEnabled] = useState(true);
+  const { setContainerRef, isVisible, hasEntered } = useIntersectionObserver({
+    root: "container",
+    enable: enabled,
+  });
+
+  return (
+    <DemoSection
+      title="enable 옵션"
+      description={
+        <>
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">enable: false</code> 로 설정하면 교차
+          감지를 일시적으로 중단합니다. 비활성화 상태에서 스크롤해도 상태가 바뀌지 않습니다. 다시 활성화하면 이후 교차 이벤트부터
+          정상 반응합니다.
+        </>
+      }
+    >
+      <div className="mb-3 flex items-center gap-3">
+        <Button onClick={() => setEnabled((v) => !v)} size="sm" variant={enabled ? "cancel" : "primary"}>
+          {enabled ? "비활성화" : "활성화"}
+        </Button>
+        <span
+          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${
+            enabled
+              ? "bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300"
+              : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+          }`}
+        >
+          <span className={`w-1.5 h-1.5 rounded-full ${enabled ? "bg-green-500" : "bg-gray-400"}`} />
+          {enabled ? "감지 활성" : "감지 비활성"}
+        </span>
+      </div>
+      <div
+        ref={setContainerRef}
+        className="h-64 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto"
+      >
+        <div className="flex items-center justify-center h-90 text-sm text-gray-400">스크롤하세요 ↓</div>
+        <div
+          data-intersection-target
+          className={`mx-4 h-28 rounded-xl flex items-center justify-center font-semibold text-lg shadow-lg transition-all duration-300 ${
+            enabled ? "bg-indigo-500 text-white" : "bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500"
+          }`}
+        >
+          {enabled ? "대상 요소 (감지 중)" : "대상 요소 (감지 중단)"}
+        </div>
+        <div className="flex items-center justify-center h-90 text-sm text-gray-400">↓ 계속 스크롤</div>
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <div
+          className={`p-3 rounded-lg text-center text-sm font-medium transition-all duration-200 ${
+            isVisible
+              ? "bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 ring-1 ring-green-400 dark:ring-green-600"
+              : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+          }`}
+        >
+          <div className="font-mono text-xs mb-1">isVisible</div>
+          <div className="font-semibold">{String(isVisible)}</div>
+        </div>
+        <div
+          className={`p-3 rounded-lg text-center text-sm font-medium transition-all duration-200 ${
+            hasEntered
+              ? "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 ring-1 ring-blue-400 dark:ring-blue-600"
+              : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+          }`}
+        >
+          <div className="font-mono text-xs mb-1">hasEntered</div>
+          <div className="font-semibold">{String(hasEntered)}</div>
+        </div>
+      </div>
+    </DemoSection>
+  );
+}
+
 export function UseIntersectionObserverPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-8">
@@ -252,6 +326,7 @@ export function UseIntersectionObserverPage() {
       <TargetSelectorDemo />
       <OnceResetDemo />
       <CallbackEventDemo />
+      <EnableToggleDemo />
     </div>
   );
 }

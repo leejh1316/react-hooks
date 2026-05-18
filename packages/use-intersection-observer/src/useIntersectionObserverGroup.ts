@@ -24,6 +24,7 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
     onEntered,
     onExited,
     onChange,
+    enable = true,
     ...observerOptions
   } = options || {};
 
@@ -37,6 +38,7 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
   const mutationRef = useRef<MutationObserver | null>(null);
 
   const isTriggeredOnceRef = useRef<Record<string, boolean>>({});
+  const isEnabledRef = useLatestRef(enable);
   const onEnteredRef = useLatestRef(onEntered);
   const onExitedRef = useLatestRef(onExited);
   const onChangeRef = useLatestRef(onChange);
@@ -106,6 +108,9 @@ function useIntersectionObserverGroup(options?: IntersectionGroupOption) {
   }, []);
 
   const intersectionObserveCallback = useCallback<IntersectionObserverCallback>((entries, observer) => {
+    if (!isEnabledRef.current) {
+      return;
+    }
     setStates((prev) => {
       const newStates = { ...prev };
       entries.forEach((entry) => {

@@ -16,6 +16,7 @@ function useIntersectionObserver(options?: IntersectionObserverOption) {
     onEntered,
     onExited,
     onChange,
+    enable = true,
     ...observerOptions
   } = options || {};
 
@@ -31,6 +32,7 @@ function useIntersectionObserver(options?: IntersectionObserverOption) {
   const intersectionRef = useRef<IntersectionObserver | null>(null);
 
   const isTriggeredOnceRef = useRef(false);
+  const isEnabledRef = useLatestRef(enable);
   const onEnteredRef = useLatestRef(onEntered);
   const onExitedRef = useLatestRef(onExited);
   const onChangeRef = useLatestRef(onChange);
@@ -54,6 +56,10 @@ function useIntersectionObserver(options?: IntersectionObserverOption) {
   }, []);
 
   const observeCallback = useCallback<IntersectionObserverCallback>((entries, observer) => {
+    if (!isEnabledRef.current) {
+      return;
+    }
+
     const entry = entries[0];
     const isVisible = entry.isIntersecting;
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useIntersectionObserverGroup } from "@leejaehyeok/use-intersection-observer";
 import { DemoPageHeader, DemoSection, Button } from "@/shared/ui";
 
@@ -302,6 +302,199 @@ function DynamicListDemo() {
   );
 }
 
+const GNB_SECTIONS = [
+  { id: "gnb-intro", label: "소개", color: "indigo", bg: "bg-indigo-500", light: "bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300", chip: "bg-indigo-500 text-white", chipInactive: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-300" },
+  { id: "gnb-features", label: "기능", color: "violet", bg: "bg-violet-500", light: "bg-violet-50 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300", chip: "bg-violet-500 text-white", chipInactive: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-300" },
+  { id: "gnb-usage", label: "사용법", color: "blue", bg: "bg-blue-500", light: "bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300", chip: "bg-blue-500 text-white", chipInactive: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-300" },
+  { id: "gnb-examples", label: "예시", color: "emerald", bg: "bg-emerald-500", light: "bg-emerald-50 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300", chip: "bg-emerald-500 text-white", chipInactive: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-600 dark:hover:text-emerald-300" },
+  { id: "gnb-summary", label: "요약", color: "orange", bg: "bg-orange-500", light: "bg-orange-50 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300", chip: "bg-orange-500 text-white", chipInactive: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-orange-50 dark:hover:bg-orange-900/30 hover:text-orange-600 dark:hover:text-orange-300" },
+  { id: "gnb-tips", label: "팁", color: "rose", bg: "bg-rose-500", light: "bg-rose-50 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300", chip: "bg-rose-500 text-white", chipInactive: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-rose-50 dark:hover:bg-rose-900/30 hover:text-rose-600 dark:hover:text-rose-300" },
+];
+
+function GnbNavigationDemo() {
+  const [useEnableControl, setUseEnableControl] = useState(true);
+  const [activeId, setActiveId] = useState(GNB_SECTIONS[0].id);
+  const [enabled, setEnabled] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  const scrollContainerRef = useRef<HTMLElement | null>(null);
+  const chipListRef = useRef<HTMLDivElement | null>(null);
+  const chipRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  const { setContainerRef } = useIntersectionObserverGroup({
+    root: "container",
+    enable: enabled,
+    threshold: 0.5,
+    onEntered: (key) => {
+      setActiveId(key);
+    },
+  });
+
+  const setRef = useCallback(
+    (node: HTMLElement | null) => {
+      setContainerRef(node);
+      scrollContainerRef.current = node;
+    },
+    [setContainerRef],
+  );
+
+  useEffect(() => {
+    const chip = chipRefs.current[activeId];
+    if (chip && chipListRef.current) {
+      chip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }, [activeId]);
+
+  // useEnableControl 모드 변경 시 상태 초기화
+  useEffect(() => {
+    setActiveId(GNB_SECTIONS[0].id);
+    setEnabled(true);
+    setIsScrolling(false);
+    scrollContainerRef.current?.scrollTo({ top: 0, behavior: "instant" });
+  }, [useEnableControl]);
+
+  const handleChipClick = (id: string) => {
+    if (activeId === id) return;
+
+    const target = scrollContainerRef.current?.querySelector(`[data-intersection-key="${id}"]`);
+
+    if (useEnableControl) {
+      setEnabled(false);
+      setIsScrolling(true);
+      setActiveId(id);
+      target?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      setTimeout(() => {
+        setEnabled(true);
+        setIsScrolling(false);
+      }, 700);
+    } else {
+      // enable 제어 없음 — 스크롤 중 중간 섹션이 감지되어 GNB가 흔들림
+      target?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  };
+
+  const activeSection = GNB_SECTIONS.find((s) => s.id === activeId);
+
+  return (
+    <DemoSection
+      title="GNB 네비게이션 (enable 제어)"
+      description={
+        <>
+          칩을 클릭하면 해당 섹션으로 스크롤됩니다.{" "}
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">enable 제어 없음</code> 모드에서는
+          스크롤 도중 중간 섹션이 감지되어 GNB 칩이 흔들립니다.{" "}
+          <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-mono text-xs">enable 제어 있음</code> 모드에서는 클릭
+          시 감지를 일시 중단해 목적지 칩만 활성화됩니다.
+        </>
+      }
+    >
+      {/* Mode Toggle */}
+      <div className="mb-4 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg flex gap-1">
+        <button
+          onClick={() => setUseEnableControl(false)}
+          className={`flex-1 py-1.5 px-3 rounded-md text-sm font-medium transition-all duration-200 ${
+            !useEnableControl
+              ? "bg-red-500 text-white shadow-sm"
+              : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+          }`}
+        >
+          enable 제어 없음 (문제)
+        </button>
+        <button
+          onClick={() => setUseEnableControl(true)}
+          className={`flex-1 py-1.5 px-3 rounded-md text-sm font-medium transition-all duration-200 ${
+            useEnableControl
+              ? "bg-green-500 text-white shadow-sm"
+              : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+          }`}
+        >
+          enable 제어 있음 (해결)
+        </button>
+      </div>
+
+      {/* Problem/Solution callout */}
+      {!useEnableControl ? (
+        <div className="mb-3 px-3 py-2.5 rounded-lg bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-xs text-red-700 dark:text-red-300">
+          멀리 있는 칩을 클릭해 보세요. 스크롤 도중 중간 섹션들이 순차 감지되어 GNB 칩이 흔들립니다.
+        </div>
+      ) : (
+        <div className="mb-3 px-3 py-2.5 rounded-lg bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800 text-xs text-green-700 dark:text-green-300">
+          칩을 클릭하면 감지가 일시 중단되어 목적지 칩만 즉시 활성화됩니다. 스크롤 완료 후 자연 스크롤 감지가 재개됩니다.
+        </div>
+      )}
+
+      {/* Chip GNB */}
+      <div className="mb-2 relative">
+        <div
+          ref={chipListRef}
+          className="flex gap-2 overflow-x-auto pb-2 scroll-smooth"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {GNB_SECTIONS.map((section) => (
+            <button
+              key={section.id}
+              ref={(el) => {
+                chipRefs.current[section.id] = el;
+              }}
+              onClick={() => handleChipClick(section.id)}
+              className={`shrink-0 px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                activeId === section.id ? section.chip : section.chipInactive
+              }`}
+            >
+              {section.label}
+            </button>
+          ))}
+        </div>
+        <div className="absolute right-0 top-0 bottom-2 w-8 bg-linear-to-l from-white dark:from-gray-950 to-transparent pointer-events-none" />
+      </div>
+
+      {/* Scroll Container */}
+      <div
+        ref={setRef}
+        className="h-72 border border-gray-200 dark:border-gray-700 rounded-lg overflow-y-auto scroll-smooth"
+      >
+        {GNB_SECTIONS.map((section) => (
+          <div
+            key={section.id}
+            data-intersection-key={section.id}
+            className={`h-52 mx-3 my-3 rounded-xl flex flex-col items-center justify-center gap-2 transition-colors duration-300 ${
+              activeId === section.id ? `${section.bg} text-white shadow-lg` : section.light
+            }`}
+          >
+            <span className="text-2xl font-bold">{section.label}</span>
+            <span className="text-sm opacity-75 font-mono">{section.id}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Status */}
+      <div className="mt-3 flex items-center gap-3 flex-wrap">
+        {useEnableControl && (
+          <span
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${
+              isScrolling
+                ? "bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300"
+                : "bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300"
+            }`}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${isScrolling ? "bg-amber-400" : "bg-green-500"}`} />
+            {isScrolling ? "스크롤 중 — 감지 일시 중단" : "감지 활성"}
+          </span>
+        )}
+        {!useEnableControl && (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            항상 감지 중 (문제 발생 가능)
+          </span>
+        )}
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          활성 섹션: <span className="font-medium text-gray-800 dark:text-gray-200">{activeSection?.label}</span>
+        </span>
+      </div>
+    </DemoSection>
+  );
+}
+
 export function UseIntersectionObserverGroupPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-8">
@@ -313,6 +506,7 @@ export function UseIntersectionObserverGroupPage() {
       <ScrollAnimationDemo />
       <IndividualResetDemo />
       <DynamicListDemo />
+      <GnbNavigationDemo />
     </div>
   );
 }

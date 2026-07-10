@@ -20,14 +20,14 @@ export const FEATURES = [
     title: "TypeScript",
     description: "모든 훅이 TypeScript로 작성되어 완벽한 타입 안전성과 자동완성을 제공합니다.",
   },
-  {
-    icon: <Blocks size={20} strokeWidth={1.5} />,
-    title: "Composable",
-    description: "useComposeRef, useControllableState처럼 훅을 조합하여 더 복잡한 로직을 구성할 수 있습니다.",
-  },
-  {
-    icon: <Accessibility size={20} strokeWidth={1.5} />,
-    title: "Accessible",
-    description: "useFocusTrap, useRovingFocus 등 접근성 있는 인터랙션 구현을 위한 훅을 제공합니다.",
-  },
+  // {
+  //   icon: <Blocks size={20} strokeWidth={1.5} />,
+  //   title: "Composable",
+  //   description: "useComposeRef, useControllableState처럼 훅을 조합하여 더 복잡한 로직을 구성할 수 있습니다.",
+  // },
+  // {
+  //   icon: <Accessibility size={20} strokeWidth={1.5} />,
+  //   title: "Accessible",
+  //   description: "useFocusTrap, useRovingFocus 등 접근성 있는 인터랙션 구현을 위한 훅을 제공합니다.",
+  // },
 ] as const;

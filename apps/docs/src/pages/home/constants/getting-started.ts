@@ -5,14 +5,14 @@
 export const GETTING_STARTED_STEPS = [
   {
     title: "패키지 설치",
-    code: "npm add @leejaehyeok/use-debounce",
+    code: "npm add @leejaehyeok/use-focus-trap",
   },
   {
     title: "훅 가져오기",
-    code: 'import { useDebounce } from "@leejaehyeok/use-debounce"',
+    code: 'import { useFocusTrap } from "@leejaehyeok/use-focus-trap"',
   },
   {
     title: "사용하기",
-    code: "const debouncedValue = useDebounce(value, 300)",
+    code: "const focusTrap = useFocusTrap()",
   },
 ] as const;

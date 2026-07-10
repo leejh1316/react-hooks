@@ -36,14 +36,14 @@ const HeroSection = ({ hookCount }: HeroSectionProps) => {
           시작하기
           <ArrowRight size={16} />
         </Link>
-        <a
+        {/* <a
           href={GITHUB_URL}
           target="_blank"
           rel="noreferrer"
           className="border-line-regular text-ink-secondary text-body-2 inline-flex items-center gap-2 rounded-lg border px-6 py-3 font-medium transition-colors hover:bg-neutral-50"
         >
           GitHub
-        </a>
+        </a> */}
       </div>
     </section>
   );

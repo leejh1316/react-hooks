@@ -6,7 +6,6 @@ import PageNotFound from "@src/pages/errors/PageNotFound";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
 import { createBrowserRouter, RouteObject } from "react-router";
 
-
 export const PATH = {
   NOT_FOUND: `*`,
 };

@@ -13,7 +13,7 @@ const CodeBlock = ({ code, language = "tsx", className, ...props }: CodeBlockPro
 
   useEffect(() => {
     codeToHtml(code, {
-      lang: "tsx",
+      lang: language,
       theme: "one-dark-pro",
     }).then((html) => {
       setHighlightedCode(html);

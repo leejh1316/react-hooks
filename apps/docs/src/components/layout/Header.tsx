@@ -7,28 +7,30 @@ import IconButton from "@src/components/ui/IconButton";
 
 const githubUrl = "https://github.com/leejh1316/react-hooks";
 const Header = memo(() => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const focusTrapRef = useFocusTrap();
   const location = useLocation();
 
   // 페이지 이동 시 메뉴 닫기
   useEffect(() => {
-    setMobileOpen(false);
+    setMenuOpen(false);
   }, [location.pathname]);
 
   // 모바일 메뉴 열려 있을 때 스크롤 잠금
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileOpen]);
+  }, [menuOpen]);
 
-  const toggleMenu = useCallback(() => setMobileOpen((prev) => !prev), []);
+  const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), []);
 
   return (
-    <div ref={mobileOpen ? focusTrapRef : undefined}>
-      <header className="border-line-light sticky top-0 z-40 flex items-center justify-center border-b bg-white/70 backdrop-blur-md">
+    <div ref={menuOpen ? focusTrapRef : undefined} className="sticky top-0 z-40">
+      <header
+        className={clsx("sticky top-0 z-40 flex items-center justify-center backdrop-blur-md", menuOpen ? "bg-white" : "bg-white/70")}
+      >
         <div className="max-w-page h-header flex w-full items-center justify-between px-5">
           {/* Logo */}
           <Link to="/" className="text-headline-6 font-bold">
@@ -40,7 +42,7 @@ const Header = memo(() => {
             <ul className="text-body-2 flex items-center gap-x-2 font-medium">
               <li>
                 <Link
-                  to="/docs/accordion"
+                  to="/docs"
                   className="text-ink-secondary hover:text-ink-primary rounded-lg p-3 transition-colors hover:bg-neutral-100"
                 >
                   DOCS
@@ -69,17 +71,17 @@ const Header = memo(() => {
               type="button"
               onClick={toggleMenu}
               size="md"
-              aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
+              aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
               className="text-icon-primary rounded-lg transition-colors hover:bg-neutral-100"
-              name={mobileOpen ? "x" : "menu"}
+              name={menuOpen ? "x" : "menu"}
             />
           </div>
         </div>
       </header>
 
       {/* ─── Mobile Menu Overlay ─── */}
-      {mobileOpen && (
-        <div className={clsx("top-(--h-header) fixed inset-0 z-30 md:hidden")}>
+      {menuOpen && (
+        <div className={clsx("top-(--h-header) fixed inset-0 z-30")}>
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={toggleMenu} />
 

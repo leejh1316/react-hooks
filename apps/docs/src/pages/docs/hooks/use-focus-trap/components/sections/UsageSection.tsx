@@ -40,7 +40,7 @@ const UsageSection = () => {
       <CodeBlock code={FOCUS_TRAP_DEMO_CODE} className="mb-8" />
 
       {/* 기본 사용법 */}
-      <Document.Heading2>기본 사용법</Document.Heading2>
+      <Document.Heading2>사용 방법</Document.Heading2>
       <Document.Paragraph mb={6}>
         훅이 반환하는 callback ref를 포커스를 가둘 컨테이너 요소의 <InlineCode>ref</InlineCode>에 연결하세요. 컨테이너가 마운트되는 순간
         트랩이 활성화되고, 조건부 렌더링 등으로 컨테이너가 DOM에서 제거되면 트랩이 해제되면서 이전 포커스가 복원됩니다.{" "}

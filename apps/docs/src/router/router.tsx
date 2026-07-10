@@ -3,6 +3,7 @@ import DocsLayout from "@src/components/layout/DocsLayout";
 import Home from "@src/pages/home/Home";
 
 import PageNotFound from "@src/pages/errors/PageNotFound";
+import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
 import { createBrowserRouter, RouteObject } from "react-router";
 
 
@@ -23,11 +24,11 @@ type RouteCategory = {
 };
 
 export const PAGE_ROUTES: RouteCategory = {
-  components: {
+  hooks: {
     title: "Hooks",
     routes: [
-      // { path: "/docs/accordion", element: <AccordionPage />, name: "Accordion" },
-
+      // 훅 라우트는 이름 기준 ABC 순으로 정렬합니다.
+      { path: "/docs/use-focus-trap", element: <UseFocusTrapPage />, name: "useFocusTrap" },
     ],
   },
   // hooks: {

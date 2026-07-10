@@ -22,11 +22,6 @@ const HeroSection = ({ hookCount }: HeroSectionProps) => {
         실무에서 자주 마주치는 로직을 훅 단위로 제공하는 React 커스텀 훅 라이브러리로 빠르고 견고한 애플리케이션을 구축하세요.
       </p>
 
-      {/* Description */}
-      <p className="text-body-2 text-ink-tertiary mt-4 max-w-xl font-normal">
-        각 훅은 독립 패키지로 배포되어 필요한 것만 설치할 수 있습니다.
-      </p>
-
       {/* CTA Buttons */}
       <div className="mt-10 flex items-center gap-3">
         <Link

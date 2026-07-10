@@ -2,20 +2,20 @@
    Code Example
    ────────────────────────────────────────────── */
 
-export const CODE_EXAMPLE_FILE_NAME = "SearchInput.tsx";
+export const CODE_EXAMPLE_FILE_NAME = "Modal.tsx";
 
-export const CODE_EXAMPLE = `import { useState } from "react";
-import { useDebounce } from "@leejaehyeok/use-debounce";
+export const CODE_EXAMPLE = `import { useFocusTrap } from "@leejaehyeok/use-focus-trap";
 
-function SearchInput() {
-  const [keyword, setKeyword] = useState("");
-  const debouncedKeyword = useDebounce(keyword, 300);
+function Modal({ isOpen, onClose }) {
+  const containerRef = useFocusTrap();
 
-  // debouncedKeyword로 검색 API 호출
+  // 컨테이너가 제거되면 트랩이 해제되고 이전 포커스가 복원됩니다
+  if (!isOpen) return null;
+
   return (
-    <input
-      value={keyword}
-      onChange={(e) => setKeyword(e.target.value)}
-    />
+    <div ref={containerRef} role="dialog" aria-modal="true">
+      <input type="text" placeholder="이름" />
+      <button onClick={onClose}>닫기</button>
+    </div>
   );
 }`;

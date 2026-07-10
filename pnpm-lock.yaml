@@ -15,6 +15,12 @@ importers:
       '@types/node':
         specifier: ^25.6.0
         version: 25.6.0
+      prettier:
+        specifier: ^3.6.2
+        version: 3.9.5
+      prettier-plugin-tailwindcss:
+        specifier: ^0.6.14
+        version: 0.6.14(prettier@3.9.5)
       typescript:
         specifier: ~6.0.2
         version: 6.0.2
@@ -106,6 +112,54 @@ importers:
       '@floating-ui/react':
         specifier: ^0.27.16
         version: 0.27.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@leejaehyeok/use-browser-storage':
+        specifier: workspace:*
+        version: link:../../packages/use-browser-storage
+      '@leejaehyeok/use-compose-ref':
+        specifier: workspace:*
+        version: link:../../packages/use-compose-ref
+      '@leejaehyeok/use-compose-state':
+        specifier: workspace:*
+        version: link:../../packages/use-compose-state
+      '@leejaehyeok/use-controllable-state':
+        specifier: workspace:*
+        version: link:../../packages/use-controllable-state
+      '@leejaehyeok/use-custom-event-state':
+        specifier: workspace:*
+        version: link:../../packages/use-custom-event-state
+      '@leejaehyeok/use-debounce':
+        specifier: workspace:*
+        version: link:../../packages/use-debounce
+      '@leejaehyeok/use-deferred-loading':
+        specifier: workspace:*
+        version: link:../../packages/use-deferred-loading
+      '@leejaehyeok/use-focus-trap':
+        specifier: workspace:*
+        version: link:../../packages/use-focus-trap
+      '@leejaehyeok/use-intersection-observer':
+        specifier: workspace:*
+        version: link:../../packages/use-intersection-observer
+      '@leejaehyeok/use-latest-ref':
+        specifier: workspace:*
+        version: link:../../packages/use-latest-ref
+      '@leejaehyeok/use-overflow':
+        specifier: workspace:*
+        version: link:../../packages/use-overflow
+      '@leejaehyeok/use-pagination':
+        specifier: workspace:*
+        version: link:../../packages/use-pagination
+      '@leejaehyeok/use-prev-ref':
+        specifier: workspace:*
+        version: link:../../packages/use-prev-ref
+      '@leejaehyeok/use-roving-focus':
+        specifier: workspace:*
+        version: link:../../packages/use-roving-focus
+      '@leejaehyeok/use-snooze':
+        specifier: workspace:*
+        version: link:../../packages/use-snooze
+      '@leejaehyeok/use-throttle':
+        specifier: workspace:*
+        version: link:../../packages/use-throttle
       '@timeless-ui/react':
         specifier: ^1.0.4
         version: 1.0.4(react-dom@18.3.1(react@18.3.1))(react-router@7.14.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
@@ -115,9 +169,6 @@ importers:
       date-fns:
         specifier: ^4.4.0
         version: 4.4.0
-      embla-carousel-autoplay:
-        specifier: ^8.6.0
-        version: 8.6.0(embla-carousel@8.6.0)
       lodash-es:
         specifier: ^4.17.21
         version: 4.18.1

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
 import { Card } from "../ui/Card";
 import clsx from "clsx";
-import { CopyButton } from "./CopyButton";
+import { CopyButton } from "../ui/CopyButton";
 
 interface CodeBlockProps extends React.ComponentProps<"div"> {
   code: string;

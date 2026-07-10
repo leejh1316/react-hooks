@@ -2,32 +2,32 @@ import clsx from "clsx";
 import { forwardRef } from "react";
 import { InlineCode } from "../ui/InlineCode";
 import { Table } from "../ui/Table";
-import { DescriptionTooltip } from "./DescriptionTooltip";
+import { DescriptionTooltip } from "../ui/DescriptionTooltip";
 
-type PropsTableRow = {
+type ReturnTableRow = {
   name: string;
   type: string;
-  defaultValue?: string;
   description?: string;
 };
-interface PropsTableProps extends React.ComponentProps<"table"> {
-  rows: PropsTableRow[];
+
+interface ReturnTableProps extends React.ComponentProps<"table"> {
+  rows: ReturnTableRow[];
 }
-const PropsTable = forwardRef<React.ComponentRef<"table">, PropsTableProps>(({ rows, className, ...props }, forwardedRef) => {
+
+const ReturnTable = forwardRef<React.ComponentRef<"table">, ReturnTableProps>(({ rows, className, ...props }, forwardedRef) => {
   return (
     <Table.Root className={clsx(className)} ref={forwardedRef} {...props}>
       <Table.Header>
         <Table.Row>
-          <Table.Head>Prop</Table.Head>
+          <Table.Head>Name</Table.Head>
           <Table.Head>Type</Table.Head>
-          <Table.Head>Default</Table.Head>
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {rows.map(({ name, type, defaultValue, description }) => (
+        {rows.map(({ name, type, description }) => (
           <Table.Row key={name}>
             <Table.Cell>
-              <Table.CellLabel>Prop</Table.CellLabel>
+              <Table.CellLabel>Name</Table.CellLabel>
               <div className="flex items-center gap-1">
                 <InlineCode>{name}</InlineCode>
                 <DescriptionTooltip description={description} />
@@ -37,17 +37,13 @@ const PropsTable = forwardRef<React.ComponentRef<"table">, PropsTableProps>(({ r
               <Table.CellLabel>Type</Table.CellLabel>
               <div className="font-code">{type}</div>
             </Table.Cell>
-            <Table.Cell className="items-stretch">
-              <Table.CellLabel>Default</Table.CellLabel>
-              <div className="font-code">{defaultValue || "—"}</div>
-            </Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
     </Table.Root>
   );
 });
-PropsTable.displayName = "PropsTable";
+ReturnTable.displayName = "ReturnTable";
 
-export { PropsTable };
-export type { PropsTableRow, PropsTableProps };
+export { ReturnTable };
+export type { ReturnTableRow, ReturnTableProps };

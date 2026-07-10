@@ -1,5 +1,5 @@
 import { forwardRef, useCallback, useRef, useState } from "react";
-import IconButton, { IconButtonProps } from "../ui/IconButton";
+import IconButton, { IconButtonProps } from "./IconButton";
 import { Tooltip } from "@timeless-ui/react";
 import { IconName } from "lucide-react/dynamic";
 

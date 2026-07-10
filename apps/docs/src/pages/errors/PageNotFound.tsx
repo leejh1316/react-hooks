@@ -7,7 +7,7 @@ export default function PageNotFound() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <Card className="w-full max-w-2xl p-8 md:p-12">
         <Document.Root>
-          <p className="text-body-2 text-primary mb-2 font-semibold">Timeless-ui</p>
+          <p className="text-body-2 text-primary mb-2 font-semibold">@leejaehyeok/react-hooks</p>
           <Document.Title>페이지를 찾을 수 없습니다</Document.Title>
           <Document.Description>요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.</Document.Description>
 
@@ -18,7 +18,7 @@ export default function PageNotFound() {
             • 주소를 잘못 입력하셨을 수 있습니다.
             <br />
             • 페이지가 삭제되었거나 URL이 변경되었을 수 있습니다.
-            <br />• 링크가 만료되었을 수 있습니다.
+            <br />• 링크가 잘못되었거나 오래된 링크일 수 있습니다.
           </Document.Paragraph>
 
           <Document.Heading2>다음 단계</Document.Heading2>

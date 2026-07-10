@@ -10,11 +10,11 @@ const GettingStartedSection = () => {
           빠르게 시작하기
         </Document.Heading1>
         <Document.Paragraph mt={0} mb={12}>
-          단 하나의 명령어로 설치하고, 바로 사용할 수 있습니다.
+          아래 단계를 따라하면 바로 React Hooks를 사용하여 개발을 시작할 수 있습니다.
         </Document.Paragraph>
       </div>
 
-      <div className="mx-auto max-w-lg">
+      <div className="mx-auto max-w-xl">
         {GETTING_STARTED_STEPS.map((step, index) => (
           <Fragment key={step.title}>
             {index > 0 && <div className="ml-3.5 h-6 border-l border-neutral-200" />}

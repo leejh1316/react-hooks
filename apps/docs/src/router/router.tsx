@@ -24,7 +24,7 @@ type RouteCategory = {
 
 export const PAGE_ROUTES: RouteCategory = {
   components: {
-    title: "Components",
+    title: "Hooks",
     routes: [
       // { path: "/docs/accordion", element: <AccordionPage />, name: "Accordion" },
 

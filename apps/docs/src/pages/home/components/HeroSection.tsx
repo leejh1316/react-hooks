@@ -18,13 +18,13 @@ const HeroSection = ({ hookCount }: HeroSectionProps) => {
       <h1 className="text-display-4 text-ink-primary md:text-display-2 font-bold">React Hooks</h1>
 
       {/* Subtitle */}
-      <p className="text-title-5 text-ink-secondary md:text-title-2 mt-5 max-w-2xl font-normal">
+      <p className="text-title-4 text-ink-secondary md:text-title-3 mt-5 max-w-2xl font-normal">
         실무에서 자주 마주치는 로직을 훅 단위로 제공하는 React 커스텀 훅 라이브러리로 빠르고 견고한 애플리케이션을 구축하세요.
       </p>
 
       {/* Description */}
       <p className="text-body-2 text-ink-tertiary mt-4 max-w-xl font-normal">
-        각 훅은 @leejaehyeok 스코프의 독립 패키지로 배포되어 필요한 것만 설치할 수 있습니다.
+        각 훅은 독립 패키지로 배포되어 필요한 것만 설치할 수 있습니다.
       </p>
 
       {/* CTA Buttons */}

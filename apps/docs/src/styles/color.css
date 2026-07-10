@@ -1,0 +1,33 @@
+@theme {
+  /* Semantic Colors */
+  --color-primary: var(--color-blue-600);
+  --color-primary-50: var(--color-blue-50);
+  --color-primary-100: var(--color-blue-100);
+  --color-primary-200: var(--color-blue-200);
+  --color-primary-300: var(--color-blue-300);
+  --color-primary-400: var(--color-blue-400);
+  --color-primary-500: var(--color-blue-500);
+  --color-primary-600: var(--color-blue-600);
+  --color-primary-700: var(--color-blue-700);
+  --color-primary-800: var(--color-blue-800);
+  --color-primary-900: var(--color-blue-900);
+
+  /* Text Colors */
+  --color-ink-white: oklch(100% 0.00011 271.152);
+  --color-ink-primary: oklch(17.764% 0.00002 271.152);
+  --color-ink-secondary: oklch(43.128% 0.00005 271.152);
+  --color-ink-tertiary: oklch(56.584% 0.00006 271.152);
+  --color-ink-disabled: oklch(68.295% 0.00008 271.152);
+
+  /* Line Colors */
+  --color-line-light: oklch(95.928% 0.00543 286.004);
+  --color-line-regular: oklch(92.393% 0.00951 286.055);
+  --color-line-black: oklch(17.764% 0.00002 271.152);
+
+  /* Icon Colors */
+  --color-icon-white: oklch(100% 0.00011 271.152);
+  --color-icon-primary: oklch(28.501% 0.0255 265.465);
+  --color-icon-secondary: oklch(40.791% 0.02667 285.142);
+  --color-icon-tertiary: oklch(60.723% 0.01806 285.802);
+  --color-icon-disabled: oklch(64.365% 0.00926 271.278);
+}

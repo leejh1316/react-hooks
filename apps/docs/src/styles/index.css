@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "../assets/fonts/JetBrainsMono/font.css";
+
+@import "./typography.css";
+@import "./color.css";
+@import "./spacing.css";
+@import "./scrollbar.css";
+@import "./anime.css";
+@custom-variant dark (&: is(.dark *));
+
+@theme {
+  /* Layout */
+  --max-w-page: 1440px;
+  --h-header: 64px;
+}
+
+@utility max-w-page {
+  max-width: var(--max-w-page);
+}
+@utility h-header {
+  height: var(--h-header);
+}

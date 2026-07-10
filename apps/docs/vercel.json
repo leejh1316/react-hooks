@@ -1,0 +1,12 @@
+{
+  "buildCommand": "cd ../.. && pnpm run build && cd apps/docs && pnpm run build",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

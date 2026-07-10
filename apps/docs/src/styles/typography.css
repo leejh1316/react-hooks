@@ -1,0 +1,249 @@
+/* Font 굵기는 semibold medium normal만 사용 */
+
+@theme {
+  --font-pretendard:
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-code: "JetBrains Mono", "Pretendard Variable", Consolas, "Courier New", monospace;
+
+  --tracking-ko: -0.025em;
+}
+
+/* 라이브러리 폰트 설정 */
+.shiki {
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-code) !important;
+  }
+}
+
+/* Mobile */
+:root {
+  /* Display */
+  --size-text-display-1: 3.5rem;
+  --size-text-display-2: 3rem;
+  --size-text-display-3: 2.5rem;
+  --size-text-display-4: 2.25rem;
+  --size-text-display-5: 2rem;
+  --size-text-display-6: 1.75rem;
+
+  /* Headline */
+  --size-text-headline-1: 2rem;
+  --size-text-headline-2: 1.75rem;
+  --size-text-headline-3: 1.5rem;
+  --size-text-headline-4: 1.25rem;
+  --size-text-headline-5: 1.125rem;
+  --size-text-headline-6: 1rem;
+
+  /* Title */
+  --size-text-title-1: 1.5rem;
+  --size-text-title-2: 1.25rem;
+  --size-text-title-3: 1.125rem;
+  --size-text-title-4: 1rem;
+  --size-text-title-5: 0.9375rem;
+
+  /* Body */
+  --size-text-body-1: 0.9375rem;
+  --size-text-body-2: 0.875rem;
+  --size-text-body-3: 0.8125rem;
+  --size-text-body-4: 0.75rem;
+
+  /* Caption */
+  --size-text-caption-1: 0.8125rem;
+  --size-text-caption-2: 0.75rem;
+  --size-text-caption-3: 0.6875rem;
+}
+
+/* PC */
+@media (min-width: 768px) {
+  :root {
+    /* Display */
+    --size-text-display-1: 6rem;
+    --size-text-display-2: 5.5rem;
+    --size-text-display-3: 5rem;
+    --size-text-display-4: 4.5rem;
+    --size-text-display-5: 4rem;
+    --size-text-display-6: 3.5rem;
+
+    /* Headline */
+    --size-text-headline-1: 3rem;
+    --size-text-headline-2: 2.5rem;
+    --size-text-headline-3: 2rem;
+    --size-text-headline-4: 1.75rem;
+    --size-text-headline-5: 1.5rem;
+    --size-text-headline-6: 1.25rem;
+
+    /* Title */
+    --size-text-title-1: 2rem;
+    --size-text-title-2: 1.75rem;
+    --size-text-title-3: 1.5rem;
+    --size-text-title-4: 1.25rem;
+    --size-text-title-5: 1.125rem;
+
+    /* Body */
+    --size-text-body-1: 1rem;
+    --size-text-body-2: 0.9375rem;
+    --size-text-body-3: 0.875rem;
+    --size-text-body-4: 0.8125rem;
+
+    /* Caption */
+    --size-text-caption-1: 0.8125rem;
+    --size-text-caption-2: 0.75rem;
+    --size-text-caption-3: 0.6875rem;
+  }
+}
+
+@utility font-code {
+  font-family: var(--font-code);
+  letter-spacing: 0em !important;
+}
+
+/* Display */
+@utility text-display-1 {
+  font-size: var(--size-text-display-1);
+  line-height: 1.3;
+  letter-spacing: var(--tracking-ko);
+}
+@utility text-display-2 {
+  font-size: var(--size-text-display-2);
+  line-height: 1.3;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-display-3 {
+  font-size: var(--size-text-display-3);
+  line-height: 1.3;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-display-4 {
+  font-size: var(--size-text-display-4);
+  line-height: 1.3;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-display-5 {
+  font-size: var(--size-text-display-5);
+  line-height: 1.3;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-display-6 {
+  font-size: var(--size-text-display-6);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+/* Headline */
+@utility text-headline-1 {
+  font-size: var(--size-text-headline-1);
+  line-height: 1.3;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-headline-2 {
+  font-size: var(--size-text-headline-2);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-headline-3 {
+  font-size: var(--size-text-headline-3);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-headline-4 {
+  font-size: var(--size-text-headline-4);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-headline-5 {
+  font-size: var(--size-text-headline-5);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-headline-6 {
+  font-size: var(--size-text-headline-6);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+/* Title */
+@utility text-title-1 {
+  font-size: var(--size-text-title-1);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-title-2 {
+  font-size: var(--size-text-title-2);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-title-3 {
+  font-size: var(--size-text-title-3);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-title-4 {
+  font-size: var(--size-text-title-4);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-title-5 {
+  font-size: var(--size-text-title-5);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-ko);
+}
+
+/* Body */
+@utility text-body-1 {
+  font-size: var(--size-text-body-1);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-body-2 {
+  font-size: var(--size-text-body-2);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-body-3 {
+  font-size: var(--size-text-body-3);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-body-4 {
+  font-size: var(--size-text-body-4);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-ko);
+}
+
+/* Caption */
+@utility text-caption-1 {
+  font-size: var(--size-text-caption-1);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-caption-2 {
+  font-size: var(--size-text-caption-2);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-ko);
+}
+
+@utility text-caption-3 {
+  font-size: var(--size-text-caption-3);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-ko);
+}

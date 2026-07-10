@@ -1,0 +1,23 @@
+@keyframes animate-accordion-up {
+  from {
+    height: var(--accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes animate-accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--accordion-content-height);
+  }
+}
+@utility animate-accordion-up {
+  animation: animate-accordion-up 0.3s ease-out;
+}
+@utility animate-accordion-down {
+  animation: animate-accordion-down 0.3s ease-out;
+}

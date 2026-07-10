@@ -1,5 +1,6 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
+import { useFocusTrap } from "@leejaehyeok/use-focus-trap";
 import { PAGE_ROUTES } from "@src/router/router";
 import clsx from "clsx";
 import IconButton from "@src/components/ui/IconButton";
@@ -7,6 +8,7 @@ import IconButton from "@src/components/ui/IconButton";
 const githubUrl = "https://github.com/leejh1316/react-hooks";
 const Header = memo(() => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const focusTrapRef = useFocusTrap();
   const location = useLocation();
 
   // 페이지 이동 시 메뉴 닫기
@@ -25,7 +27,7 @@ const Header = memo(() => {
   const toggleMenu = useCallback(() => setMobileOpen((prev) => !prev), []);
 
   return (
-    <>
+    <div ref={mobileOpen ? focusTrapRef : undefined}>
       <header className="border-line-light sticky top-0 z-40 flex items-center justify-center border-b bg-white/70 backdrop-blur-md">
         <div className="max-w-page h-header flex w-full items-center justify-between px-5">
           {/* Logo */}
@@ -87,9 +89,10 @@ const Header = memo(() => {
               <div key={key} className="mb-6">
                 <h4 className="text-caption-2 text-ink-tertiary mb-2 font-semibold uppercase tracking-wider">{category.title}</h4>
                 <ul className="space-y-0.5">
-                  {category.routes.map((route) => (
+                  {category.routes.map((route, index) => (
                     <li key={route.path}>
                       <NavLink
+                        data-initial-focus={index === 0 ? true : undefined}
                         to={route.path}
                         className={({ isActive }) =>
                           clsx(
@@ -108,7 +111,7 @@ const Header = memo(() => {
           </nav>
         </div>
       )}
-    </>
+    </div>
   );
 });
 

@@ -5,6 +5,7 @@ import Home from "@src/pages/home/Home";
 import PageNotFound from "@src/pages/errors/PageNotFound";
 import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
+import UseThrottlePage from "@src/pages/docs/hooks/use-throttle/UseThrottlePage";
 import { createBrowserRouter, RouteObject } from "react-router";
 
 export const PATH = {
@@ -35,6 +36,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseFocusTrapPage />,
         name: "useFocusTrap",
         description: "모달, 다이얼로그처럼 특정 컨테이너 안에 키보드 포커스를 가두는 훅",
+      },
+      {
+        path: "/docs/use-throttle",
+        element: <UseThrottlePage />,
+        name: "useThrottle",
+        description: "함수 호출을 스로틀링하여 지정된 시간당 최대 한 번만 실행되도록 하는 훅",
       },
     ],
   },

@@ -4,6 +4,7 @@ import Home from "@src/pages/home/Home";
 
 import PageNotFound from "@src/pages/errors/PageNotFound";
 import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
+import UseBrowserStoragePage from "@src/pages/docs/hooks/use-browser-storage/UseBrowserStoragePage";
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
 import UseThrottlePage from "@src/pages/docs/hooks/use-throttle/UseThrottlePage";
@@ -32,6 +33,12 @@ export const PAGE_ROUTES: RouteCategory = {
     title: "Hooks",
     routes: [
       // 훅 라우트는 이름 기준 ABC 순으로 정렬합니다.
+      {
+        path: "/docs/use-browser-storage",
+        element: <UseBrowserStoragePage />,
+        name: "useBrowserStorage",
+        description: "localStorage / sessionStorage를 React 상태처럼 사용하는 훅. TTL 만료, 커스텀 직렬화, 크로스탭 동기화 지원",
+      },
       {
         path: "/docs/use-debounce",
         element: <UseDebouncePage />,

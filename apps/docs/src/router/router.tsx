@@ -4,6 +4,7 @@ import Home from "@src/pages/home/Home";
 
 import PageNotFound from "@src/pages/errors/PageNotFound";
 import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
+import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
 import UseThrottlePage from "@src/pages/docs/hooks/use-throttle/UseThrottlePage";
 import { createBrowserRouter, RouteObject } from "react-router";
@@ -31,6 +32,12 @@ export const PAGE_ROUTES: RouteCategory = {
     title: "Hooks",
     routes: [
       // 훅 라우트는 이름 기준 ABC 순으로 정렬합니다.
+      {
+        path: "/docs/use-debounce",
+        element: <UseDebouncePage />,
+        name: "useDebounce",
+        description: "함수 호출을 디바운싱하여 마지막 호출 이후 지정된 시간 동안 추가 호출이 없을 때만 실행되도록 하는 훅",
+      },
       {
         path: "/docs/use-focus-trap",
         element: <UseFocusTrapPage />,

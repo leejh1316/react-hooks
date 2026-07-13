@@ -7,6 +7,7 @@ import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
 import UseBrowserStoragePage from "@src/pages/docs/hooks/use-browser-storage/UseBrowserStoragePage";
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
+import UsePaginationPage from "@src/pages/docs/hooks/use-pagination/UsePaginationPage";
 import UseThrottlePage from "@src/pages/docs/hooks/use-throttle/UseThrottlePage";
 import { createBrowserRouter, RouteObject } from "react-router";
 
@@ -50,6 +51,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseFocusTrapPage />,
         name: "useFocusTrap",
         description: "모달, 다이얼로그처럼 특정 컨테이너 안에 키보드 포커스를 가두는 훅",
+      },
+      {
+        path: "/docs/use-pagination",
+        element: <UsePaginationPage />,
+        name: "usePagination",
+        description: "siblings/boundaries 기반 페이지 범위 계산과 생략 기호, 내비게이션 로직을 제공하는 headless 페이지네이션 훅",
       },
       {
         path: "/docs/use-throttle",

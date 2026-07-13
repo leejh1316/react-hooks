@@ -1,10 +1,6 @@
 import { DocsPagination } from "@src/components/docs";
 import { Document } from "@src/components/ui/Document";
-import ApiSection from "./components/sections/ApiSection";
-import InstallSection from "./components/sections/InstallSection";
-import OverviewSection from "./components/sections/OverviewSection";
-import SkillSection from "./components/sections/SkillSection";
-import UsageSection from "./components/sections/UsageSection";
+import { FocusTrapSections } from "./components/sections";
 
 /* ──────────────────────────────────────────────
    useFocusTrap Documentation Page
@@ -27,11 +23,11 @@ const UseFocusTrapPage = () => (
     <Document.Divider />
 
     {/* ─── Sections ─── */}
-    <OverviewSection />
-    <InstallSection />
-    <UsageSection />
-    <ApiSection />
-    <SkillSection />
+    <FocusTrapSections.OverviewSection />
+    <FocusTrapSections.InstallSection />
+    <FocusTrapSections.UsageSection />
+    <FocusTrapSections.ApiSection />
+    <FocusTrapSections.SkillSection />
     <DocsPagination />
   </Document.Root>
 );

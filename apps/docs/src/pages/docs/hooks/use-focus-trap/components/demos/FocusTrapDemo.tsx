@@ -1,4 +1,5 @@
 import { useFocusTrap } from "@leejaehyeok/use-focus-trap";
+import { Button } from "@src/components/ui";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -13,13 +14,9 @@ const FocusTrapDemo = () => {
 
   return (
     <div className="flex w-full justify-center">
-      <button
-        type="button"
-        onClick={() => setIsOpen(true)}
-        className="bg-ink-primary text-ink-white text-body-3 rounded-lg px-5 py-2.5 font-semibold transition-opacity hover:opacity-85"
-      >
+      <Button size="lg" onClick={() => setIsOpen(true)}>
         다이얼로그 열기
-      </button>
+      </Button>
 
       {isOpen &&
         createPortal(
@@ -57,20 +54,10 @@ const FocusTrapDemo = () => {
                 />
               </div>
               <div className="mt-5 flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  className="border-line-regular text-ink-secondary text-body-3 rounded-lg border px-4 py-2 font-medium transition-colors hover:bg-neutral-50"
-                >
+                <Button variant="secondary" onClick={() => setIsOpen(false)}>
                   취소
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  className="bg-ink-primary text-ink-white text-body-3 rounded-lg px-4 py-2 font-semibold transition-opacity hover:opacity-85"
-                >
-                  저장
-                </button>
+                </Button>
+                <Button onClick={() => setIsOpen(false)}>저장</Button>
               </div>
             </div>
           </div>,

@@ -13,7 +13,7 @@ import { FocusTrapSections } from "./components/sections";
    ────────────────────────────────────────────── */
 
 const UseFocusTrapPage = () => (
-  <Document.Root className="pb-20">
+  <Document.Root>
     {/* ─── Page Header ─── */}
     <Document.Title mb={3}>useFocusTrap</Document.Title>
     <Document.Description mb={10}>
@@ -28,7 +28,6 @@ const UseFocusTrapPage = () => (
     <FocusTrapSections.UsageSection />
     <FocusTrapSections.ApiSection />
     <FocusTrapSections.SkillSection />
-    <DocsPagination />
   </Document.Root>
 );
 

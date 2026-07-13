@@ -11,7 +11,7 @@ import { PAGE_ROUTES } from "@src/router/router";
 
 const DocsIndexPage = () => {
   return (
-    <Document.Root className="pb-20">
+    <Document.Root>
       {/* ─── Page Header ─── */}
       <Document.Title mb={3}>React Hooks</Document.Title>
       <Document.Description mb={10}>

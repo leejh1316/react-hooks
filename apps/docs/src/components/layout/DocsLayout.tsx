@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Outlet } from "react-router";
 import OnThisPage from "./OnThisPage";
 import Sidebar from "./Sidebar";
+import { DocsPagination } from "../docs";
 
 const TOC_SEARCH_TAGS = ['[data-document-element="heading1"]', '[data-document-element="heading2"]', '[data-document-element="heading3"]'];
 
@@ -11,8 +12,9 @@ const DocsLayout = () => {
   return (
     <div className="grid grid-cols-12 gap-x-4">
       <Sidebar className="sticky top-[calc(var(--h-header)+1px)] hidden h-[calc(100dvh-var(--h-header)-1px)] overflow-auto pt-5 md:col-span-3 md:block xl:col-span-2" />
-      <main className="col-span-12 pt-5 md:col-span-9 xl:col-span-8 xl:px-10" ref={setContentRef}>
+      <main className="col-span-12 pb-20 pt-5 md:col-span-9 xl:col-span-8 xl:px-10" ref={setContentRef}>
         <Outlet />
+        <DocsPagination />
       </main>
       <TOC.Root targetElement={contentRef} searchTags={TOC_SEARCH_TAGS}>
         <TOC.Observer rootMargin="-64px 0px -15% 0px" />

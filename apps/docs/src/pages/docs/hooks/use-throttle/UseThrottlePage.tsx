@@ -13,7 +13,7 @@ import { ThrottlePageSections } from "./components/sections";
    ────────────────────────────────────────────── */
 
 const UseThrottlePage = () => (
-  <Document.Root className="pb-20">
+  <Document.Root>
     {/* ─── Page Header ─── */}
     <Document.Title mb={3}>useThrottle</Document.Title>
     <Document.Description mb={10}>
@@ -28,7 +28,6 @@ const UseThrottlePage = () => (
     <ThrottlePageSections.UsageSection />
     <ThrottlePageSections.ApiSection />
     <ThrottlePageSections.SkillSection />
-    <DocsPagination />
   </Document.Root>
 );
 

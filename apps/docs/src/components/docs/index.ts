@@ -1,4 +1,5 @@
 export * from "./AttributeTable";
+export * from "./BehaviorTable";
 export * from "./CodeBlock";
 export * from "./CssPropertyTable";
 export * from "./DocsPagination";

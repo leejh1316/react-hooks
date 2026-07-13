@@ -1,6 +1,6 @@
+import { BehaviorTable, type BehaviorTableRow } from "@src/components/docs";
 import { Document } from "@src/components/ui/Document";
 import { InlineCode } from "@src/components/ui/InlineCode";
-import { Table } from "@src/components/ui/Table";
 
 /* ──────────────────────────────────────────────
    Section Component
@@ -19,28 +19,7 @@ const OverviewSection = () => {
       </Document.Paragraph>
 
       <Document.Heading2>주요 동작</Document.Heading2>
-      <Table.Root>
-        <Table.Header>
-          <Table.Row>
-            <Table.Head className="w-44">동작</Table.Head>
-            <Table.Head>설명</Table.Head>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {BEHAVIOR_ROWS.map(({ name, description }) => (
-            <Table.Row key={name}>
-              <Table.Cell>
-                <Table.CellLabel>동작</Table.CellLabel>
-                <span className="text-ink-primary font-medium">{name}</span>
-              </Table.Cell>
-              <Table.Cell className="items-stretch">
-                <Table.CellLabel>설명</Table.CellLabel>
-                <div>{description}</div>
-              </Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table.Root>
+      <BehaviorTable rows={BEHAVIOR_ROWS} />
     </section>
   );
 };
@@ -49,13 +28,8 @@ const OverviewSection = () => {
    Behavior Data
    ────────────────────────────────────────────── */
 
-type BehaviorRow = {
-  name: string;
-  description: string;
-};
-
 /** 훅의 주요 동작 요약 */
-const BEHAVIOR_ROWS: BehaviorRow[] = [
+const BEHAVIOR_ROWS: BehaviorTableRow[] = [
   {
     name: "스로틀링",
     description: "throttle을 아무리 빈번하게 호출해도 원본 함수는 wait 시간당 최대 한 번만 실행됩니다.",

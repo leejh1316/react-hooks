@@ -2,6 +2,7 @@ import { CodeBlock, PreviewContainer } from "@src/components/docs";
 import { Document } from "@src/components/ui/Document";
 import { InlineCode } from "@src/components/ui/InlineCode";
 import LocalStorageDemo, { LOCAL_STORAGE_DEMO_CODE } from "../demos/LocalStorageDemo";
+import NoSerializerDemo, { NO_SERIALIZER_DEMO_CODE } from "../demos/NoSerializerDemo";
 import SerializerDemo, { SERIALIZER_DEMO_CODE } from "../demos/SerializerDemo";
 import SessionStorageDemo, { SESSION_STORAGE_DEMO_CODE } from "../demos/SessionStorageDemo";
 import TTLDemo, { TTL_DEMO_CODE } from "../demos/TTLDemo";
@@ -25,8 +26,7 @@ const UsageSection = () => {
       <Document.Paragraph mb={6}>
         입력한 값이 localStorage에 저장되어 새로고침해도 유지됩니다. 같은 <InlineCode>key</InlineCode>를 사용하는 두 컴포넌트는 별도 설정
         없이 자동으로 동기화되며, <InlineCode>subscribe: true</InlineCode>를 지정했으므로 이 페이지를 새 탭에서 하나 더 열어 값을 바꿔도
-        서로 반영됩니다. <InlineCode>removeValue</InlineCode>를 호출하면 키가 삭제되고 <InlineCode>defaultValue</InlineCode>로
-        되돌아갑니다.
+        서로 반영됩니다. <InlineCode>removeValue</InlineCode>를 호출하면 키가 삭제되고 <InlineCode>defaultValue</InlineCode>로 되돌아갑니다.
       </Document.Paragraph>
       <PreviewContainer className="mb-4">
         <LocalStorageDemo />
@@ -69,9 +69,9 @@ const UsageSection = () => {
         크로스탭 동기화 (<InlineCode>subscribe</InlineCode>)
       </Document.Heading2>
       <Document.Paragraph mb={6}>
-        <InlineCode>subscribe: true</InlineCode>를 지정하면 다른 탭에서 같은 키의 값이 변경될 때 현재 탭의 상태도 자동으로 갱신됩니다.
-        테마, 로그인 상태처럼 모든 탭이 같은 값을 봐야 하는 상태에 유용합니다. 위의 localStorage 데모가 이 옵션을 사용하고 있으니, 이
-        페이지를 두 탭에서 열어 직접 확인해 보세요.
+        <InlineCode>subscribe: true</InlineCode>를 지정하면 다른 탭에서 같은 키의 값이 변경될 때 현재 탭의 상태도 자동으로 갱신됩니다. 테마,
+        로그인 상태처럼 모든 탭이 같은 값을 봐야 하는 상태에 유용합니다. 위의 localStorage 데모가 이 옵션을 사용하고 있으니, 이 페이지를 두
+        탭에서 열어 직접 확인해 보세요.
       </Document.Paragraph>
       <CodeBlock code={SUBSCRIBE_USAGE_CODE} className="mb-8" />
 
@@ -79,10 +79,31 @@ const UsageSection = () => {
       <Document.Heading2>
         커스텀 직렬화 (<InlineCode>serializer</InlineCode>)
       </Document.Heading2>
+      <Document.Paragraph>
+        기본 직렬화는 <InlineCode>JSON.stringify</InlineCode> / <InlineCode>JSON.parse</InlineCode>입니다. Map, Set, Date처럼 JSON으로
+        표현할 수 없는 타입을 그대로 저장하면 데이터가 유실되므로, <InlineCode>serializer</InlineCode> 헬퍼를 옵션에 스프레드해 사용하세요.
+      </Document.Paragraph>
+
+      <Document.Heading3>
+        <InlineCode>serializer</InlineCode> 미적용 — 데이터 유실 (Set)
+      </Document.Heading3>
       <Document.Paragraph mb={6}>
-        Map, Set, Date처럼 <InlineCode>JSON.stringify</InlineCode>로 직렬화할 수 없는 타입은 <InlineCode>serializer</InlineCode> 헬퍼를
-        옵션에 스프레드해 사용하세요. 아래 데모는 선택한 태그를 <InlineCode>Set&lt;string&gt;</InlineCode> 그대로 저장합니다.{" "}
-        <InlineCode>serialize</InlineCode> / <InlineCode>deserialize</InlineCode> 옵션에 직접 만든 함수를 전달할 수도 있습니다.
+        <InlineCode>JSON.stringify</InlineCode>는 Set을 빈 객체 문자열로 직렬화하므로, 어떤 도시를 즐겨찾기해도 스토리지에는 항상 빈 객체만
+        저장됩니다. 화면은 메모리의 Set으로 동작하는 것처럼 보이지만, 도시를 즐겨찾기하고 새로고침하면 즐겨찾기가 사라지고{" "}
+        <InlineCode>value</InlineCode>는 Set이 아닌 일반 객체가 됩니다.
+      </Document.Paragraph>
+      <PreviewContainer className="mb-4">
+        <NoSerializerDemo />
+      </PreviewContainer>
+      <CodeBlock code={NO_SERIALIZER_DEMO_CODE} className="mb-8" />
+
+      <Document.Heading3>
+        <InlineCode>serializer</InlineCode> 적용 (Set)
+      </Document.Heading3>
+      <Document.Paragraph mb={6}>
+        같은 동작이지만 <InlineCode>serializer.set&lt;string&gt;()</InlineCode>을 스프레드했습니다. Set이 배열 형태의 JSON 문자열로 저장되고
+        읽을 때 다시 Set으로 복원되므로, 새로고침해도 즐겨찾기 상태가 유지됩니다. <InlineCode>serialize</InlineCode> /{" "}
+        <InlineCode>deserialize</InlineCode> 옵션에 직접 만든 함수를 전달할 수도 있습니다.
       </Document.Paragraph>
       <PreviewContainer className="mb-4">
         <SerializerDemo />

@@ -6,7 +6,7 @@ import { BrowserStoragePageSections } from "./components/sections";
    ──────────────────────────────────────────────
    1. 훅의 설명        → OverviewSection
    2. 설치 방법 (npm)  → InstallSection
-   3. 데모 & 사용 방법 → UsageSection (localStorage / TTL / sessionStorage / serializer 데모 + 코드 스니펫)
+   3. 데모 & 사용 방법 → UsageSection (localStorage / TTL / sessionStorage / serializer 미적용·적용 데모 + 코드 스니펫)
    4. API — 훅         → HooksApiSection (훅 4종 시그니처 + Options / Returns)
    5. API — 유틸리티   → UtilsApiSection (browserStorage / ttl / serializer)
    6. API — 타입       → TypesSection (StorageResult, StorageError 등)

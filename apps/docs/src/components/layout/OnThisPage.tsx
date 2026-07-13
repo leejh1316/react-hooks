@@ -63,7 +63,6 @@ const Item = memo(({ onActive, isActive, ...item }: ItemProps) => {
   const itemRef = useRef<HTMLAnchorElement | null>(null);
   useEffect(() => {
     if (isActive) {
-      console.log(item);
       onActive(itemRef.current!);
     }
   }, [isActive]);

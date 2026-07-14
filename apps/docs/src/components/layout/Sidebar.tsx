@@ -1,15 +1,20 @@
 import { NavLink } from "react-router";
 import { PAGE_ROUTES } from "@src/router/router";
 import clsx from "clsx";
+import { useRovingFocus } from "@leejaehyeok/use-roving-focus";
 const Sidebar = ({ className, ...props }: React.ComponentPropsWithoutRef<"aside">) => {
+  const { containerRef, handleKeyDown } = useRovingFocus({
+    loop: true,
+  });
   return (
-    <aside {...props} className={clsx(className)}>
+    <aside {...props} className={clsx(className)} ref={containerRef} onKeyDown={handleKeyDown}>
       <nav className="space-y-8 pb-20">
         <div>
           <h4 className="text-caption-2 text-ink-tertiary mb-1 font-semibold uppercase tracking-wider">Getting Started</h4>
           <ul>
             <li>
               <NavLink
+                data-roving-item
                 to="/docs"
                 end
                 className={({ isActive }) =>
@@ -31,6 +36,7 @@ const Sidebar = ({ className, ...props }: React.ComponentPropsWithoutRef<"aside"
               {category.routes.map((route) => (
                 <li key={route.path}>
                   <NavLink
+                    data-roving-item
                     to={route.path}
                     className={({ isActive }) =>
                       clsx(

@@ -1,3 +1,4 @@
+import { useRovingFocus } from "@leejaehyeok/use-roving-focus";
 import { TOC, TOCItem, useComposedRefs } from "@timeless-ui/react";
 import clsx from "clsx";
 import { forwardRef, memo, useCallback, useEffect, useRef } from "react";
@@ -5,9 +6,10 @@ import { Link, useLocation } from "react-router";
 
 // TOC.Root컴포넌트 내부에 배치해야 함.
 const OnThisPage = forwardRef<React.ComponentRef<"aside">, React.ComponentProps<"aside">>(({ className, ...props }, forwardedRef) => {
+  const { containerRef, handleKeyDown } = useRovingFocus({ loop: true });
   const { hash, pathname } = useLocation();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const composedRef = useComposedRefs(forwardedRef, scrollContainerRef);
+  const composedRef = useComposedRefs(forwardedRef, scrollContainerRef, containerRef);
 
   // 내부 스크롤 위치 재조정
   const repositionScroll = useCallback((triggeredElement: HTMLAnchorElement) => {
@@ -42,7 +44,7 @@ const OnThisPage = forwardRef<React.ComponentRef<"aside">, React.ComponentProps<
   }, [pathname]);
 
   return (
-    <aside ref={composedRef} className={clsx(className, "")} {...props}>
+    <aside ref={composedRef} className={clsx(className, "")} {...props} onKeyDown={handleKeyDown}>
       <div className="space-y-4 pb-20">
         <h4 className="text-body-3 text-ink-primary font-semibold">목차</h4>
         <nav className="flex flex-col">
@@ -68,6 +70,7 @@ const Item = memo(({ onActive, isActive, ...item }: ItemProps) => {
   }, [isActive]);
   return (
     <Link
+      data-roving-item
       ref={itemRef}
       to={`#${item.id}`}
       data-level={item.level}

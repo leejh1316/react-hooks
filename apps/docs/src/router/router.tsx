@@ -6,6 +6,7 @@ import PageNotFound from "@src/pages/errors/PageNotFound";
 import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
 import UseBrowserStoragePage from "@src/pages/docs/hooks/use-browser-storage/UseBrowserStoragePage";
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
+import UseDeferredLoadingPage from "@src/pages/docs/hooks/use-deferred-loading/UseDeferredLoadingPage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
 import UseLatestRefPage from "@src/pages/docs/hooks/use-latest-ref/UseLatestRefPage";
 import UsePaginationPage from "@src/pages/docs/hooks/use-pagination/UsePaginationPage";
@@ -46,6 +47,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseDebouncePage />,
         name: "useDebounce",
         description: "함수 호출을 디바운싱하여 마지막 호출 이후 지정된 시간 동안 추가 호출이 없을 때만 실행되도록 하는 훅",
+      },
+      {
+        path: "/docs/use-deferred-loading",
+        element: <UseDeferredLoadingPage />,
+        name: "useDeferredLoading",
+        description: "로딩이 지정 시간 이상 지속될 때만 로딩 상태를 표시하고 최소 표시 시간을 보장해 스피너 깜빡임을 방지하는 훅",
       },
       {
         path: "/docs/use-focus-trap",

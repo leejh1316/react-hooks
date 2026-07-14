@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import { useLatestRef } from "@leejaehyeok/use-latest-ref";
 import { getDelta, getDirection, isDisabledElement } from "./utils";
 import { Direction } from "./types";
@@ -53,7 +53,7 @@ const SKIP_TAG = ["INPUT", "TEXTAREA"];
 const HOME_KEY = "Home";
 const END_KEY = "End";
 
-export function useRovingFocus(options: RovingFocusOptions) {
+export function useRovingFocus(options?: RovingFocusOptions) {
   const {
     itemSelector,
     orientation,
@@ -71,8 +71,8 @@ export function useRovingFocus(options: RovingFocusOptions) {
 
   // 비제어 패턴 — prop 변경 이후에도 갱신하지 않음 (의도적)
   const activeIndexRef = useRef(initialIndex);
-  const containerRef = useRef<HTMLElement>(null);
   const itemRefs = useRef<Array<HTMLElement | null>>([]);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   // 콜백 최신 참조 유지 (stale closure 방지)
   const onNavigateRef = useLatestRef(onNavigate);
@@ -93,40 +93,46 @@ export function useRovingFocus(options: RovingFocusOptions) {
     });
   }, []);
 
-  // MutationObserver로 itemRefs 동기화
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const syncItems = () => {
-      itemRefs.current = Array.from(container.querySelectorAll<HTMLElement>(itemSelector));
-      updateTabIndices(activeIndexRef.current);
-    };
-
-    const observer = new MutationObserver(syncItems);
-    observer.observe(container, { childList: true, subtree: true });
-    syncItems();
-
-    return () => observer.disconnect();
-  }, [itemSelector, updateTabIndices]);
-
-  // focusin으로 activeIndexRef 동기화 (마우스 클릭 등 외부 포커스 반영)
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleFocusIn = (event: FocusEvent) => {
-      const target = event.target as HTMLElement;
-      const index = itemRefs.current.findIndex((el) => el?.contains(target));
-      if (index !== -1) {
-        activeIndexRef.current = index;
-        updateTabIndices(index);
+  const containerRef = useCallback(
+    (node: HTMLElement | null) => {
+      if (node === null) {
+        cleanupRef.current?.();
+        return;
       }
-    };
 
-    container.addEventListener("focusin", handleFocusIn);
-    return () => container.removeEventListener("focusin", handleFocusIn);
-  }, [updateTabIndices]);
+      // MutationObserver로 itemRefs 동기화
+      const syncItems = () => {
+        itemRefs.current = Array.from(node.querySelectorAll<HTMLElement>(itemSelector));
+        updateTabIndices(activeIndexRef.current);
+      };
+
+      const observer = new MutationObserver(syncItems);
+      observer.observe(node, { childList: true, subtree: true });
+      syncItems();
+
+      // focusin으로 activeIndexRef 동기화 (마우스 클릭 등 외부 포커스 반영)
+      const handleFocusIn = (event: FocusEvent) => {
+        const target = event.target as HTMLElement;
+        const index = itemRefs.current.findIndex((el) => el?.contains(target));
+        if (index !== -1) {
+          activeIndexRef.current = index;
+          updateTabIndices(index);
+        }
+      };
+
+      node.addEventListener("focusin", handleFocusIn);
+
+      const cleanup = () => {
+        cleanupRef.current = null;
+        observer.disconnect();
+        node.removeEventListener("focusin", handleFocusIn);
+        itemRefs.current = [];
+      };
+
+      cleanupRef.current = cleanup;
+    },
+    [itemSelector, updateTabIndices],
+  );
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {

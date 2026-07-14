@@ -28,7 +28,7 @@ export function ListDemo() {
       }
     >
       <ul
-        ref={containerRef as React.RefObject<HTMLUListElement>}
+        ref={containerRef}
         role="listbox"
         aria-label="Mailbox folders"
         onKeyDown={handleKeyDown}

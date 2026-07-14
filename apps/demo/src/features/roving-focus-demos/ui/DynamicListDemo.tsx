@@ -31,7 +31,7 @@ export function DynamicListDemo() {
         <Button onClick={addItem}>+ Add item</Button>
       </div>
       <ul
-        ref={containerRef as React.RefObject<HTMLUListElement>}
+        ref={containerRef}
         role="listbox"
         aria-label="Dynamic list"
         onKeyDown={handleKeyDown}

@@ -30,7 +30,7 @@ export function GridDemo() {
       }
     >
       <div
-        ref={containerRef as React.RefObject<HTMLDivElement>}
+        ref={containerRef}
         role="grid"
         aria-label="Fruit picker"
         onKeyDown={handleKeyDown}

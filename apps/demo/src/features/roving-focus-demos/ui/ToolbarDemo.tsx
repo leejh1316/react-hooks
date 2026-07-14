@@ -28,7 +28,7 @@ export function ToolbarDemo() {
       }
     >
       <div
-        ref={containerRef as React.RefObject<HTMLDivElement>}
+        ref={containerRef}
         role="toolbar"
         aria-label="Text formatting"
         onKeyDown={handleKeyDown}

@@ -5,6 +5,7 @@ import Home from "@src/pages/home/Home";
 import PageNotFound from "@src/pages/errors/PageNotFound";
 import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
 import UseBrowserStoragePage from "@src/pages/docs/hooks/use-browser-storage/UseBrowserStoragePage";
+import UseComposeRefPage from "@src/pages/docs/hooks/use-compose-ref/UseComposeRefPage";
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
 import UseDeferredLoadingPage from "@src/pages/docs/hooks/use-deferred-loading/UseDeferredLoadingPage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
@@ -41,6 +42,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseBrowserStoragePage />,
         name: "useBrowserStorage",
         description: "localStorage / sessionStorage를 React 상태처럼 사용하는 훅. TTL 만료, 커스텀 직렬화, 크로스탭 동기화 지원",
+      },
+      {
+        path: "/docs/use-compose-ref",
+        element: <UseComposeRefPage />,
+        name: "useComposedRefs",
+        description: "여러 개의 ref(객체형·함수형)를 하나의 callback ref로 병합해 한 엘리먼트에 동시에 연결하는 훅. React 19 cleanup 지원",
       },
       {
         path: "/docs/use-debounce",

@@ -11,6 +11,7 @@ import UseCustomEventStatePage from "@src/pages/docs/hooks/use-custom-event-stat
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
 import UseDeferredLoadingPage from "@src/pages/docs/hooks/use-deferred-loading/UseDeferredLoadingPage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
+import UseIntersectionObserverGroupPage from "@src/pages/docs/hooks/use-intersection-observer-group/UseIntersectionObserverGroupPage";
 import UseIntersectionObserverPage from "@src/pages/docs/hooks/use-intersection-observer/UseIntersectionObserverPage";
 import UseLatestRefPage from "@src/pages/docs/hooks/use-latest-ref/UseLatestRefPage";
 import UsePaginationPage from "@src/pages/docs/hooks/use-pagination/UsePaginationPage";
@@ -87,6 +88,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseIntersectionObserverPage />,
         name: "useIntersectionObserver",
         description: "IntersectionObserver API로 요소의 뷰포트 진입/이탈을 감지하는 훅. once, enable, 컨테이너 루트, 진입/이탈 콜백 지원",
+      },
+      {
+        path: "/docs/use-intersection-observer-group",
+        element: <UseIntersectionObserverGroupPage />,
+        name: "useIntersectionObserverGroup",
+        description: "컨테이너 안 여러 요소의 뷰포트 진입/이탈을 키 기반으로 한꺼번에 추적하는 훅. 동적 추가/제거 자동 감지, 키별 once/reset 지원",
       },
       {
         path: "/docs/use-latest-ref",

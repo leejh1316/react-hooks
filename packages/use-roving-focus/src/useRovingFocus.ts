@@ -13,7 +13,7 @@ export interface NavigationDetail {
 type Orientation = "horizontal" | "vertical" | "both";
 
 export type RovingFocusOptions = {
-  itemSelector: string;
+  itemSelector?: string;
   orientation?: Orientation;
   loop?: boolean;
   colSkipCount?: number;

@@ -1,6 +1,6 @@
 {
   "name": "@leejaehyeok/use-roving-focus",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Accessible keyboard navigation with roving tabindex",
   "author": "leejh1316",
   "license": "MIT",

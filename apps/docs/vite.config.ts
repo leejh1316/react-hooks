@@ -39,6 +39,9 @@ export default defineConfig(({ mode, command }) => {
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
+      // workspace packages resolve their react peer dep to a different copy (react 19);
+      // force a single react instance from the app to avoid a null-dispatcher crash
+      dedupe: ["react", "react-dom"],
       alias: {
         "@src": path.resolve(__dirname, "./src"),
         "@api": path.resolve(__dirname, "./src/api"),

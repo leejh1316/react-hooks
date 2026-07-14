@@ -1,7 +1,8 @@
 {
-  "buildCommand": "cd ../.. && pnpm run build && cd apps/docs && pnpm run build",
-  "installCommand": "pnpm install",
-  "framework": null,
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "cd ../.. && pnpm run build:packages && pnpm run build:docs",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- . ../../packages ../../pnpm-lock.yaml ../../pnpm-workspace.yaml",
+  "framework": "vite",
   "outputDirectory": "dist",
   "rewrites": [
     {

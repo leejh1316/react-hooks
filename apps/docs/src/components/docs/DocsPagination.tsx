@@ -1,6 +1,7 @@
 import { PAGE_ROUTES } from "@src/router/router";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import React from "react";
 import { Link, useLocation } from "react-router";
 
 /**
@@ -28,7 +29,9 @@ const DocsPagination = ({ className, ...props }: React.ComponentPropsWithoutRef<
             <ChevronLeft size={14} />
             이전
           </span>
-          <span className="text-body-2 text-ink-primary font-semibold">{prevRoute.name}</span>
+          <span className="text-body-2 text-ink-primary font-semibold">
+            <ProcessName name={prevRoute.name} />
+          </span>
         </Link>
       ) : (
         <span aria-hidden />
@@ -42,13 +45,26 @@ const DocsPagination = ({ className, ...props }: React.ComponentPropsWithoutRef<
             다음
             <ChevronRight size={14} />
           </span>
-          <span className="text-body-2 text-ink-primary font-semibold">{nextRoute.name}</span>
+          <span className="text-body-2 text-ink-primary font-semibold">
+            <ProcessName name={nextRoute.name} />
+          </span>
         </Link>
       ) : (
         <span aria-hidden />
       )}
     </nav>
   );
+};
+
+const ProcessName = ({ name }: { name: string }) => {
+  if (!name) return null;
+  const parts = name.split(/(?<=[a-z0-9])(?=[A-Z])/g).map((part, i) => (
+    <React.Fragment key={i}>
+      {i > 0 && <wbr />}
+      {part}
+    </React.Fragment>
+  ));
+  return <>{parts}</>;
 };
 
 export { DocsPagination };

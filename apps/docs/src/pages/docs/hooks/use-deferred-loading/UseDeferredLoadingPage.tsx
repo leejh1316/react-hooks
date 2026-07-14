@@ -1,3 +1,4 @@
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 import { Document } from "@src/components/ui/Document";
 import { DeferredLoadingSections } from "./components/sections";
 
@@ -14,7 +15,9 @@ import { DeferredLoadingSections } from "./components/sections";
 const UseDeferredLoadingPage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>useDeferredLoading</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="useDeferredLoading" />
+    </Document.Title>
     <Document.Description mb={10}>
       useDeferredLoading은 로딩이 지정한 지연 시간 이상 지속될 때만 로딩 상태를 표시하고, 한 번 표시된 로딩 상태는 최소 표시 시간 동안
       유지되도록 보장하는 React 훅이에요. 빠르게 끝나는 요청에서 스피너가 순간 나타났다 사라지며 화면이 깜빡이는 현상을 방지할 때 유용하게

@@ -1,3 +1,4 @@
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 import { Document } from "@src/components/ui/Document";
 import { IntersectionObserverGroupSections } from "./components/sections";
 
@@ -14,7 +15,9 @@ import { IntersectionObserverGroupSections } from "./components/sections";
 const UseIntersectionObserverGroupPage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>useIntersectionObserverGroup</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="useIntersectionObserverGroup" />
+    </Document.Title>
     <Document.Description mb={10}>
       useIntersectionObserverGroup은 컨테이너 하나를 기준으로 그 안의 여러 자식 요소의 뷰포트 진입·이탈을 키(key) 기반으로 한꺼번에
       추적하는 훅이에요. 내부적으로 IntersectionObserver와 MutationObserver를 조합해 동적으로 추가/제거되는 요소도 자동으로 감시하므로,

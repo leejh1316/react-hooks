@@ -1,3 +1,4 @@
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 import { Document } from "@src/components/ui/Document";
 import { PaginationSections } from "./components/sections";
 
@@ -15,7 +16,9 @@ import { PaginationSections } from "./components/sections";
 const UsePaginationPage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>usePagination</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="usePagination" />
+    </Document.Title>
     <Document.Description mb={10}>
       usePagination은 페이지네이션 UI 구축에 필요한 모든 로직을 제공하는 headless React 훅이에요. siblings / boundaries 설정 기반의 페이지
       범위 계산과 생략 기호(ellipsis) 자동 삽입, 이전·다음·건너뛰기 내비게이션을 제공하고 제어 / 비제어 모드를 모두 지원하므로, 어떤

@@ -90,26 +90,14 @@ Root.displayName = "Document.Root";
  * 기본 간격: mb-4
  * ──────────────────────────────────────────────────────────── */
 
-const Title = forwardRef<HTMLHeadingElement, DocumentTitleProps>(({ className, mt, mb = 4, children, ...props }, ref) => {
-  const processed = React.Children.map(children, (child) => {
-    if (typeof child !== "string") return child; // 문자열 아니면 그대로 통과
-    const parts = child.split(/(?<=[a-z0-9])(?=[A-Z])/g);
-    return parts.map((part, i) => (
-      <React.Fragment key={i}>
-        {i > 0 && <wbr />}
-        {part}
-      </React.Fragment>
-    ));
-  });
+const Title = forwardRef<HTMLHeadingElement, DocumentTitleProps>(({ className, mt, mb = 4, ...props }, ref) => {
   return (
     <h1
       ref={ref}
       data-document-element="title"
       className={clsx("text-headline-1 text-ink-primary break-keep font-semibold", spacingCls(mt, mb), className)}
       {...props}
-    >
-      {processed}
-    </h1>
+    />
   );
 });
 Title.displayName = "Document.Title";

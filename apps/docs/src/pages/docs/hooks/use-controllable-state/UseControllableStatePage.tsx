@@ -1,3 +1,4 @@
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 import { Document } from "@src/components/ui/Document";
 import { ControllableStateSections } from "./components/sections";
 
@@ -14,7 +15,9 @@ import { ControllableStateSections } from "./components/sections";
 const UseControllableStatePage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>useControllableState</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="useControllableState" />
+    </Document.Title>
     <Document.Description mb={10}>
       useControllableState는 하나의 컴포넌트가 제어(controlled) 모드와 비제어(uncontrolled) 모드를 모두 지원하도록 상태를 관리해 주는 React
       훅이에요. value / defaultValue / onChange props를 받는 재사용 컴포넌트를 만들 때, useState를 쓰듯 간단하게 두 모드를 동시에 지원할 수

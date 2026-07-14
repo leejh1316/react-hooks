@@ -1,3 +1,4 @@
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 import { Document } from "@src/components/ui/Document";
 import { ComposeRefPageSections } from "./components/sections";
 
@@ -14,7 +15,9 @@ import { ComposeRefPageSections } from "./components/sections";
 const UseComposeRefPage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>useComposedRefs</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="useComposedRefs" />
+    </Document.Title>
     <Document.Description mb={10}>
       useComposedRefs는 여러 개의 ref를 하나의 callback ref로 병합해 하나의 엘리먼트에 동시에 연결할 수 있게 해주는 React 훅이에요. 객체형,
       함수형 등 모든 ref 유형을 지원하고 React 19의 callback ref cleanup도 자동으로 처리하므로, forwardRef로 전달받은 외부 ref와 컴포넌트

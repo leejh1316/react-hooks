@@ -1,5 +1,6 @@
 import { Document } from "@src/components/ui/Document";
 import { BrowserStoragePageSections } from "./components/sections";
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 
 /* ──────────────────────────────────────────────
    useBrowserStorage Documentation Page
@@ -16,7 +17,9 @@ import { BrowserStoragePageSections } from "./components/sections";
 const UseBrowserStoragePage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>useBrowserStorage</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="useBrowserStorage" />
+    </Document.Title>
     <Document.Description mb={10}>
       useBrowserStorage는 브라우저 스토리지(localStorage / sessionStorage)를 React 상태처럼 사용할 수 있게 해주는 훅 모음이에요. TTL 자동
       만료, 커스텀 직렬화, 같은 탭 안 컴포넌트 간 동기화와 크로스탭 동기화를 지원하고 SSR·Private 모드에서도 안전하게 동작하므로, 새로고침

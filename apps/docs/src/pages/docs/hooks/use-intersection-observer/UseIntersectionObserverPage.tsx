@@ -1,3 +1,4 @@
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 import { Document } from "@src/components/ui/Document";
 import { IntersectionObserverSections } from "./components/sections";
 
@@ -14,7 +15,9 @@ import { IntersectionObserverSections } from "./components/sections";
 const UseIntersectionObserverPage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>useIntersectionObserver</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="useIntersectionObserver" />
+    </Document.Title>
     <Document.Description mb={10}>
       useIntersectionObserver는 IntersectionObserver API를 React 훅으로 감싸 요소의 뷰포트 진입·이탈을 감지하는 훅이에요. 컨테이너에
       callback ref 하나만 연결하면 내부 타깃의 가시성 상태(isVisible, hasEntered)와 진입/이탈 콜백을 제공하므로, 스크롤 애니메이션 트리거,

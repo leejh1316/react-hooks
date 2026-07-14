@@ -1,3 +1,4 @@
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 import { Document } from "@src/components/ui/Document";
 import { CustomEventStateSections } from "./components/sections";
 
@@ -14,7 +15,9 @@ import { CustomEventStateSections } from "./components/sections";
 const UseCustomEventStatePage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>useCustomEventState</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="useCustomEventState" />
+    </Document.Title>
     <Document.Description mb={10}>
       useCustomEventState는 브라우저의 CustomEvent API를 이용해 같은 key를 사용하는 여러 컴포넌트의 상태를 동기화하는 React 훅이에요.
       useState와 동일한 형태로 사용하면서 Provider나 prop drilling 없이 컴포넌트 트리의 위치와 무관하게 상태를 공유할 수 있어, 멀리

@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import React from "react";
 import { Link, useLocation } from "react-router";
+import BreakableCamelCase from "../ui/BreakableCamelCase";
 
 /**
  * 현재 경로를 기준으로 PAGE_ROUTES 내 이전/다음 문서로 이동하는 하단 내비게이션.
@@ -30,7 +31,7 @@ const DocsPagination = ({ className, ...props }: React.ComponentPropsWithoutRef<
             이전
           </span>
           <span className="text-body-2 text-ink-primary font-semibold">
-            <ProcessName name={prevRoute.name} />
+            <BreakableCamelCase text={prevRoute.name} />
           </span>
         </Link>
       ) : (
@@ -46,7 +47,7 @@ const DocsPagination = ({ className, ...props }: React.ComponentPropsWithoutRef<
             <ChevronRight size={14} />
           </span>
           <span className="text-body-2 text-ink-primary font-semibold">
-            <ProcessName name={nextRoute.name} />
+            <BreakableCamelCase text={nextRoute.name} />
           </span>
         </Link>
       ) : (
@@ -54,17 +55,6 @@ const DocsPagination = ({ className, ...props }: React.ComponentPropsWithoutRef<
       )}
     </nav>
   );
-};
-
-const ProcessName = ({ name }: { name: string }) => {
-  if (!name) return null;
-  const parts = name.split(/(?<=[a-z0-9])(?=[A-Z])/g).map((part, i) => (
-    <React.Fragment key={i}>
-      {i > 0 && <wbr />}
-      {part}
-    </React.Fragment>
-  ));
-  return <>{parts}</>;
 };
 
 export { DocsPagination };

@@ -1,3 +1,4 @@
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 import { Document } from "@src/components/ui/Document";
 import { LatestRefPageSections } from "./components/sections";
 
@@ -14,7 +15,9 @@ import { LatestRefPageSections } from "./components/sections";
 const UseLatestRefPage = () => (
   <Document.Root>
     {/* ─── Page Header ─── */}
-    <Document.Title mb={3}>useLatestRef</Document.Title>
+    <Document.Title mb={3}>
+      <BreakableCamelCase text="useLatestRef" />
+    </Document.Title>
     <Document.Description mb={10}>
       useLatestRef는 전달된 값의 최신 상태를 항상 담고 있는 ref 객체를 반환하는 React 훅이에요. useEffect나 useCallback의 의존성 배열에
       값을 넣지 않고도 콜백 안에서 항상 최신 값에 접근하고 싶을 때 유용하게 사용할 수 있어요.

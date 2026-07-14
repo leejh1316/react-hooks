@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ChevronRight } from "lucide-react";
 import { Document } from "@src/components/ui/Document";
 import { RouteConfig } from "@src/router/router";
+import BreakableCamelCase from "@src/components/ui/BreakableCamelCase";
 
 interface HooksOverviewSectionProps {
   routes: RouteConfig[];
@@ -26,7 +27,9 @@ const HooksOverviewSection = ({ routes }: HooksOverviewSectionProps) => {
             to={route.path}
             className="border-line-regular text-body-3 text-ink-secondary group flex items-center justify-between rounded-lg border px-4 py-3 font-medium transition-all hover:border-neutral-300 hover:bg-neutral-50"
           >
-            <span>{route.name}</span>
+            <span>
+              <BreakableCamelCase text={route.name} />
+            </span>
             <span className="text-ink-disabled opacity-0 transition-opacity group-hover:opacity-100">
               <ChevronRight size={14} strokeWidth={2.5} />
             </span>

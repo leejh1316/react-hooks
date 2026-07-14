@@ -49,24 +49,24 @@ const Header = memo(() => {
                 </Link>
               </li>
             </ul>
-            {/* <IconButton
+            <IconButton
               name="github"
               size="md"
               onClick={() => window.open(githubUrl, "_blank")}
               aria-label="GitHub"
               className="text-icon-secondary hover:text-icon-primary rounded-lg transition-colors hover:bg-neutral-100"
-            /> */}
+            />
           </nav>
 
           {/* Mobile: GitHub + Hamburger */}
           <div className="flex items-center md:hidden">
-            {/* <IconButton
+            <IconButton
               name="github"
               size="md"
               onClick={() => window.open(githubUrl, "_blank")}
               aria-label="GitHub"
               className="text-icon-secondary hover:text-icon-primary rounded-lg transition-colors hover:bg-neutral-100"
-            /> */}
+            />
             <IconButton
               type="button"
               onClick={toggleMenu}

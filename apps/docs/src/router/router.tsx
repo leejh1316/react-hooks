@@ -7,6 +7,7 @@ import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
 import UseBrowserStoragePage from "@src/pages/docs/hooks/use-browser-storage/UseBrowserStoragePage";
 import UseComposeRefPage from "@src/pages/docs/hooks/use-compose-ref/UseComposeRefPage";
 import UseControllableStatePage from "@src/pages/docs/hooks/use-controllable-state/UseControllableStatePage";
+import UseCustomEventStatePage from "@src/pages/docs/hooks/use-custom-event-state/UseCustomEventStatePage";
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
 import UseDeferredLoadingPage from "@src/pages/docs/hooks/use-deferred-loading/UseDeferredLoadingPage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
@@ -55,6 +56,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseControllableStatePage />,
         name: "useControllableState",
         description: "하나의 컴포넌트가 제어/비제어 모드를 모두 지원하도록 상태를 관리하는 훅. Object.is 비교로 불필요한 onChange 호출 방지",
+      },
+      {
+        path: "/docs/use-custom-event-state",
+        element: <UseCustomEventStatePage />,
+        name: "useCustomEventState",
+        description: "window CustomEvent로 같은 key를 사용하는 컴포넌트 간 상태를 Provider 없이 동기화하는 훅. 함수형 업데이트와 지연 초기화 지원",
       },
       {
         path: "/docs/use-debounce",

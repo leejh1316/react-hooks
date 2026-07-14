@@ -6,6 +6,7 @@ import PageNotFound from "@src/pages/errors/PageNotFound";
 import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
 import UseBrowserStoragePage from "@src/pages/docs/hooks/use-browser-storage/UseBrowserStoragePage";
 import UseComposeRefPage from "@src/pages/docs/hooks/use-compose-ref/UseComposeRefPage";
+import UseControllableStatePage from "@src/pages/docs/hooks/use-controllable-state/UseControllableStatePage";
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
 import UseDeferredLoadingPage from "@src/pages/docs/hooks/use-deferred-loading/UseDeferredLoadingPage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
@@ -48,6 +49,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseComposeRefPage />,
         name: "useComposedRefs",
         description: "여러 개의 ref(객체형·함수형)를 하나의 callback ref로 병합해 한 엘리먼트에 동시에 연결하는 훅. React 19 cleanup 지원",
+      },
+      {
+        path: "/docs/use-controllable-state",
+        element: <UseControllableStatePage />,
+        name: "useControllableState",
+        description: "하나의 컴포넌트가 제어/비제어 모드를 모두 지원하도록 상태를 관리하는 훅. Object.is 비교로 불필요한 onChange 호출 방지",
       },
       {
         path: "/docs/use-debounce",

@@ -17,8 +17,8 @@ const UseFocusTrapPage = () => (
     {/* ─── Page Header ─── */}
     <Document.Title mb={3}>useFocusTrap</Document.Title>
     <Document.Description mb={10}>
-      모달, 다이얼로그, 드로어처럼 특정 컨테이너 안에 키보드 포커스를 가두어 Tab / Shift+Tab 포커스가 컨테이너 내부에서 순환하도록 하는
-      React 훅입니다.
+      useFocusTrap은 특정 컨테이너 안에 키보드 포커스를 가두어 Tab / Shift+Tab 포커스가 컨테이너 내부에서 순환하도록 하는 React 훅이에요.
+      모달, 다이얼로그, 드로어처럼 포커스가 밖으로 벗어나면 안 되는 UI를 만들 때 유용하게 사용할 수 있어요.
     </Document.Description>
     <Document.Divider />
 

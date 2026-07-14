@@ -11,8 +11,8 @@ const TypesSection = () => {
     <section>
       <Document.Heading1>API — 타입</Document.Heading1>
       <Document.Paragraph mb={6}>
-        패키지가 export 하는 타입입니다. <InlineCode>StorageResult</InlineCode>는 <InlineCode>success</InlineCode> 필드로 구분되는
-        discriminated union이므로, 실패 케이스를 타입 안전하게 분기할 수 있습니다.
+        패키지가 export 하는 타입이에요. <InlineCode>StorageResult</InlineCode>는 <InlineCode>success</InlineCode> 필드로 구분되는
+        discriminated union이므로, 실패 케이스를 타입 안전하게 분기할 수 있어요.
       </Document.Paragraph>
       <CodeBlock code={TYPES_CODE} language="ts" />
     </section>
@@ -30,7 +30,7 @@ type Serializer<T> = {
   deserialize: (raw: string) => T;
 };
 
-// 모든 스토리지 연산의 결과 — 예외를 던지는 대신 성공 / 실패를 값으로 표현합니다.
+// 모든 스토리지 연산의 결과 — 예외를 던지는 대신 성공 / 실패를 값으로 표현해요.
 type StorageResult<T> = { success: true; value: T } | { success: false; error: StorageError };
 
 type StorageError =
@@ -46,7 +46,7 @@ type StorageEventExpanded<T> =
   | (StorageEvent & { success: true; newParsedValue: T | null; oldParsedValue: T | null })
   | (StorageEvent & { success: false; error: "PARSE_ERROR" | "UNKNOWN" });
 
-// 훅 옵션의 원형 타입 — getter / setter를 제외한 필드가 훅 옵션으로 사용됩니다.
+// 훅 옵션의 원형 타입 — getter / setter를 제외한 필드가 훅 옵션으로 사용돼요.
 type BrowserStorageOptions<T> = {
   storageType: StorageType;
   key: string;

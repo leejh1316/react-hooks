@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 
 /* ──────────────────────────────────────────────
    Demo: 포커스 트랩 미적용 (비교용)
-   동일한 Dialog UI지만 Tab 포커스가 다이얼로그 밖으로 벗어납니다
+   동일한 Dialog UI지만 Tab 포커스가 다이얼로그 밖으로 벗어나요
    ────────────────────────────────────────────── */
 
 const NoFocusTrapDemo = () => {
@@ -35,8 +35,8 @@ const NoFocusTrapDemo = () => {
                 프로필 편집
               </h5>
               <p className="text-caption-1 text-ink-tertiary mb-4">
-                열려도 포커스가 다이얼로그로 이동하지 않고, Tab / Shift+Tab을 누르면 포커스가 다이얼로그 밖으로 벗어납니다. 닫아도 이전
-                포커스가 복원되지 않습니다.
+                열려도 포커스가 다이얼로그로 이동하지 않고, Tab / Shift+Tab을 누르면 포커스가 다이얼로그 밖으로 벗어나요. 닫아도 이전
+                포커스가 복원되지 않아요.
               </p>
               <div className="flex flex-col gap-3">
                 <input

@@ -3,7 +3,7 @@ import { useState } from "react";
 
 /* ──────────────────────────────────────────────
    Demo: 스로틀 미적용 (비교용)
-   마우스를 움직일 때마다 핸들러가 매번 실행됩니다
+   마우스를 움직일 때마다 핸들러가 매번 실행돼요
    ────────────────────────────────────────────── */
 
 const NoThrottleDemo = () => {
@@ -12,7 +12,7 @@ const NoThrottleDemo = () => {
 
   const handleMouseMove = () => {
     setEventCount((prev) => prev + 1);
-    // 스로틀이 없으므로 이벤트가 발생할 때마다 핸들러가 그대로 실행됩니다.
+    // 스로틀이 없으므로 이벤트가 발생할 때마다 핸들러가 그대로 실행돼요.
     setHandlerCount((prev) => prev + 1);
   };
 

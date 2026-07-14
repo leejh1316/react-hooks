@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 /* ──────────────────────────────────────────────
    Demo: useFocusTrap 적용
-   실제 Dialog처럼 오버레이 위에 띄웁니다
+   실제 Dialog처럼 오버레이 위에 띄워요
    ────────────────────────────────────────────── */
 
 const FocusTrapDemo = () => {
@@ -38,7 +38,7 @@ const FocusTrapDemo = () => {
                 프로필 편집
               </h5>
               <p className="text-caption-1 text-ink-tertiary mb-4">
-                Tab / Shift+Tab을 눌러도 포커스가 다이얼로그 밖으로 나가지 않습니다. Esc 또는 버튼으로 닫으면 이전 포커스가 복원됩니다.
+                Tab / Shift+Tab을 눌러도 포커스가 다이얼로그 밖으로 나가지 않아요. Esc 또는 버튼으로 닫으면 이전 포커스가 복원돼요.
               </p>
               <div className="flex flex-col gap-3">
                 <input
@@ -102,7 +102,7 @@ function FocusTrapDemo() {
               className="relative w-full max-w-sm rounded-xl bg-white p-5 shadow-xl"
             >
               <h5 id="dialog-title">프로필 편집</h5>
-              {/* data-initial-focus가 있어 이름 입력에 먼저 포커스됩니다 */}
+              {/* data-initial-focus가 있어 이름 입력에 먼저 포커스돼요 */}
               <input data-initial-focus type="text" placeholder="이름" />
               <input type="email" placeholder="이메일" />
               <button onClick={() => setIsOpen(false)}>취소</button>

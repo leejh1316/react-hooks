@@ -17,8 +17,8 @@ const UseThrottlePage = () => (
     {/* ─── Page Header ─── */}
     <Document.Title mb={3}>useThrottle</Document.Title>
     <Document.Description mb={10}>
-      함수 호출을 스로틀링하여 지정된 시간당 최대 한 번만 실행되도록 하는 React 훅입니다. 스크롤, 윈도우 리사이징, 빈번한 버튼 클릭 등 자주
-      발생하는 이벤트의 성능 최적화에 유용합니다.
+      useThrottle은 지정된 시간당 최대 한 번만 함수가 실행되도록 스로틀링하는 React 훅이에요. 스크롤, 윈도우 리사이징, 빈번한 버튼
+      클릭처럼 자주 발생하는 이벤트의 성능을 최적화할 때 유용하게 사용할 수 있어요.
     </Document.Description>
     <Document.Divider />
 

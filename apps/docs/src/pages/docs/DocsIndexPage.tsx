@@ -15,7 +15,7 @@ const DocsIndexPage = () => {
       {/* ─── Page Header ─── */}
       <Document.Title mb={3}>React Hooks</Document.Title>
       <Document.Description mb={10}>
-        실무에서 자주 마주치는 로직을 훅 단위로 제공하는 React 커스텀 훅 라이브러리입니다.
+        실무에서 자주 마주치는 로직을 훅 단위로 제공하는 React 커스텀 훅 라이브러리예요.
       </Document.Description>
       <Document.Divider />
 
@@ -41,7 +41,7 @@ const DocsIndexPage = () => {
       {/* 훅 목록 */}
       <section>
         <Document.Heading1>훅 목록</Document.Heading1>
-        <Document.Paragraph mb={6}>왼쪽 사이드바 또는 아래 목록에서 훅을 선택하면 상세 문서로 이동합니다.</Document.Paragraph>
+        <Document.Paragraph mb={6}>왼쪽 사이드바 또는 아래 목록에서 훅을 선택하면 상세 문서로 이동해요.</Document.Paragraph>
         {Object.entries(PAGE_ROUTES).map(([key, category]) => (
           <div key={key}>
             <Document.Heading3>{category.title}</Document.Heading3>
@@ -74,12 +74,12 @@ const DocsIndexPage = () => {
    ────────────────────────────────────────────── */
 
 const FEATURES = [
-  { title: "TypeScript", description: "모든 훅이 TypeScript로 작성되어 완전한 타입 정의를 제공합니다." },
-  { title: "가벼운 번들", description: "React 외 런타임 의존성이 없어 번들 크기 부담이 없습니다." },
-  { title: "접근성 우선", description: "WAI-ARIA 가이드라인을 고려해 설계되어 접근성 요구사항을 충족하는 데 도움이 됩니다." },
+  { title: "TypeScript", description: "모든 훅이 TypeScript로 작성되어 완전한 타입 정의를 제공해요." },
+  { title: "가벼운 번들", description: "React 외 런타임 의존성이 없어 번들 크기 부담이 없어요." },
+  { title: "접근성 우선", description: "WAI-ARIA 가이드라인을 고려해 설계되어 접근성 요구사항을 충족하는 데 도움이 돼요." },
   {
     title: "Agent Skill 제공",
-    description: "Claude Code 등 AI 코딩 에이전트가 훅을 올바르게 사용하도록 돕는 SKILL 정의를 함께 제공합니다.",
+    description: "Claude Code 등 AI 코딩 에이전트가 훅을 올바르게 사용하도록 돕는 SKILL 정의를 함께 제공해요.",
   },
 ];
 

@@ -16,8 +16,8 @@ const UseDebouncePage = () => (
     {/* ─── Page Header ─── */}
     <Document.Title mb={3}>useDebounce</Document.Title>
     <Document.Description mb={10}>
-      함수 호출을 디바운싱하여 마지막 호출 이후 지정된 시간 동안 추가 호출이 없을 때만 실행되도록 하는 React 훅입니다. 검색어 자동완성,
-      입력 값 저장, API 연속 호출 방지 등 이벤트가 멈춘 뒤 한 번만 실행해야 하는 상황의 성능 최적화에 유용합니다.
+      useDebounce는 마지막 호출 이후 지정된 시간 동안 추가 호출이 없을 때만 함수가 실행되도록 디바운싱하는 React 훅이에요. 검색어
+      자동완성, 입력 값 저장, API 연속 호출 방지처럼 이벤트가 멈춘 뒤 한 번만 실행해야 하는 상황에서 유용하게 사용할 수 있어요.
     </Document.Description>
     <Document.Divider />
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 /* ──────────────────────────────────────────────
    Demo: useDebounce 적용
-   이벤트는 매번 발생하지만 핸들러는 입력이 500ms 동안 멈춘 뒤 한 번만 실행됩니다
+   이벤트는 매번 발생하지만 핸들러는 입력이 500ms 동안 멈춘 뒤 한 번만 실행돼요
    ────────────────────────────────────────────── */
 
 const WAIT = 500;
@@ -89,7 +89,7 @@ function DebounceDemo() {
   const [value, setValue] = useState("");
   const [debouncedValue, setDebouncedValue] = useState("");
 
-  // 입력이 500ms 동안 멈춘 뒤에만 핸들러가 실행됩니다.
+  // 입력이 500ms 동안 멈춘 뒤에만 핸들러가 실행돼요.
   const { debounce, cancel, flush } = useDebounce((val: string) => setDebouncedValue(val), 500, { leading: false });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

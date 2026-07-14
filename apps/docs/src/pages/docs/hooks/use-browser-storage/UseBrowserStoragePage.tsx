@@ -18,8 +18,9 @@ const UseBrowserStoragePage = () => (
     {/* ─── Page Header ─── */}
     <Document.Title mb={3}>useBrowserStorage</Document.Title>
     <Document.Description mb={10}>
-      브라우저 스토리지(localStorage / sessionStorage)를 React 상태처럼 사용하는 훅 모음입니다. TTL 자동 만료, 커스텀 직렬화, 같은 탭 안
-      컴포넌트 간 동기화와 크로스탭 동기화를 지원하며, SSR·Private 모드에서도 안전하게 동작합니다.
+      useBrowserStorage는 브라우저 스토리지(localStorage / sessionStorage)를 React 상태처럼 사용할 수 있게 해주는 훅 모음이에요. TTL 자동
+      만료, 커스텀 직렬화, 같은 탭 안 컴포넌트 간 동기화와 크로스탭 동기화를 지원하고 SSR·Private 모드에서도 안전하게 동작하므로, 새로고침
+      후에도 유지되어야 하는 상태를 다룰 때 유용하게 사용할 수 있어요.
     </Document.Description>
     <Document.Divider />
 

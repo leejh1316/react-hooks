@@ -4,7 +4,7 @@ import { Button } from "@src/components/ui";
 /* ──────────────────────────────────────────────
    Demo: useSessionStorage
    새로고침해도 값이 유지되지만, 탭(세션)을 닫거나
-   새 탭에서 열면 defaultValue부터 다시 시작합니다
+   새 탭에서 열면 defaultValue부터 다시 시작해요
    ────────────────────────────────────────────── */
 
 const STORAGE_KEY = "docs/use-browser-storage/session-count";
@@ -29,7 +29,7 @@ const SessionStorageDemo = () => {
       </div>
 
       <p className="text-caption-1 text-ink-tertiary select-none">
-        새로고침해도 값이 유지되지만, 이 페이지를 새 탭에서 열면 0부터 시작합니다.
+        새로고침해도 값이 유지되지만, 이 페이지를 새 탭에서 열면 0부터 시작해요.
       </p>
     </div>
   );
@@ -44,7 +44,7 @@ export default SessionStorageDemo;
 export const SESSION_STORAGE_DEMO_CODE = `import { useSessionStorage } from "@leejaehyeok/use-browser-storage";
 
 function SessionCounter() {
-  // 탭(세션)이 유지되는 동안만 값이 살아있습니다.
+  // 탭(세션)이 유지되는 동안만 값이 살아있어요.
   const { value, setValue, removeValue } = useSessionStorage<number>({
     key: "session-count",
     defaultValue: 0,

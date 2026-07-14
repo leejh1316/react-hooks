@@ -4,7 +4,7 @@ import clsx from "clsx";
 /* ──────────────────────────────────────────────
    Demo: usePagination 기본 사용
    paginationRange를 렌더링하고 이전/다음/건너뛰기
-   내비게이션과 상태 헬퍼를 함께 사용합니다
+   내비게이션과 상태 헬퍼를 함께 사용해요
    ────────────────────────────────────────────── */
 
 const TOTAL_ITEMS = 137;
@@ -108,7 +108,7 @@ function Pagination() {
 
       {paginationRange.map((item) =>
         item.type === "page" ? (
-          // item.key는 React 렌더링용 고유 키로 바로 사용할 수 있습니다.
+          // item.key는 React 렌더링용 고유 키로 바로 사용할 수 있어요.
           <button key={item.key} onClick={() => setPage(item.page)} aria-current={item.page === page ? "page" : undefined}>
             {item.page}
           </button>

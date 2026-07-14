@@ -3,7 +3,7 @@ import { useState } from "react";
 
 /* ──────────────────────────────────────────────
    Demo: 디바운스 미적용 (비교용)
-   입력할 때마다 핸들러가 매번 실행됩니다
+   입력할 때마다 핸들러가 매번 실행돼요
    ────────────────────────────────────────────── */
 
 const NoDebounceDemo = () => {
@@ -14,7 +14,7 @@ const NoDebounceDemo = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     setEventCount((prev) => prev + 1);
-    // 디바운스가 없으므로 입력할 때마다 핸들러가 그대로 실행됩니다.
+    // 디바운스가 없으므로 입력할 때마다 핸들러가 그대로 실행돼요.
     setHandlerCount((prev) => prev + 1);
   };
 

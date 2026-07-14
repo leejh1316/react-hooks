@@ -11,7 +11,7 @@ const ApiSection = () => {
     <section>
       <Document.Heading1>API</Document.Heading1>
       <Document.Paragraph mb={6}>
-        패키지는 <InlineCode>useFocusTrap</InlineCode> 훅 하나를 named export 합니다.
+        패키지는 <InlineCode>useFocusTrap</InlineCode> 훅 하나를 named export 해요.
       </Document.Paragraph>
       <CodeBlock code={IMPORT_CODE} className="mb-4" />
       <CodeBlock code={SIGNATURE_CODE} language="ts" />
@@ -27,7 +27,7 @@ const ApiSection = () => {
       <Document.Heading2>Returns</Document.Heading2>
       <Document.Paragraph>
         <InlineCode>useEffect</InlineCode> 기반이 아닌 <InlineCode>callback ref</InlineCode>를 반환하므로, ref가 연결/해제되는 시점에
-        정확히 맞춰 트랩이 활성화/해제됩니다.
+        정확히 맞춰 트랩이 활성화/해제돼요.
       </Document.Paragraph>
       <ReturnTable rows={RETURN_ROWS} />
     </section>
@@ -57,7 +57,7 @@ const PARAMETER_ROWS: ParameterTableRow[] = [
     name: "options",
     type: "FocusTrapOptions",
     defaultValue: "{}",
-    description: "포커스 트랩의 동작을 제어하는 옵션 객체입니다. 생략할 수 있습니다.",
+    description: "포커스 트랩의 동작을 제어하는 옵션 객체예요. 생략할 수 있어요.",
   },
 ];
 
@@ -68,7 +68,7 @@ const OPTION_ROWS: ParameterTableRow[] = [
     type: "string",
     defaultValue: '"[data-initial-focus]"',
     description:
-      "트랩 활성화 시 처음 포커스할 요소를 찾는 CSS 선택자입니다. 매칭되는 요소가 없으면 첫 번째 포커스 가능 요소, 그것도 없으면 컨테이너 자체에 포커스합니다.",
+      "트랩 활성화 시 처음 포커스할 요소를 찾는 CSS 선택자예요. 매칭되는 요소가 없으면 첫 번째 포커스 가능 요소, 그것도 없으면 컨테이너 자체에 포커스해요.",
   },
 ];
 
@@ -78,7 +78,7 @@ const RETURN_ROWS: ReturnTableRow[] = [
     name: "containerRef",
     type: "(node: HTMLElement | null) => void",
     description:
-      "포커스를 가둘 컨테이너 요소에 연결하는 callback ref입니다. 요소에 연결되면 트랩이 활성화되고, 요소가 언마운트되면 트랩이 해제되며 이전 포커스가 복원됩니다.",
+      "포커스를 가둘 컨테이너 요소에 연결하는 callback ref예요. 요소에 연결되면 트랩이 활성화되고, 요소가 언마운트되면 트랩이 해제되며 이전 포커스가 복원돼요.",
   },
 ];
 

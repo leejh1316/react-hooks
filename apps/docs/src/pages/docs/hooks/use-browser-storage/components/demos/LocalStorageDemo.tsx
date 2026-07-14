@@ -4,7 +4,7 @@ import { Button } from "@src/components/ui";
 /* ──────────────────────────────────────────────
    Demo: useLocalStorage
    같은 key를 사용하는 두 컴포넌트가 자동으로 동기화되고,
-   값은 localStorage에 저장되어 새로고침해도 유지됩니다
+   값은 localStorage에 저장되어 새로고침해도 유지돼요
    ────────────────────────────────────────────── */
 
 const STORAGE_KEY = "docs/use-browser-storage/nickname";
@@ -34,7 +34,7 @@ const EditorPanel = () => {
 };
 
 const ViewerPanel = () => {
-  // 같은 key를 사용하므로 별도 설정 없이 컴포넌트 A와 자동으로 동기화됩니다.
+  // 같은 key를 사용하므로 별도 설정 없이 컴포넌트 A와 자동으로 동기화돼요.
   const { value } = useLocalStorage<string>({
     key: STORAGE_KEY,
     defaultValue: "",
@@ -47,7 +47,7 @@ const ViewerPanel = () => {
       <p className="text-body-3 text-ink-secondary">
         저장된 값: <span className="text-ink-primary font-semibold">{value || "(없음)"}</span>
       </p>
-      <p className="text-caption-2 text-ink-tertiary select-none">새로고침해도 값이 유지되고, 새 탭에서 열어도 동기화됩니다.</p>
+      <p className="text-caption-2 text-ink-tertiary select-none">새로고침해도 값이 유지되고, 새 탭에서 열어도 동기화돼요.</p>
     </div>
   );
 };
@@ -85,7 +85,7 @@ function Editor() {
 }
 
 function Viewer() {
-  // 같은 key를 사용하면 같은 탭 안에서는 별도 설정 없이도 자동 동기화됩니다.
+  // 같은 key를 사용하면 같은 탭 안에서는 별도 설정 없이도 자동 동기화돼요.
   const { value } = useLocalStorage<string>({ key: STORAGE_KEY, defaultValue: "", subscribe: true });
 
   return <p>저장된 값: {value || "(없음)"}</p>;

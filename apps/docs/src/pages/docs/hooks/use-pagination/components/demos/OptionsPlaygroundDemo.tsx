@@ -6,7 +6,7 @@ import { useState } from "react";
    Demo: 옵션 조정 플레이그라운드
    totalItems / itemsPerPage / siblings / boundaries를
    슬라이더로 바꿔가며 paginationRange가 어떻게
-   달라지는지 실시간으로 확인합니다
+   달라지는지 실시간으로 확인해요
    ────────────────────────────────────────────── */
 
 interface SliderProps {
@@ -109,8 +109,8 @@ const [itemsPerPage, setItemsPerPage] = useState(10);
 const [siblings, setSiblings] = useState(1);
 const [boundaries, setBoundaries] = useState(1);
 
-// 옵션이 바뀌면 totalPages와 paginationRange가 자동으로 다시 계산됩니다.
-// totalPages가 줄어 현재 페이지가 범위를 벗어나면 마지막 페이지로 자동 보정됩니다.
+// 옵션이 바뀌면 totalPages와 paginationRange가 자동으로 다시 계산돼요.
+// totalPages가 줄어 현재 페이지가 범위를 벗어나면 마지막 페이지로 자동 보정돼요.
 const { page, totalPages, setPage, paginationRange } = usePagination({
   totalItems,
   itemsPerPage,

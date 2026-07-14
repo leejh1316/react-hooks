@@ -4,8 +4,8 @@ import { Button } from "@src/components/ui";
 /* ──────────────────────────────────────────────
    Demo: serializer.set()
    "즐겨찾기한 도시" 집합처럼 고유성 보장과 has() 멤버십 검사가
-   핵심인 데이터를 Set으로 다루고, serializer 헬퍼로 저장합니다.
-   선택 상태가 새로고침해도 유지됩니다
+   핵심인 데이터를 Set으로 다루고, serializer 헬퍼로 저장해요.
+   선택 상태가 새로고침해도 유지돼요
    ────────────────────────────────────────────── */
 
 const STORAGE_KEY = "docs/use-browser-storage/favorite-cities";
@@ -25,7 +25,7 @@ const SerializerDemo = () => {
   const toggle = (city: string) => {
     setValue((prev) => {
       const next = new Set(prev);
-      // has / add / delete 모두 O(1) — 즐겨찾기 여부 판단이 핵심 연산입니다.
+      // has / add / delete 모두 O(1) — 즐겨찾기 여부 판단이 핵심 연산이에요.
       if (next.has(city)) next.delete(city);
       else next.add(city);
       return next;
@@ -51,7 +51,7 @@ const SerializerDemo = () => {
         즐겨찾기 전체 해제 (removeValue)
       </Button>
 
-      <p className="text-caption-1 text-ink-tertiary select-none">도시를 즐겨찾기하고 새로고침해 보세요. 즐겨찾기 상태가 유지됩니다.</p>
+      <p className="text-caption-1 text-ink-tertiary select-none">도시를 즐겨찾기하고 새로고침해 보세요. 즐겨찾기 상태가 유지돼요.</p>
     </div>
   );
 };
@@ -65,8 +65,8 @@ export default SerializerDemo;
 export const SERIALIZER_DEMO_CODE = `import { serializer, useLocalStorage } from "@leejaehyeok/use-browser-storage";
 
 function FavoriteCities() {
-  // 즐겨찾기한 도시 집합 — 중복이 구조적으로 불가능하고 has() 멤버십 검사가 O(1)이라 Set이 적합합니다.
-  // Set은 JSON.stringify로 직렬화되지 않으므로 serializer.set() 헬퍼를 스프레드합니다.
+  // 즐겨찾기한 도시 집합 — 중복이 구조적으로 불가능하고 has() 멤버십 검사가 O(1)이라 Set이 적합해요.
+  // Set은 JSON.stringify로 직렬화되지 않으므로 serializer.set() 헬퍼를 스프레드해요.
   const { value: favorites, setValue } = useLocalStorage({
     key: "favorite-cities",
     defaultValue: new Set<string>(),

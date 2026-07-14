@@ -4,7 +4,7 @@ import { useState } from "react";
 
 /* ──────────────────────────────────────────────
    Demo: useThrottle 적용
-   이벤트는 매번 발생하지만 핸들러는 500ms당 최대 한 번 실행됩니다
+   이벤트는 매번 발생하지만 핸들러는 500ms당 최대 한 번 실행돼요
    ────────────────────────────────────────────── */
 
 const WAIT = 500;
@@ -72,7 +72,7 @@ function ThrottleDemo() {
   const [eventCount, setEventCount] = useState(0);
   const [handlerCount, setHandlerCount] = useState(0);
 
-  // 500ms당 최대 한 번만 핸들러가 실행됩니다.
+  // 500ms당 최대 한 번만 핸들러가 실행돼요.
   const { throttle, cancel, flush } = useThrottle(() => setHandlerCount((prev) => prev + 1), 500);
 
   const handleMouseMove = () => {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 /* ──────────────────────────────────────────────
    Demo: useLatestRef 적용
-   인터벌은 마운트 시 한 번만 생성되지만 ref.current를 통해 항상 최신 count를 읽습니다
+   인터벌은 마운트 시 한 번만 생성되지만 ref.current를 통해 항상 최신 count를 읽어요
    ────────────────────────────────────────────── */
 
 const LatestRefDemo = () => {
@@ -16,7 +16,7 @@ const LatestRefDemo = () => {
 
   useEffect(() => {
     // 의존성 배열이 비어 있어 인터벌은 한 번만 생성되지만,
-    // ref.current를 통해 항상 최신 count를 읽습니다.
+    // ref.current를 통해 항상 최신 count를 읽어요.
     const id = setInterval(() => {
       setIntervalValue(latestCountRef.current);
       setTick((prev) => prev + 1);
@@ -39,7 +39,7 @@ const LatestRefDemo = () => {
         </p>
       </div>
 
-      <p className="text-body-3 text-ink-tertiary">인터벌은 다시 생성되지 않지만, 다음 실행부터 항상 최신 count를 읽습니다.</p>
+      <p className="text-body-3 text-ink-tertiary">인터벌은 다시 생성되지 않지만, 다음 실행부터 항상 최신 count를 읽어요.</p>
 
       <div className="flex gap-2">
         <Button onClick={() => setCount((prev) => prev + 1)}>count +1</Button>
@@ -68,10 +68,10 @@ function LatestRefDemo() {
 
   useEffect(() => {
     // 인터벌은 마운트 시 한 번만 생성되지만,
-    // ref.current를 통해 항상 최신 count를 읽습니다.
+    // ref.current를 통해 항상 최신 count를 읽어요.
     const id = setInterval(() => setIntervalValue(latestCountRef.current), 1000);
     return () => clearInterval(id);
-  }, []); // count를 의존성 배열에 넣지 않아도 됩니다.
+  }, []); // count를 의존성 배열에 넣지 않아도 돼요.
 
   return (
     <>

@@ -11,9 +11,9 @@ const TypesSection = () => {
     <section>
       <Document.Heading1>API — 타입</Document.Heading1>
       <Document.Paragraph mb={6}>
-        패키지가 export 하는 타입입니다. <InlineCode>PaginationItem</InlineCode>은 <InlineCode>type</InlineCode> 필드로 구분되는
+        패키지가 export 하는 타입이에요. <InlineCode>PaginationItem</InlineCode>은 <InlineCode>type</InlineCode> 필드로 구분되는
         discriminated union이므로, <InlineCode>item.type === "page"</InlineCode>로 좁히면 <InlineCode>item.page</InlineCode>에 타입
-        안전하게 접근할 수 있습니다.
+        안전하게 접근할 수 있어요.
       </Document.Paragraph>
       <CodeBlock code={TYPES_CODE} language="ts" />
     </section>

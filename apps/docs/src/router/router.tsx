@@ -7,6 +7,7 @@ import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
 import UseBrowserStoragePage from "@src/pages/docs/hooks/use-browser-storage/UseBrowserStoragePage";
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
 import UseFocusTrapPage from "@src/pages/docs/hooks/use-focus-trap/UseFocusTrapPage";
+import UseLatestRefPage from "@src/pages/docs/hooks/use-latest-ref/UseLatestRefPage";
 import UsePaginationPage from "@src/pages/docs/hooks/use-pagination/UsePaginationPage";
 import UseThrottlePage from "@src/pages/docs/hooks/use-throttle/UseThrottlePage";
 import { createBrowserRouter, RouteObject } from "react-router";
@@ -51,6 +52,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseFocusTrapPage />,
         name: "useFocusTrap",
         description: "모달, 다이얼로그처럼 특정 컨테이너 안에 키보드 포커스를 가두는 훅",
+      },
+      {
+        path: "/docs/use-latest-ref",
+        element: <UseLatestRefPage />,
+        name: "useLatestRef",
+        description: "전달된 최신 값을 항상 담고 있는 ref를 반환해 stale closure와 불필요한 재실행 없이 최신 값에 접근하게 하는 훅",
       },
       {
         path: "/docs/use-pagination",

@@ -4,6 +4,12 @@ interface UseOverflowResult {
   containerRef: (node: HTMLElement | null) => void;
   isOverflow: boolean;
 }
+
+// TODO
+// 1. 수직,수평 오버플로우를 구분할 수 있도록 개선 필요
+// 2. marked item strategy를 사용 불필요.
+// 3. 모든 Item에 불필요 측정이 들어가는 문제 개선 필요
+
 // 컨테이너 노드와 자식 노드들의 크기 변화를 관찰하여 오버플로우 여부를 판단하는 훅
 // 렌더링 실행순서
 // MutationObserver -> (rAF) -> Style  -> Layout -> ResizeObserver -> Paint

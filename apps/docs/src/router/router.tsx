@@ -16,6 +16,7 @@ import UseIntersectionObserverPage from "@src/pages/docs/hooks/use-intersection-
 import UseLatestRefPage from "@src/pages/docs/hooks/use-latest-ref/UseLatestRefPage";
 import UsePaginationPage from "@src/pages/docs/hooks/use-pagination/UsePaginationPage";
 import UseRovingFocusPage from "@src/pages/docs/hooks/use-roving-focus/UseRovingFocusPage";
+import UseSnoozePage from "@src/pages/docs/hooks/use-snooze/UseSnoozePage";
 import UseThrottlePage from "@src/pages/docs/hooks/use-throttle/UseThrottlePage";
 import { createBrowserRouter, RouteObject } from "react-router";
 
@@ -118,6 +119,13 @@ export const PAGE_ROUTES: RouteCategory = {
         description: "roving tabindex 패턴으로 방향키·Home·End 키보드 내비게이션을 구현하는 훅. 그리드 이동, disabled 스킵, 경계 콜백 지원",
       },
       {
+        path: "/docs/use-snooze",
+        element: <UseSnoozePage />,
+        name: "useSnooze",
+        description:
+          "팝업·배너 '오늘 하루 보지 않기' 같은 스누즈 기능을 웹 스토리지 기반으로 구현하는 훅. day/ms 기간 설정, 만료 시 자동 재활성화 지원",
+      },
+      {
         path: "/docs/use-throttle",
         element: <UseThrottlePage />,
         name: "useThrottle",
@@ -129,7 +137,6 @@ export const PAGE_ROUTES: RouteCategory = {
   //   title: "Hooks",
   //   routes: [
   //     { path: "/docs/use-arrow-navigation", element: <UseArrowNavigationPage />, name: "useArrowNavigation" },
-  //     { path: "/docs/use-snooze", element: <UseSnoozePage />, name: "useSnooze" },
   //   ],
   // },
 };

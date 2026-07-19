@@ -15,6 +15,7 @@ import UseIntersectionObserverGroupPage from "@src/pages/docs/hooks/use-intersec
 import UseIntersectionObserverPage from "@src/pages/docs/hooks/use-intersection-observer/UseIntersectionObserverPage";
 import UseLatestRefPage from "@src/pages/docs/hooks/use-latest-ref/UseLatestRefPage";
 import UsePaginationPage from "@src/pages/docs/hooks/use-pagination/UsePaginationPage";
+import UseRovingFocusPage from "@src/pages/docs/hooks/use-roving-focus/UseRovingFocusPage";
 import UseThrottlePage from "@src/pages/docs/hooks/use-throttle/UseThrottlePage";
 import { createBrowserRouter, RouteObject } from "react-router";
 
@@ -57,13 +58,15 @@ export const PAGE_ROUTES: RouteCategory = {
         path: "/docs/use-controllable-state",
         element: <UseControllableStatePage />,
         name: "useControllableState",
-        description: "하나의 컴포넌트가 제어/비제어 모드를 모두 지원하도록 상태를 관리하는 훅. Object.is 비교로 불필요한 onChange 호출 방지",
+        description:
+          "하나의 컴포넌트가 제어/비제어 모드를 모두 지원하도록 상태를 관리하는 훅. Object.is 비교로 불필요한 onChange 호출 방지",
       },
       {
         path: "/docs/use-custom-event-state",
         element: <UseCustomEventStatePage />,
         name: "useCustomEventState",
-        description: "window CustomEvent로 같은 key를 사용하는 컴포넌트 간 상태를 Provider 없이 동기화하는 훅. 함수형 업데이트와 지연 초기화 지원",
+        description:
+          "window CustomEvent로 같은 key를 사용하는 컴포넌트 간 상태를 Provider 없이 동기화하는 훅. 함수형 업데이트와 지연 초기화 지원",
       },
       {
         path: "/docs/use-debounce",
@@ -93,7 +96,8 @@ export const PAGE_ROUTES: RouteCategory = {
         path: "/docs/use-intersection-observer-group",
         element: <UseIntersectionObserverGroupPage />,
         name: "useIntersectionObserverGroup",
-        description: "컨테이너 안 여러 요소의 뷰포트 진입/이탈을 키 기반으로 한꺼번에 추적하는 훅. 동적 추가/제거 자동 감지, 키별 once/reset 지원",
+        description:
+          "컨테이너 안 여러 요소의 뷰포트 진입/이탈을 키 기반으로 한꺼번에 추적하는 훅. 동적 추가/제거 자동 감지, 키별 once/reset 지원",
       },
       {
         path: "/docs/use-latest-ref",
@@ -106,6 +110,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UsePaginationPage />,
         name: "usePagination",
         description: "siblings/boundaries 기반 페이지 범위 계산과 생략 기호, 내비게이션 로직을 제공하는 headless 페이지네이션 훅",
+      },
+      {
+        path: "/docs/use-roving-focus",
+        element: <UseRovingFocusPage />,
+        name: "useRovingFocus",
+        description: "roving tabindex 패턴으로 방향키·Home·End 키보드 내비게이션을 구현하는 훅. 그리드 이동, disabled 스킵, 경계 콜백 지원",
       },
       {
         path: "/docs/use-throttle",

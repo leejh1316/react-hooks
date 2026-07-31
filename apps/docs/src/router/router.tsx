@@ -6,6 +6,7 @@ import PageNotFound from "@src/pages/errors/PageNotFound";
 import DocsIndexPage from "@src/pages/docs/DocsIndexPage";
 import UseBrowserStoragePage from "@src/pages/docs/hooks/use-browser-storage/UseBrowserStoragePage";
 import UseComposeRefPage from "@src/pages/docs/hooks/use-compose-ref/UseComposeRefPage";
+import UseComposeStatePage from "@src/pages/docs/hooks/use-compose-state/UseComposeStatePage";
 import UseControllableStatePage from "@src/pages/docs/hooks/use-controllable-state/UseControllableStatePage";
 import UseCustomEventStatePage from "@src/pages/docs/hooks/use-custom-event-state/UseCustomEventStatePage";
 import UseDebouncePage from "@src/pages/docs/hooks/use-debounce/UseDebouncePage";
@@ -54,6 +55,13 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UseComposeRefPage />,
         name: "useComposedRefs",
         description: "여러 개의 ref(객체형·함수형)를 하나의 callback ref로 병합해 한 엘리먼트에 동시에 연결하는 훅. React 19 cleanup 지원",
+      },
+      {
+        path: "/docs/use-compose-state",
+        element: <UseComposeStatePage />,
+        name: "useComposedState",
+        description:
+          "여러 개의 state setter를 하나로 합성해 한 번의 호출로 함께 갱신하는 훅. 직접 값·함수형 업데이트와 고정된 setter 참조 지원",
       },
       {
         path: "/docs/use-controllable-state",

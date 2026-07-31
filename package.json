@@ -6,6 +6,8 @@
     "dev": "pnpm --filter demo dev",
     "build": "pnpm run build:packages && pnpm --filter demo build",
     "preview": "pnpm run build:packages && pnpm --filter demo preview",
+    "dev:example": "pnpm --filter example dev",
+    "build:example": "pnpm run build:packages && pnpm --filter example build",
     "dev:docs": "pnpm --filter react-hooks-docs dev",
     "preview:docs": "pnpm --filter react-hooks-docs preview",
     "build:docs": "pnpm --filter react-hooks-docs build",

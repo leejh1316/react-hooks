@@ -16,6 +16,7 @@ import UseIntersectionObserverGroupPage from "@src/pages/docs/hooks/use-intersec
 import UseIntersectionObserverPage from "@src/pages/docs/hooks/use-intersection-observer/UseIntersectionObserverPage";
 import UseLatestRefPage from "@src/pages/docs/hooks/use-latest-ref/UseLatestRefPage";
 import UsePaginationPage from "@src/pages/docs/hooks/use-pagination/UsePaginationPage";
+import UsePrevRefPage from "@src/pages/docs/hooks/use-prev-ref/UsePrevRefPage";
 import UseRovingFocusPage from "@src/pages/docs/hooks/use-roving-focus/UseRovingFocusPage";
 import UseSnoozePage from "@src/pages/docs/hooks/use-snooze/UseSnoozePage";
 import UseThrottlePage from "@src/pages/docs/hooks/use-throttle/UseThrottlePage";
@@ -119,6 +120,12 @@ export const PAGE_ROUTES: RouteCategory = {
         element: <UsePaginationPage />,
         name: "usePagination",
         description: "siblings/boundaries 기반 페이지 범위 계산과 생략 기호, 내비게이션 로직을 제공하는 headless 페이지네이션 훅",
+      },
+      {
+        path: "/docs/use-prev-ref",
+        element: <UsePrevRefPage />,
+        name: "usePrevRef",
+        description: "직전 렌더링 사이클의 값을 ref에 담아 두는 훅. 이벤트 핸들러·useEffect에서 현재 값과 이전 값을 비교할 때 사용",
       },
       {
         path: "/docs/use-roving-focus",

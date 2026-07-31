@@ -26,13 +26,13 @@ const DesktopHeader = () => {
               </Link>
             </li>
           </ul>
-          <IconButton
+          {/* <IconButton
             name="github"
             size="md"
             onClick={() => window.open(GITHUB_URL, "_blank")}
             aria-label="GitHub"
             className="text-icon-secondary hover:text-icon-primary rounded-lg transition-colors hover:bg-neutral-100"
-          />
+          /> */}
         </nav>
       </div>
     </header>
@@ -86,13 +86,13 @@ const MobileHeader = () => {
 
           {/* GitHub + Hamburger */}
           <div className="flex items-center">
-            <IconButton
+            {/* <IconButton
               name="github"
               size="md"
               onClick={() => window.open(GITHUB_URL, "_blank")}
               aria-label="GitHub"
               className="text-icon-secondary hover:text-icon-primary rounded-lg transition-colors hover:bg-neutral-100"
-            />
+            /> */}
             <IconButton
               type="button"
               onClick={toggleMenu}

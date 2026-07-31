@@ -57,13 +57,13 @@ export const PAGE_ROUTES: RouteCategory = {
         name: "useComposedRefs",
         description: "여러 개의 ref(객체형·함수형)를 하나의 callback ref로 병합해 한 엘리먼트에 동시에 연결하는 훅. React 19 cleanup 지원",
       },
-      {
-        path: "/docs/use-compose-state",
-        element: <UseComposeStatePage />,
-        name: "useComposedState",
-        description:
-          "여러 개의 state setter를 하나로 합성해 한 번의 호출로 함께 갱신하는 훅. 직접 값·함수형 업데이트와 고정된 setter 참조 지원",
-      },
+      // {
+      //   path: "/docs/use-compose-state",
+      //   element: <UseComposeStatePage />,
+      //   name: "useComposedState",
+      //   description:
+      //     "여러 개의 state setter를 하나로 합성해 한 번의 호출로 함께 갱신하는 훅. 직접 값·함수형 업데이트와 고정된 setter 참조 지원",
+      // },
       {
         path: "/docs/use-controllable-state",
         element: <UseControllableStatePage />,
@@ -121,25 +121,25 @@ export const PAGE_ROUTES: RouteCategory = {
         name: "usePagination",
         description: "siblings/boundaries 기반 페이지 범위 계산과 생략 기호, 내비게이션 로직을 제공하는 headless 페이지네이션 훅",
       },
-      {
-        path: "/docs/use-prev-ref",
-        element: <UsePrevRefPage />,
-        name: "usePrevRef",
-        description: "직전 렌더링 사이클의 값을 ref에 담아 두는 훅. 이벤트 핸들러·useEffect에서 현재 값과 이전 값을 비교할 때 사용",
-      },
+      // {
+      //   path: "/docs/use-prev-ref",
+      //   element: <UsePrevRefPage />,
+      //   name: "usePrevRef",
+      //   description: "직전 렌더링 사이클의 값을 ref에 담아 두는 훅. 이벤트 핸들러·useEffect에서 현재 값과 이전 값을 비교할 때 사용",
+      // },
       {
         path: "/docs/use-roving-focus",
         element: <UseRovingFocusPage />,
         name: "useRovingFocus",
         description: "roving tabindex 패턴으로 방향키·Home·End 키보드 내비게이션을 구현하는 훅. 그리드 이동, disabled 스킵, 경계 콜백 지원",
       },
-      {
-        path: "/docs/use-snooze",
-        element: <UseSnoozePage />,
-        name: "useSnooze",
-        description:
-          "팝업·배너 '오늘 하루 보지 않기' 같은 스누즈 기능을 웹 스토리지 기반으로 구현하는 훅. day/ms 기간 설정, 만료 시 자동 재활성화 지원",
-      },
+      // {
+      //   path: "/docs/use-snooze",
+      //   element: <UseSnoozePage />,
+      //   name: "useSnooze",
+      //   description:
+      //     "팝업·배너 '오늘 하루 보지 않기' 같은 스누즈 기능을 웹 스토리지 기반으로 구현하는 훅. day/ms 기간 설정, 만료 시 자동 재활성화 지원",
+      // },
       {
         path: "/docs/use-throttle",
         element: <UseThrottlePage />,
